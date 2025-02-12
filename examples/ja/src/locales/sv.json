@@ -1,0 +1,2495 @@
+{
+  "admin": {
+    "activity": {
+      "asset-management": "Tillgångshantering",
+      "page-description": "Spåra aktivitet över alla tillgångar.",
+      "page-title": "Tillgångsaktivitet",
+      "tabs": {
+        "recent-transactions": "Senaste transaktioner",
+        "all-events": "Alla händelser"
+      },
+      "view-all": "Visa alla transaktioner i utforskaren"
+    },
+    "bonds": {
+      "burn-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "available-balance": "Tillgängligt saldo: {balance}",
+          "description": "Ange det belopp du vill bränna.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Bränn tillgångar",
+        "description": "Ta bort obligations tokens permanent från cirkulation för att minska utbudet.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "burn-description": "Detaljer om bränningsoperationen",
+          "burn-title": "Bränn",
+          "description": "Verifiera detaljerna för din bränning innan du fortsätter.",
+          "title": "Granska och bekräfta bränning"
+        },
+        "title": "Bränn",
+        "trigger-label": "Bränn"
+      },
+      "charts": {
+        "asset-statistics-title": "Tillgångsstatistik"
+      },
+      "create-form": {
+        "basics": {
+          "decimals-label": "Decimaler",
+          "description": "Ange grundläggande detaljer om obligationen",
+          "isin-label": "ISIN",
+          "isin-placeholder": "t.ex. US000000AA00",
+          "name-label": "Tillgångens namn",
+          "name-placeholder": "t.ex. Företag XYZ Obligation 2023",
+          "symbol-label": "Symbol",
+          "symbol-placeholder": "t.ex. XYZ23",
+          "title": "Grundläggande information"
+        },
+        "button-label": "Utfärda en ny obligation",
+        "configuration": {
+          "cap-description": "Maximalt antal tokens som kan utfärdas",
+          "cap-label": "Maximalt utbud",
+          "description": "Konfigurera egenskaperna för obligationen",
+          "face-value-description": "Nominellt värde av en enskild obligationsenhet",
+          "face-value-label": "Nominellt värde",
+          "maturity-date-label": "Förfallodatum",
+          "title": "Obligationskonfiguration",
+          "underlying-asset-description": "Adress till den tillgång som stöder denna obligation",
+          "underlying-asset-label": "Underliggande tillgång"
+        },
+        "description": "Utfärda en ny obligation på blockkedjan",
+        "summary": {
+          "asset-basics-description": "Grundläggande information om obligationen",
+          "asset-basics-title": "Grundläggande information",
+          "cap-label": "Maximalt utbud",
+          "configuration-description": "Teknisk konfiguration av obligationen",
+          "configuration-title": "Obligationskonfiguration",
+          "decimals-label": "Decimaler",
+          "description": "Granska obligationsdetaljerna innan du skapar",
+          "face-value-label": "Nominellt värde",
+          "isin-label": "ISIN",
+          "maturity-date-label": "Förfallodatum",
+          "name-label": "Namn",
+          "symbol-label": "Symbol",
+          "title": "Granska och bekräfta",
+          "underlying-asset-label": "Underliggande tillgång",
+          "error-duplicate": "En obligation med samma detaljer finns redan. Vänligen försök igen med minst en annan parameter."
+        },
+        "title": "Skapa ny obligation",
+        "trigger-label": "Utfärda en ny obligation"
+      },
+      "details": {
+        "bond-details-description": "Detaljer för obligationen",
+        "contract-address": "Kontraktsadress",
+        "creator": "Skapare",
+        "decimals": "Decimaler",
+        "details-page-description": "Utforska omfattande data och mätvärden för {name}.",
+        "details-page-title": "{name} Detaljer",
+        "isin": "ISIN",
+        "name": "Namn",
+        "ownership-concentration": "Ägar koncentration",
+        "ownership-concentration-info": "Procentandel ägd av de 5 största innehavarna",
+        "symbol": "Symbol",
+        "total-supply": "Totalt utbud",
+        "total-supply-info": "Det totala utbudet av token"
+      },
+      "events": {
+        "events-page-description": "Spåra alla händelser relaterade till {name} obligation.",
+        "events-page-title": "{name} Händelser"
+      },
+      "grant-role-form": {
+        "address": {
+          "address-label": "Admin plånboksadress",
+          "description": "Sök efter en användare med deras namn eller e-post, eller ange manuellt en plånboksadress.",
+          "manual-placeholder": "0x0000000000000000000000000000000000000000",
+          "manual-toggle": "Ange adress manuellt...",
+          "search-placeholder": "Sök efter en användare",
+          "search-toggle": "Sök istället efter en användare...",
+          "title": "Välj ny administratör"
+        },
+        "button-label": "Tilldela roller",
+        "description": "Tilldela administrativa behörigheter till en ny användare.",
+        "roles": {
+          "description": "Välj roller att bevilja till den nya administratören. Minst en roll måste väljas.",
+          "title": "Välj adminroller"
+        },
+        "summary": {
+          "admin-address-label": "Adminadress",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din rolltilldelning innan du fortsätter.",
+          "grant-description": "Detaljer om tilldelning av rolloperation",
+          "grant-title": "Tilldela roll",
+          "roles-label": "Roller",
+          "title": "Granska och bekräfta rolltilldelning"
+        },
+        "title": "Tilldela roll"
+      },
+      "manage": {
+        "actions": {
+          "mint": "Prägla",
+          "burn": "Bränn",
+          "pause": "Pausa",
+          "unpause": "Återuppta",
+          "grant-role": "Tilldela roll",
+          "top-up": "Topp upp underliggande tillgång",
+          "withdraw": "Ta ut underliggande tillgång",
+          "mature": "Mognad"
+        },
+        "manage": "Hantera"
+      },
+      "mint-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "description": "Ange det belopp du vill prägla.",
+          "title": "Ange belopp"
+        },
+        "recipients": {
+          "title": "Välj mottagare",
+          "description": "Välj vem som ska ta emot de präglade token"
+        },
+        "button-label": "Prägla tillgångar",
+        "description": "Utfärda nya token för att öka obligationens cirkulerande utbud.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din präglingsoperation innan du fortsätter.",
+          "mint-description": "Detaljer för präglingsoperation",
+          "mint-title": "Prägla",
+          "title": "Granska och bekräfta präglingsoperation"
+        },
+        "title": "Prägla",
+        "trigger-label": "Prägla"
+      },
+      "pause-form": {
+        "pause": {
+          "button-label": "Pausa transaktioner",
+          "description": "Tillfälligt stoppa alla transaktioner och interaktioner för denna obligation.",
+          "title": "Pausa obligations transaktioner"
+        },
+        "summary": {
+          "asset-label": "Tillgång",
+          "current-state-label": "Aktuellt tillstånd",
+          "description": "Verifiera detaljerna för din pausoperation innan du fortsätter.",
+          "pause-description": "Detaljer för pausoperation",
+          "pause-title": "Pausa",
+          "state-active": "Aktiv",
+          "state-paused": "Pausad",
+          "target-state-label": "Måltillstånd",
+          "title": "Granska och bekräfta pausoperation"
+        },
+        "unpause": {
+          "button-label": "Återuppta transaktioner",
+          "description": "Återuppta transaktioner och interaktioner för denna obligation.",
+          "title": "Återuppta obligations transaktioner"
+        }
+      },
+      "related-actions": {
+        "decrease-supply": {
+          "description": "En obligationsförvaltare kan minska det totala utbudet genom inlösen av obligationer vid förfall eller program för tidig återköp.",
+          "title": "Lösa in obligationer"
+        },
+        "increase-supply": {
+          "description": "En obligationsförvaltare kan utfärda nya obligationer genom primärutgivning eller tap-utgivning med definierat nominellt värde och förfall.",
+          "title": "Utfärda obligationer"
+        },
+        "title": "Relaterade åtgärder"
+      },
+      "table": {
+        "actions-header": "Åtgärder",
+        "address-header": "Adress",
+        "asset-management": "Tillgångshantering",
+        "name-header": "Namn",
+        "page-description": "Skapa, visa och hantera obligations tillgångar på blockchain",
+        "page-title": "Obligationshantering",
+        "private-header": "Privat",
+        "private-status": "Privat",
+        "public-status": "Offentlig",
+        "related-actions": {
+          "issue-new": {
+            "description": "Skapa och lansera en ny obligation med definierat förfall, kupongräntor och nominellt värde. Effektivisera obligationsutgivning med automatiserade räntebetalningar och inlösenscheman.",
+            "title": "Utfärda ny obligation"
+          },
+          "mechanics": {
+            "button": "Läs mer",
+            "description": "Lär dig hur du hanterar obligationsparametrar, räntefördelningar, förfallodatum och inlösensprocesser för räntebärande värdepapper.",
+            "title": "Obligationsmekanik"
+          },
+          "title": "Relaterade åtgärder",
+          "usecases": {
+            "button": "Utforska",
+            "description": "Utforska tillämpningar på räntebärande marknader, från företags skuld till strukturerade produkter. Maximera effektiviteten i räntebetalningar, förvaltningshantering och efterlevnad av regler.",
+            "title": "Obligationsanvändningar"
+          }
+        },
+        "status-header": "Status",
+        "symbol-header": "Symbol",
+        "topinfo-description": "Digitala obligationer representerar traditionella räntebärande värdepapper på ett säkert sätt på blockchain, stödda av verkliga säkerheter. De kombinerar blockchain-transparens med förutsägbara avkastningar, inlösen vid förfall och automatiserad avkastningsdistribution. Denna obligations tillgång säkerställer säker utgivning, exakt förvaltningshantering, omfattande efterlevnadsförmågor och investerarevänliga inlösensprocesser skräddarsydda specifikt för finansiella institutioner.",
+        "topinfo-title": "En digital räntebärande värdepappers tillgång",
+        "total-supply-header": "Totalt utbud"
+      },
+      "tabs": {
+        "details": "Detaljer",
+        "events": "Händelser",
+        "holders": "Innehavare",
+        "permissions": "Behörigheter"
+      },
+      "top-up-form": {
+        "trigger-label": "Fyll på",
+        "title": "Fyll på underliggande tillgång",
+        "description": "Lägg till mer underliggande tillgång till din obligation",
+        "button-label": "Fyll på",
+        "steps": {
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Ange det belopp som ska fyllas på den underliggande tillgången.",
+            "amount": {
+              "label": "Belopp",
+              "description": "Ange beloppet som ska fyllas på"
+            }
+          },
+          "summary": {
+            "title": "Granska och bekräfta påfyllning",
+            "description": "Verifiera detaljerna för din påfyllning innan du fortsätter.",
+            "amount-label": "Belopp",
+            "asset-label": "Underliggande tillgång",
+            "pincode": {
+              "label": "PIN-kod",
+              "description": "Ange din PIN-kod för att bekräfta transaktionen"
+            }
+          }
+        }
+      },
+      "withdraw-form": {
+        "trigger-label": "Ta ut",
+        "title": "Ta ut underliggande tillgång",
+        "description": "Ta ut underliggande tillgång från din obligation",
+        "button-label": "Ta ut",
+        "steps": {
+          "recipient": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot den underliggande tillgången.",
+            "label": "Mottagare",
+            "placeholder": "Sök efter en användare eller ange adress",
+            "search-instead": "Sök efter en användare istället...",
+            "manual-instead": "Ange adress manuellt..."
+          },
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Ange det belopp som ska tas ut.",
+            "amount": {
+              "label": "Belopp",
+              "description": "Ange beloppet som ska tas ut"
+            }
+          },
+          "summary": {
+            "title": "Granska och bekräfta uttag",
+            "description": "Verifiera detaljerna för ditt uttag innan du fortsätter.",
+            "recipient-label": "Mottagare",
+            "amount-label": "Belopp",
+            "asset-label": "Underliggande tillgång",
+            "pincode": {
+              "label": "PIN-kod",
+              "description": "Ange din PIN-kod för att bekräfta transaktionen"
+            }
+          }
+        }
+      },
+      "mature-form": {
+        "trigger-label": "Mognad",
+        "title": "Mogen obligation",
+        "description": "Mognad din obligation och ta emot den underliggande tillgången",
+        "button-label": "Mognad Obligation",
+        "summary": {
+          "title": "Granska och bekräfta mognad",
+          "description": "Verifiera detaljerna för din obligationsmognad innan du fortsätter.",
+          "mature-title": "Mognad",
+          "mature-description": "Detaljer om obligationsmognad",
+          "asset-label": "Obligation"
+        }
+      }
+    },
+    "cryptocurrencies": {
+      "burn-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "available-balance": "Tillgängligt saldo: {balance}",
+          "description": "Ange det belopp du vill bränna.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Bränn tillgångar",
+        "description": "Ta bort tokens permanent från cirkulation för att minska utbudet.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "burn-description": "Detaljer om bränningsoperation",
+          "burn-title": "Bränn",
+          "description": "Verifiera detaljerna för din bränning innan du fortsätter.",
+          "title": "Granska och bekräfta bränning"
+        },
+        "title": "Bränn",
+        "trigger-label": "Bränn"
+      },
+      "charts": {
+        "asset-statistics-title": "Tillgångsstatistik"
+      },
+      "create-form": {
+        "basics": {
+          "decimals-label": "Decimaler",
+          "description": "Definiera viktiga detaljer såsom namn, symbol och synlighet.",
+          "isin-label": "ISIN",
+          "isin-placeholder": "CRYPTO123456",
+          "name-label": "Namn",
+          "name-placeholder": "Bitcoin",
+          "symbol-label": "Symbol",
+          "symbol-placeholder": "BTC",
+          "title": "Grundläggande information"
+        },
+        "button-label": "Utfärda en ny kryptovaluta",
+        "configuration": {
+          "description": "Specificera avancerade inställningar för din kryptovaluta.",
+          "initial-supply-description": "Antalet tokens att prägla vid skapandet",
+          "initial-supply-label": "Initialt utbud",
+          "title": "Konfiguration"
+        },
+        "description": "Definiera och lansera en ny kryptovaluta tillgång.",
+        "summary": {
+          "asset-basics-description": "Grundläggande tillgångsinformation och inställningar.",
+          "asset-basics-title": "Tillgångsgrunder",
+          "configuration-description": "Tillgångsutbud och ytterligare inställningar.",
+          "configuration-title": "Konfiguration",
+          "decimals-label": "Decimaler",
+          "description": "Granska och bekräfta detaljerna för din nya kryptovaluta innan skapandet.",
+          "initial-supply-label": "Initialt utbud",
+          "isin-label": "ISIN",
+          "name-label": "Namn",
+          "no": "Nej",
+          "private-label": "Privat",
+          "symbol-label": "Symbol",
+          "title": "Granska och bekräfta",
+          "yes": "Ja",
+          "error-duplicate": "En kryptovaluta med samma detaljer finns redan. Försök igen med minst en annan parameter."
+        },
+        "title": "Skapa kryptovaluta",
+        "trigger-label": "Utfärda en ny kryptovaluta"
+      },
+      "details": {
+        "contract-address": "Kontraktsadress",
+        "creator": "Skapare",
+        "cryptocurrency-details-description": "Detaljer för kryptovalutan",
+        "decimals": "Decimaler",
+        "details-page-description": "Utforska omfattande data och mätvärden för {name}.",
+        "details-page-title": "{name} Detaljer",
+        "name": "Namn",
+        "ownership-concentration": "Ägar koncentration",
+        "ownership-concentration-info": "Procentandel ägd av de 5 största innehavarna",
+        "symbol": "Symbol",
+        "total-supply": "Totalt utbud",
+        "total-supply-info": "Det totala utbudet av token"
+      },
+      "events": {
+        "events-page-description": "Spåra historiska aktiviteter och transaktioner som involverar {name}.",
+        "events-page-title": "{name} Händelser"
+      },
+      "grant-role-form": {
+        "address": {
+          "address-label": "Admin plånboksadress",
+          "description": "Sök efter en användare med deras namn eller e-post, eller ange en plånboksadress manuellt.",
+          "manual-placeholder": "0x0000000000000000000000000000000000000000",
+          "manual-toggle": "Ange adress manuellt...",
+          "search-placeholder": "Sök efter en användare",
+          "search-toggle": "Sök efter en användare istället...",
+          "title": "Välj ny administratör"
+        },
+        "button-label": "Tilldela roller",
+        "description": "Tilldela administrativa behörigheter till en ny användare.",
+        "roles": {
+          "description": "Välj de roller som ska beviljas den nya administratören. Minst en roll måste väljas.",
+          "title": "Välj adminroller"
+        },
+        "summary": {
+          "admin-address-label": "Adminadress",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din rollbeviljande innan du fortsätter.",
+          "grant-description": "Detaljer om beviljande av rolloperation",
+          "grant-title": "Bevilja roll",
+          "roles-label": "Roller",
+          "title": "Granska och bekräfta rollbeviljande"
+        },
+        "title": "Bevilja roll"
+      },
+      "manage": {
+        "actions": {
+          "grant-role": "Bevilja roll",
+          "mint": "Prägla"
+        },
+        "manage": "Hantera"
+      },
+      "mint-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "description": "Ange det belopp du vill prägla.",
+          "title": "Ange belopp"
+        },
+        "recipients": {
+          "title": "Välj mottagare",
+          "description": "Välj vem som ska ta emot de präglade tokens"
+        },
+        "button-label": "Prägla tillgångar",
+        "description": "Utfärda nya tokens för att öka kryptovalutans cirkulerande utbud.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din prägling innan du fortsätter.",
+          "mint-description": "Detaljer om myntningsoperationer",
+          "mint-title": "Mynta",
+          "title": "Granska och bekräfta myntning"
+        },
+        "title": "Mynta",
+        "trigger-label": "Mynta"
+      },
+      "related-actions": {
+        "increase-supply": {
+          "description": "En tokenhanterare kan mynta nya tokens enligt tokenomics-planen och emissionsschemat.",
+          "title": "Mynta tokens"
+        },
+        "title": "Relaterade åtgärder"
+      },
+      "table": {
+        "actions-header": "Åtgärder",
+        "address-header": "Adress",
+        "asset-management": "Tillgångshantering",
+        "name-header": "Namn",
+        "page-description": "Översikt och administrativa åtgärder för dina kryptovaluta-tillgångar.",
+        "page-title": "Kryptovalutor",
+        "private-header": "Privat",
+        "private-status": "Privat",
+        "public-status": "Offentlig",
+        "related-actions": {
+          "issue-new": {
+            "description": "Skapa och lansera en ny kryptovalutatoken med anpassningsbara parametrar och säkerhetsfunktioner. Effektivisera tokenutplacering med konfigurerbara leveransmekanismer och överföringskontroller.",
+            "title": "Utfärda ny kryptovaluta"
+          },
+          "mechanics": {
+            "button": "Lär dig mer",
+            "description": "Lär dig hur du hanterar tokenekonomi, leveranskontroller, överföringsbegränsningar och säkerhetsfunktioner för din kryptovaluta.",
+            "title": "Tokenmekanik"
+          },
+          "title": "Relaterade åtgärder",
+          "usecases": {
+            "button": "Utforska",
+            "description": "Utforska applikationer inom digitala betalningar, belöningssystem och tokeniserade tjänster. Maximera nyttan genom programmerbara transaktioner och säkerhetsfunktioner av institutionell kvalitet.",
+            "title": "Kryptovaluta-användningsfall"
+          }
+        },
+        "symbol-header": "Symbol",
+        "topinfo-description": "Kryptovaluta-tillgångar är anpassningsbara digitala instrument som erbjuder kontrollerad myntning, robust säkerhet och fullständig efterlevnad av regler, idealiska för institutionellt bruk. De effektiviserar finansiella operationer genom programmerbara transaktioner, ökad transparens och integrerade meta-transaktioner för förbättrad användbarhet. Nyckelfunktioner inkluderar rollbaserad åtkomsthantering, säker utfärdande och enkel integration i institutionella betalningsprocesser.",
+        "topinfo-title": "En anpassningsbar och säker digital tillgång",
+        "total-supply-header": "Total tillgång"
+      },
+      "tabs": {
+        "details": "Detaljer",
+        "events": "Händelser",
+        "holders": "Innehavare",
+        "permissions": "Behörigheter",
+        "underlying-assets": "Underliggande tillgångar"
+      }
+    },
+    "dashboard": {
+      "charts": {
+        "asset-activity": {
+          "burn": "Bränn",
+          "description": "Tillgångsaktivitet",
+          "mint": "Mynta",
+          "title": "Tillgångsaktivitet",
+          "transfer": "Överför"
+        },
+        "asset-types": {
+          "bonds": "Obligationer",
+          "cryptocurrencies": "Kryptovalutor",
+          "equities": "Aktier",
+          "funds": "Fonder",
+          "stablecoins": "Stabila mynt"
+        },
+        "assets-supply": {
+          "description": "Tillgångar leverans",
+          "label": "Tillgångar",
+          "title": "Tillgångar leverans"
+        },
+        "transaction-history": {
+          "description": "Transaktionshistorik",
+          "label": "Transaktioner",
+          "title": "Transaktionshistorik"
+        },
+        "users-history": {
+          "description": "Användarhistorik",
+          "label": "Användare",
+          "title": "Användarhistorik"
+        }
+      },
+      "page": {
+        "asset-management": "Tillgångshantering",
+        "description": "Välkommen till instrumentpanelen",
+        "latest-events-heading": "Senaste händelser",
+        "my-portfolio": "Min portfölj",
+        "stats-heading": "Statistik",
+        "title": "Instrumentpanel"
+      },
+      "table": {
+        "latest-events": {
+          "view-all": "Visa alla"
+        }
+      },
+      "widgets": {
+        "assets": {
+          "label": "Tillgångar",
+          "subtext": "{bonds} obligationer {cryptocurrencies} kryptovalutor, {equities} aktier, {funds} fonder, {stableCoins} stabila mynt"
+        },
+        "transactions": {
+          "label": "Transaktioner",
+          "subtext": "{count} transaktioner bearbetade under de senaste {days} dagarna"
+        },
+        "users": {
+          "label": "Användare",
+          "subtext": "{count} användare under de senaste {days} dagarna"
+        }
+      }
+    },
+    "equities": {
+      "burn-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "available-balance": "Tillgängligt saldo: {balance}",
+          "description": "Ange det belopp du vill bränna.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Bränn tillgångar",
+        "description": "Ta permanent bort aktietokens från cirkulation för att minska tillgången.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "burn-description": "Detaljer om bränningsoperationer",
+          "burn-title": "Bränn",
+          "description": "Verifiera detaljerna för din bränning innan du fortsätter.",
+          "title": "Granska och bekräfta bränning"
+        },
+        "title": "Bränn",
+        "trigger-label": "Bränn"
+      },
+      "charts": {
+        "asset-statistics-title": "Tillgångsstatistik"
+      },
+      "create-form": {
+        "basics": {
+          "decimals-label": "Decimaler",
+          "description": "Definiera viktiga detaljer som namn, symbol och synlighet.",
+          "isin-label": "ISIN",
+          "isin-placeholder": "US1234567890",
+          "name-label": "Namn",
+          "name-placeholder": "Global Equity",
+          "symbol-label": "Symbol",
+          "symbol-placeholder": "GLEQ",
+          "title": "Grundläggande information"
+        },
+        "button-label": "Utfärda en ny aktie",
+        "configuration": {
+          "category-blend-equity": "Blanda aktier",
+          "category-communication-services": "Kommunikationstjänster",
+          "category-consumer-discretionary": "Konsumentdiskretionära varor",
+          "category-consumer-staples": "Konsumentvaror",
+          "category-convertible-preferred-stock": "Konvertibla preferensaktier",
+          "category-cumulative-preferred-stock": "Kumulativa preferensaktier",
+          "category-distressed-equity": "Nödlidande aktier",
+          "category-domestic-equity": "Inhemska aktier",
+          "category-dual-class-shares": "Dubbla aktieslag",
+          "category-emerging-market-equity": "Tillväxtmarknadsaktier",
+          "category-energy": "Energi",
+          "category-esop-shares": "Aktieägarplan (ESOP) aktier",
+          "category-financials": "Finans",
+          "category-frontier-market-equity": "Gränsmarknadsaktier",
+          "category-global-equity": "Global aktie",
+          "category-growth-capital": "Tillväxtkapital",
+          "category-growth-equity": "Tillväxtaktier",
+          "category-healthcare": "Hälsovård",
+          "category-income-equity": "Inkomstaktier",
+          "category-industrials": "Industrier",
+          "category-international-equity": "Internationella aktier",
+          "category-large-cap-equity": "Stora aktier",
+          "category-leveraged-buyouts": "Belånade uppköp (LBO)",
+          "category-materials": "Material",
+          "category-mezzanine-financing": "Mezzaninefinansiering",
+          "category-micro-cap-equity": "Mikroaktier",
+          "category-mid-cap-equity": "Medelstora aktier",
+          "category-non-cumulative-preferred-stock": "Icke-kumulativa preferensaktier",
+          "category-non-voting-common-stock": "Icke-röstberättigade stamaktier",
+          "category-real-estate": "Fastigheter",
+          "category-redeemable-preferred-stock": "Inlösbara preferensaktier",
+          "category-restricted-stock": "Begränsade aktier",
+          "category-small-cap-equity": "Små aktier",
+          "category-technology": "Teknologi",
+          "category-tracking-stocks": "Spårningsaktier",
+          "category-utilities": "Verktyg",
+          "category-value-equity": "Värdeaktier",
+          "category-venture-capital": "Riskkapital",
+          "category-voting-common-stock": "Röstberättigade stamaktier",
+          "class-common-equity": "Vanliga aktier",
+          "class-geographic-equity": "Geografiska aktier",
+          "class-investment-stage-private-equity": "Investeringsstadium (Private Equity)",
+          "class-investment-style-equity": "Investeringsstil aktier",
+          "class-market-capitalization-equity": "Marknadskapitalisering aktier",
+          "class-preferred-equity": "Preferensaktier",
+          "class-sector-industry-equity": "Sektor/Bransch aktier",
+          "class-special-classes-equity": "Speciella aktieslag",
+          "description": "Konfigurera detaljer för aktieklassificering",
+          "equity-category-label": "Aktiekategori",
+          "equity-class-label": "Aktieslag",
+          "title": "Konfiguration"
+        },
+        "description": "Utfärda en ny aktie på blockkedjan",
+        "summary": {
+          "asset-basics-description": "Grundläggande tillgångsinformation och inställningar.",
+          "asset-basics-title": "Tillgångsgrundläggande",
+          "category-blend-equity": "Blandade aktier",
+          "category-communication-services": "Kommunikationstjänster",
+          "category-consumer-discretionary": "Konsumentdiskretionära varor",
+          "category-consumer-staples": "Konsumentvaror",
+          "category-convertible-preferred-stock": "Konvertibla preferensaktier",
+          "category-cumulative-preferred-stock": "Kumulativa preferensaktier",
+          "category-distressed-equity": "Nödlidande aktier",
+          "category-domestic-equity": "Inhemska aktier",
+          "category-dual-class-shares": "Dubbla aktieslag",
+          "category-emerging-market-equity": "Tillväxtmarknadsaktier",
+          "category-energy": "Energi",
+          "category-esop-shares": "Aktieägarplan (ESOP) aktier",
+          "category-financials": "Finans",
+          "category-frontier-market-equity": "Gränsmarknadsaktier",
+          "category-global-equity": "Global aktie",
+          "category-growth-capital": "Tillväxtkapital",
+          "category-growth-equity": "Tillväxtaktier",
+          "category-healthcare": "Hälsovård",
+          "category-income-equity": "Inkomstaktier",
+          "category-industrials": "Industrier",
+          "category-international-equity": "Internationella aktier",
+          "category-large-cap-equity": "Stora aktier",
+          "category-leveraged-buyouts": "Belånade uppköp (LBO)",
+          "category-materials": "Material",
+          "category-mezzanine-financing": "Mezzaninefinansiering",
+          "category-micro-cap-equity": "Mikroaktier",
+          "category-mid-cap-equity": "Medelstora aktier",
+          "category-non-cumulative-preferred-stock": "Icke-kumulativa preferensaktier",
+          "category-non-voting-common-stock": "Icke-röstberättigade stamaktier",
+          "category-real-estate": "Fastigheter",
+          "category-redeemable-preferred-stock": "Inlösbara preferensaktier",
+          "category-restricted-stock": "Begränsade aktier",
+          "category-small-cap-equity": "Små aktier",
+          "category-technology": "Teknologi",
+          "category-tracking-stocks": "Spårningsaktier",
+          "category-utilities": "Verktyg",
+          "category-value-equity": "Värdeaktier",
+          "category-venture-capital": "Riskkapital",
+          "category-voting-common-stock": "Röstberättigade stamaktier",
+          "class-common-equity": "Vanliga aktier",
+          "class-geographic-equity": "Geografiska aktier",
+          "class-investment-stage-private-equity": "Investeringsstadium (Private Equity)",
+          "class-investment-style-equity": "Investeringsstil aktier",
+          "class-market-capitalization-equity": "Marknadskapitalisering aktier",
+          "class-preferred-equity": "Preferensaktier",
+          "class-sector-industry-equity": "Sektor/Bransch aktier",
+          "class-special-classes-equity": "Speciella aktieslag",
+          "configuration-description": "Detaljer om aktieklassificering.",
+          "configuration-title": "Konfiguration",
+          "decimals-label": "Decimaler",
+          "description": "Granska och bekräfta detaljerna för din nya aktie innan skapande.",
+          "equity-category-label": "Aktiekategori",
+          "equity-class-label": "Aktieslag",
+          "isin-label": "ISIN",
+          "name-label": "Namn",
+          "symbol-label": "Symbol",
+          "title": "Granska och bekräfta",
+          "error-duplicate": "En aktie med samma detaljer finns redan. Vänligen försök igen med minst en annan parameter."
+        },
+        "title": "Skapa ny aktie",
+        "trigger-label": "Prägla"
+      },
+      "details": {
+        "contract-address": "Kontraktsadress",
+        "creator": "Skapare",
+        "decimals": "Decimaler",
+        "details-page-description": "Utforska omfattande data och mätvärden för {name}.",
+        "details-page-title": "{name} Detaljer",
+        "equity-details-description": "Detaljer för aktien",
+        "isin": "ISIN",
+        "name": "Namn",
+        "ownership-concentration": "Ägandekoncentration",
+        "ownership-concentration-info": "Procentandel ägd av de 5 största innehavarna",
+        "symbol": "Symbol",
+        "total-supply": "Total utbud",
+        "total-supply-info": "Det totala utbudet av token"
+      },
+      "events": {
+        "events-page-description": "Spåra alla händelser relaterade till {name} aktie.",
+        "events-page-title": "{name} Händelser"
+      },
+      "grant-role-form": {
+        "address": {
+          "address-label": "Admin plånboksadress",
+          "description": "Sök efter en användare med deras namn eller e-post, eller ange en plånboksadress manuellt.",
+          "manual-placeholder": "0x0000000000000000000000000000000000000000",
+          "manual-toggle": "Ange adress manuellt...",
+          "search-placeholder": "Sök efter en användare",
+          "search-toggle": "Sök istället efter en användare...",
+          "title": "Välj Ny Admin"
+        },
+        "button-label": "Tilldela Roller",
+        "description": "Tilldela administrativa behörigheter till en ny användare.",
+        "roles": {
+          "description": "Välj de roller som ska beviljas till den nya administratören. Minst en roll måste väljas.",
+          "title": "Välj Admin Roller"
+        },
+        "summary": {
+          "admin-address-label": "Admin Adress",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din rolltilldelning innan du fortsätter.",
+          "grant-description": "Detaljer för rolltilldelningsoperation",
+          "grant-title": "Bevilja Roll",
+          "roles-label": "Roller",
+          "title": "Granska och bekräfta rolltilldelning"
+        },
+        "title": "Bevilja Roll"
+      },
+      "manage": {
+        "actions": {
+          "mint": "Prägla",
+          "burn": "Bränna",
+          "pause": "Pausa",
+          "unpause": "Återuppta",
+          "grant-role": "Bevilja roll"
+        },
+        "manage": "Hantera"
+      },
+      "mint-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "description": "Ange det belopp du vill prägla.",
+          "title": "Ange Belopp"
+        },
+        "recipients": {
+          "title": "Välj Mottagare",
+          "description": "Välj vem som ska ta emot de präglade token"
+        },
+        "button-label": "Prägla Tillgångar",
+        "description": "Utfärda nya token för att öka aktiens cirkulerande utbud.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din prägling innan du fortsätter.",
+          "mint-description": "Detaljer för präglingoperation",
+          "mint-title": "Prägla",
+          "title": "Granska och bekräfta prägling"
+        },
+        "title": "Prägla",
+        "trigger-label": "Prägla"
+      },
+      "pause-form": {
+        "pause": {
+          "button-label": "Pausa Transaktioner",
+          "description": "Tillfälligt stoppa alla transaktioner och interaktioner för denna aktie.",
+          "title": "Pausa Aktie Transaktioner"
+        },
+        "summary": {
+          "asset-label": "Tillgång",
+          "current-state-label": "Aktuellt tillstånd",
+          "description": "Verifiera detaljerna för din pausoperation innan du fortsätter.",
+          "pause-description": "Pausoperation detaljer",
+          "pause-title": "Pausa",
+          "state-active": "Aktiv",
+          "state-paused": "Pausad",
+          "target-state-label": "Mål tillstånd",
+          "title": "Granska och bekräfta pausoperation"
+        },
+        "unpause": {
+          "button-label": "Återuppta Transaktioner",
+          "description": "Återuppta transaktioner och interaktioner för denna aktie.",
+          "title": "Återuppta Aktie Transaktioner"
+        }
+      },
+      "related-actions": {
+        "decrease-supply": {
+          "description": "En aktiechef kan minska det totala utbudet av aktier genom ett återköpsprogram eller kapitalminskning.",
+          "title": "Minska Aktiesupply"
+        },
+        "increase-supply": {
+          "description": "En aktiechef kan utfärda nya aktier genom olika mekanismer som rättighetsutgivningar, privata placeringar eller aktiesplitter.",
+          "title": "Utfärda Nya Aktier"
+        },
+        "title": "Relaterade åtgärder"
+      },
+      "table": {
+        "actions-header": "Åtgärder",
+        "address-header": "Adress",
+        "asset-management": "Tillgångshantering",
+        "category-blend-equity": "Blanda Aktie",
+        "category-communication-services": "Kommunikationstjänster",
+        "category-consumer-discretionary": "Konsumentdiskretionära varor",
+        "category-consumer-staples": "Konsumentvaror",
+        "category-convertible-preferred-stock": "Konvertibla Preferensaktier",
+        "category-cumulative-preferred-stock": "Kumulativa Preferensaktier",
+        "category-distressed-equity": "Nödlidande Aktie",
+        "category-domestic-equity": "Inhemsk Aktie",
+        "category-dual-class-shares": "Dual-Class Aktier",
+        "category-emerging-market-equity": "Framväxande Marknadsaktier",
+        "category-energy": "Energi",
+        "category-esop-shares": "Anställd Aktiebesittningsplan (ESOP) Aktier",
+        "category-financials": "Finans",
+        "category-frontier-market-equity": "Gränsmarknadsaktier",
+        "category-global-equity": "Global Aktie",
+        "category-growth-capital": "Tillväxtkapital",
+        "category-growth-equity": "Tillväxtkapital",
+        "category-header": "Aktiekategori",
+        "category-healthcare": "Sjukvård",
+        "category-income-equity": "Inkomstkapital",
+        "category-industrials": "Industrier",
+        "category-international-equity": "Internationellt kapital",
+        "category-large-cap-equity": "Stora företag",
+        "category-leveraged-buyouts": "Belånade uppköp (LBO)",
+        "category-materials": "Material",
+        "category-mezzanine-financing": "Mezzaninefinansiering",
+        "category-micro-cap-equity": "Mikroföretag",
+        "category-mid-cap-equity": "Medelstora företag",
+        "category-non-cumulative-preferred-stock": "Icke-kumulativ preferensaktie",
+        "category-non-voting-common-stock": "Icke-röstberättigad stamaktie",
+        "category-real-estate": "Fastigheter",
+        "category-redeemable-preferred-stock": "Inlösenpreferensaktie",
+        "category-restricted-stock": "Begränsad aktie",
+        "category-small-cap-equity": "Små företag",
+        "category-technology": "Teknik",
+        "category-tracking-stocks": "Spårningsaktier",
+        "category-utilities": "Verktyg",
+        "category-value-equity": "Värdeaktier",
+        "category-venture-capital": "Riskkapital",
+        "category-voting-common-stock": "Röstberättigad stamaktie",
+        "class-common-equity": "Stamaktier",
+        "class-geographic-equity": "Geografiskt kapital",
+        "class-header": "Aktieklass",
+        "class-investment-stage-private-equity": "Investeringsstadium (Private Equity)",
+        "class-investment-style-equity": "Investeringsstil kapital",
+        "class-market-capitalization-equity": "Marknadskapitalisering kapital",
+        "class-preferred-equity": "Preferenskapital",
+        "class-sector-industry-equity": "Sektor/Bransch kapital",
+        "class-special-classes-equity": "Speciella aktieklasser",
+        "name-header": "Namn",
+        "page-description": "Översikt och administrativa åtgärder för dina aktietillgångar.",
+        "page-title": "Aktier",
+        "private-header": "Privat",
+        "private-status": "Privat",
+        "public-status": "Offentlig",
+        "related-actions": {
+          "issue-new": {
+            "description": "Skapa och lansera en ny aktietoken med definierade aktieklasser och äganderättigheter. Effektivisera aktieutgivning för att stödja aktieägarutdelning och bolagsstyrning.",
+            "title": "Utfärda nya aktietokens"
+          },
+          "mechanics": {
+            "button": "Läs mer",
+            "description": "Lär dig hur du hanterar aktieägares rättigheter, röstmekanismer, utdelningsutdelningar och aktieägarstrukturer.",
+            "title": "Aktiekonstruktioner"
+          },
+          "title": "Relaterade åtgärder",
+          "usecases": {
+            "button": "Utforska",
+            "description": "Utforska tillämpningar inom företagskapitalförvaltning, från aktieutgivning till intressentstyrning. Maximera effektiviteten i aktieadministration, röstningsrättigheter och utdelningsutdelning.",
+            "title": "Aktieanvändningsfall"
+          }
+        },
+        "status-header": "Status",
+        "symbol-header": "Symbol",
+        "topinfo-description": "Aktietillgångar digitaliserar traditionella aktiesäkerheter, kombinerar avancerade blockchain-funktioner med robusta styrnings- och efterlevnadsverktyg. Designade för institutionella investerare, erbjuder de säker aktieutgivning, aktieägares röstningsrättigheter, detaljerade åtkomstkontroller och mekanismer för regulatorisk efterlevnad. Denna tillgång förenklar kapitalförvaltning, ökar transparensen och säkerställer säker investerardeltagande.",
+        "topinfo-title": "Institutionell digital kapitalförvaltning",
+        "total-supply-header": "Total tillgång"
+      },
+      "tabs": {
+        "details": "Detaljer",
+        "events": "Händelser",
+        "holders": "Innehavare",
+        "permissions": "Behörigheter",
+        "underlying-assets": "Underliggande tillgångar"
+      }
+    },
+    "funds": {
+      "burn-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "available-balance": "Tillgängligt saldo: {balance}",
+          "description": "Ange det belopp du vill bränna.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Bränn tillgångar",
+        "description": "Ta bort tokens permanent från cirkulation för att minska utbudet.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "burn-description": "Detaljer om brännoperationen",
+          "burn-title": "Bränn",
+          "description": "Verifiera detaljerna för din bränning innan du fortsätter.",
+          "title": "Granska och bekräfta bränning"
+        },
+        "title": "Bränn",
+        "trigger-label": "Bränn"
+      },
+      "charts": {
+        "asset-statistics-title": "Tillgångsstatistik"
+      },
+      "create-form": {
+        "basics": {
+          "decimals-label": "Decimaler",
+          "description": "Definiera viktiga detaljer såsom namn, symbol och synlighet.",
+          "isin-label": "ISIN",
+          "isin-placeholder": "SE1234567890",
+          "name-label": "Namn",
+          "name-placeholder": "Global Growth Fund",
+          "symbol-label": "Symbol",
+          "symbol-placeholder": "GGF",
+          "title": "Grundläggande information"
+        },
+        "button-label": "Utfärda en ny fond",
+        "configuration": {
+          "basis-points": "bps",
+          "category-activist": "Aktivist",
+          "category-commodity-trading": "Råvaruhandel",
+          "category-convertible-arbitrage": "Konvertibel arbitrage",
+          "category-credit": "Kredit",
+          "category-currency-fx": "Valuta / FX",
+          "category-distressed-debt": "Nödlån",
+          "category-emerging-markets": "Framväxande marknader",
+          "category-equity-hedge": "Aktiehedge",
+          "category-event-driven": "Händelsedriven",
+          "category-fixed-income-arbitrage": "Räntearbitrage",
+          "category-fund-of-funds": "Fond av fonder",
+          "category-global-macro": "Global makro",
+          "category-high-frequency-trading": "Högfrekvenshandel (HFT)",
+          "category-managed-futures-cta": "Förvaltade terminer / CTA",
+          "category-market-neutral": "Marknadsneutral",
+          "category-merger-arbitrage": "Fusion arbitrage",
+          "category-multi-strategy": "Multi-Strategi",
+          "category-private-equity": "Privat Kapital (PE)",
+          "category-quantitative-systematic": "Kvantitativ/Systematisk",
+          "category-relative-value": "Relativ Värde",
+          "category-statistical-arbitrage": "Statistisk Arbitrage",
+          "category-structured-credit": "Strukturerad Kredit",
+          "category-venture-capital": "Riskkapital (VC)",
+          "class-absolute-return": "Absolut Avkastning",
+          "class-core-blend": "Kärna / Blandning",
+          "class-diversified": "Diversifierad",
+          "class-early-stage": "Tidigt Skede",
+          "class-factor-based": "Faktorbasi",
+          "class-growth-focused": "Tillväxtfokuserad",
+          "class-income-focused": "Inkomstfokuserad",
+          "class-large-cap": "Stora Företag",
+          "class-long-equity": "Lång Aktier (Endast Lång)",
+          "class-long-short-equity": "Lång/Kort Aktier",
+          "class-market-neutral": "Marknadsneutral",
+          "class-mid-cap": "Medelstora Företag",
+          "class-momentum-oriented": "Momentum-orienterad",
+          "class-opportunistic": "Opportunistisk",
+          "class-pre-series-b": "Pre-Series B",
+          "class-quantitative-algorithmic": "Kvantitativ / Algoritmisk",
+          "class-regional": "Regional",
+          "class-sector-specific": "Sektor-Specifik",
+          "class-seed-pre-seed": "Frö / Pre-Frö",
+          "class-series-b-late-stage": "Series B / Sen Skede",
+          "class-short-equity": "Kort Aktier",
+          "class-small-cap": "Små Företag",
+          "class-tactical-asset-allocation": "Taktisk Tillgångsallokering",
+          "class-value-focused": "Värde-fokuserad",
+          "description": "Specificera fondkategori, klass och förvaltningsavgift.",
+          "fund-category-label": "Fondkategori",
+          "fund-class-label": "Fondklass",
+          "management-fee-description": "Årlig förvaltningsavgift i baspunkter (100 bps = 1%)",
+          "management-fee-label": "Förvaltningsavgift",
+          "title": "Fondkonfiguration"
+        },
+        "description": "Definiera och lansera en ny fondtillgång.",
+        "summary": {
+          "asset-basics-description": "Grundläggande tillgångsinformation och inställningar.",
+          "asset-basics-title": "Tillgångsgrundläggande",
+          "basis-points": "bps",
+          "category-activist": "Aktivist",
+          "category-commodity-trading": "Råvaruhandel",
+          "category-convertible-arbitrage": "Konvertibel Arbitrage",
+          "category-credit": "Kredit",
+          "category-currency-fx": "Valuta / FX",
+          "category-distressed-debt": "Nödlån",
+          "category-emerging-markets": "Framväxande Marknader",
+          "category-equity-hedge": "Aktiehedge",
+          "category-event-driven": "Händelsedriven",
+          "category-fixed-income-arbitrage": "Räntebärande Arbitrage",
+          "category-fund-of-funds": "Fond av Fonder",
+          "category-global-macro": "Global Makro",
+          "category-high-frequency-trading": "Högfrekvent Handel (HFT)",
+          "category-managed-futures-cta": "Förvaltade Terminer / CTA",
+          "category-market-neutral": "Marknadsneutral",
+          "category-merger-arbitrage": "Fusion Arbitrage",
+          "category-multi-strategy": "Multi-Strategi",
+          "category-private-equity": "Privat Kapital (PE)",
+          "category-quantitative-systematic": "Kvantitativ/Systematisk",
+          "category-relative-value": "Relativ Värde",
+          "category-statistical-arbitrage": "Statistisk Arbitrage",
+          "category-structured-credit": "Strukturerad Kredit",
+          "category-venture-capital": "Riskkapital (VC)",
+          "class-absolute-return": "Absolut Avkastning",
+          "class-core-blend": "Kärna / Blandning",
+          "class-diversified": "Diversifierad",
+          "class-early-stage": "Tidigt Skede",
+          "class-factor-based": "Faktorbasi",
+          "class-growth-focused": "Tillväxtfokuserad",
+          "class-income-focused": "Inkomstfokuserad",
+          "class-large-cap": "Stora Företag",
+          "class-long-equity": "Lång Aktier (Endast Lång)",
+          "class-long-short-equity": "Lång/Kort Aktier",
+          "class-market-neutral": "Marknadsneutral",
+          "class-mid-cap": "Medelstora Företag",
+          "class-momentum-oriented": "Momentum-orienterad",
+          "class-opportunistic": "Opportunistisk",
+          "class-pre-series-b": "Pre-Series B",
+          "class-quantitative-algorithmic": "Kvantitativ / Algoritmisk",
+          "class-regional": "Regional",
+          "class-sector-specific": "Sektor-Specifik",
+          "class-seed-pre-seed": "Frö / Pre-Frö",
+          "class-series-b-late-stage": "Series B / Sen Skede",
+          "class-short-equity": "Kort Aktier",
+          "class-small-cap": "Små Företag",
+          "class-tactical-asset-allocation": "Taktisk Tillgångsallokering",
+          "class-value-focused": "Värde-fokuserad",
+          "configuration-description": "Fondkategori, klass och avgiftsinställningar.",
+          "configuration-title": "Fondkonfiguration",
+          "decimals-label": "Decimaler",
+          "description": "Granska och bekräfta detaljerna för din nya fond innan skapande.",
+          "fund-category-label": "Fondkategori",
+          "fund-class-label": "Fondklass",
+          "isin-label": "ISIN",
+          "management-fee-label": "Förvaltningsavgift",
+          "name-label": "Namn",
+          "symbol-label": "Symbol",
+          "title": "Granska och bekräfta",
+          "error-duplicate": "En fond med samma detaljer finns redan. Vänligen försök igen med minst en annan parameter."
+        },
+        "title": "Skapa Fond",
+        "trigger-label": "Utfärda en ny fond"
+      },
+      "details": {
+        "contract-address": "Kontraktsadress",
+        "creator": "Skapare",
+        "decimals": "Decimaler",
+        "details-page-description": "Utforska omfattande data och mätvärden för {name}.",
+        "details-page-title": "{name} Detaljer",
+        "fund-details-description": "Detaljer för aktien",
+        "isin": "ISIN",
+        "name": "Namn",
+        "ownership-concentration": "Ägandekoncentration",
+        "ownership-concentration-info": "Procentandel ägd av de 5 största innehavarna",
+        "symbol": "Symbol",
+        "total-supply": "Totalt utbud",
+        "total-supply-info": "Det totala utbudet av token"
+      },
+      "events": {
+        "events-page-description": "Spåra alla händelser relaterade till {name} obligation.",
+        "events-page-title": "{name} Händelser"
+      },
+      "grant-role-form": {
+        "address": {
+          "address-label": "Administratörs plånboksadress",
+          "description": "Sök efter en användare med deras namn eller e-post, eller ange en plånboksadress manuellt.",
+          "manual-placeholder": "0x0000000000000000000000000000000000000000",
+          "manual-toggle": "Ange adress manuellt...",
+          "search-placeholder": "Sök efter en användare",
+          "search-toggle": "Sök istället efter en användare...",
+          "title": "Välj Ny Administratör"
+        },
+        "button-label": "Tilldela Roller",
+        "description": "Tilldela administrativa behörigheter till en ny användare.",
+        "roles": {
+          "description": "Välj de roller som ska beviljas den nya administratören. Minst en roll måste väljas.",
+          "title": "Välj Administratörsroller"
+        },
+        "summary": {
+          "admin-address-label": "Administratörsadress",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din rolltilldelning innan du fortsätter.",
+          "grant-description": "Detaljer för tilldelning av rolloperation",
+          "grant-title": "Tilldela Roll",
+          "roles-label": "Roller",
+          "title": "Granska och bekräfta rolltilldelning"
+        },
+        "title": "Tilldela Roll"
+      },
+      "manage": {
+        "actions": {
+          "mint": "Prägla",
+          "burn": "Bränna",
+          "pause": "Pausa",
+          "unpause": "Återuppta",
+          "grant-role": "Tilldela roll"
+        },
+        "manage": "Hantera"
+      },
+      "mint-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "description": "Ange det belopp du vill prägla.",
+          "title": "Ange Belopp"
+        },
+        "recipients": {
+          "title": "Välj Mottagare",
+          "description": "Välj vem som ska ta emot de präglade token"
+        },
+        "button-label": "Prägla Tillgångar",
+        "description": "Utfärda nya token för att öka fondens cirkulerande utbud.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din prägling innan du fortsätter.",
+          "mint-description": "Detaljer för präglingoperation",
+          "mint-title": "Prägla",
+          "title": "Granska och bekräfta prägling"
+        },
+        "title": "Prägla",
+        "trigger-label": "Prägla"
+      },
+      "pause-form": {
+        "pause": {
+          "button-label": "Pausa Transaktioner",
+          "description": "Tillfälligt stoppa alla transaktioner och interaktioner för denna fond.",
+          "title": "Pausa Fondtransaktioner"
+        },
+        "summary": {
+          "asset-label": "Tillgång",
+          "current-state-label": "Aktuellt tillstånd",
+          "description": "Verifiera detaljerna för din pausoperation innan du fortsätter.",
+          "pause-description": "Pausoperationens detaljer",
+          "pause-title": "Pausa",
+          "state-active": "Aktiv",
+          "state-paused": "Pausad",
+          "target-state-label": "Måltillstånd",
+          "title": "Granska och bekräfta pausoperation"
+        },
+        "unpause": {
+          "button-label": "Återuppta Transaktioner",
+          "description": "Återuppta transaktioner och interaktioner för denna fond.",
+          "title": "Återuppta Fondtransaktioner"
+        }
+      },
+      "related-actions": {
+        "decrease-supply": {
+          "description": "En obligationsförvaltare kan minska det totala utbudet genom obligationinlösen vid förfall eller tidiga återköpsprogram.",
+          "title": "Lösa In Obligationer"
+        },
+        "increase-supply": {
+          "description": "En obligationsförvaltare kan utfärda nya obligationer genom primärutgivning eller tap-utgivning med definierat nominellt värde och förfall.",
+          "title": "Utfärda Obligationer"
+        },
+        "title": "Relaterade åtgärder"
+      },
+      "table": {
+        "actions-header": "Åtgärder",
+        "address-header": "Adress",
+        "asset-management": "Tillgångsförvaltning",
+        "assets-under-management-header": "AUM",
+        "category-activist": "Aktivist",
+        "category-commodity-trading": "Råvaruhandel",
+        "category-convertible-arbitrage": "Konvertibel Arbitrage",
+        "category-credit": "Kredit",
+        "category-currency-fx": "Valuta / FX",
+        "category-distressed-debt": "Nödlidande Skuld",
+        "category-emerging-markets": "Framväxande Marknader",
+        "category-equity-hedge": "Aktiehedge",
+        "category-event-driven": "Händelsedriven",
+        "category-fixed-income-arbitrage": "Fasta Inkomster Arbitrage",
+        "category-fund-of-funds": "Fond av Fonder",
+        "category-global-macro": "Global Makro",
+        "category-header": "Fondkategori",
+        "category-high-frequency-trading": "Högfrekvent Handel (HFT)",
+        "category-managed-futures-cta": "Förvaltade Terminer / CTA",
+        "category-market-neutral": "Marknadsneutral",
+        "category-merger-arbitrage": "Fusion Arbitrage",
+        "category-multi-strategy": "Multi-Strategi",
+        "category-private-equity": "Privat Kapital (PE)",
+        "category-quantitative-systematic": "Kvantitativ/Systematisk",
+        "category-relative-value": "Relativt Värde",
+        "category-statistical-arbitrage": "Statistisk Arbitrage",
+        "category-structured-credit": "Strukturerad Kredit",
+        "category-venture-capital": "Riskkapital (VC)",
+        "class-absolute-return": "Absolut Avkastning",
+        "class-core-blend": "Kärna / Blandning",
+        "class-diversified": "Diversifierad",
+        "class-early-stage": "Tidig Fas",
+        "class-factor-based": "Faktorbasiert",
+        "class-growth-focused": "Tillväxtfokuserad",
+        "class-header": "Fondklass",
+        "class-income-focused": "Inkomstfokuserad",
+        "class-large-cap": "Stora Företag",
+        "class-long-equity": "Lång Aktie (Endast Lång)",
+        "class-long-short-equity": "Lång/Kort Aktie",
+        "class-market-neutral": "Marknadsneutral",
+        "class-mid-cap": "Medelstora Företag",
+        "class-momentum-oriented": "Momentum-orienterad",
+        "class-opportunistic": "Opportunistisk",
+        "class-pre-series-b": "Pre-Series B",
+        "class-quantitative-algorithmic": "Kvantitativ / Algoritmisk",
+        "class-regional": "Regional",
+        "class-sector-specific": "Sektor-specifik",
+        "class-seed-pre-seed": "Seed / Pre-Seed",
+        "class-series-b-late-stage": "Series B / Sen Fas",
+        "class-short-equity": "Kort Aktie",
+        "class-small-cap": "Små Företag",
+        "class-tactical-asset-allocation": "Taktisk Tillgångsallokering",
+        "class-value-focused": "Värdefokuserad",
+        "management-fee-header": "Förvaltningsavgift",
+        "name-header": "Namn",
+        "page-description": "Översikt och administrativa åtgärder för dina fondtillgångar.",
+        "page-title": "Fonder",
+        "private-header": "Privat",
+        "private-status": "Privat",
+        "public-status": "Offentlig",
+        "related-actions": {
+          "issue-new": {
+            "description": "Skapa och lansera en ny fond med definierade parametrar och tillgångsstöd. Effektivisera fondutplacering för att stödja nya investeringsmöjligheter och marknadssegment.",
+            "title": "Utfärda en ny fond"
+          },
+          "mechanics": {
+            "button": "Läs mer",
+            "description": "Lär dig hur du justerar viktiga fondparametrar, tillgångsallokeringsmetoder och strukturer för förvaltningsavgifter.",
+            "title": "Fondmekanik"
+          },
+          "title": "Relaterade Åtgärder",
+          "usecases": {
+            "button": "Utforska",
+            "description": "Utforska de praktiska tillämpningarna och integrationerna av digitala fonder. Maximera nyttan över investeringshantering, tillgångstokenisering och institutionella finansieringssystem.",
+            "title": "Användningsfall"
+          }
+        },
+        "status-header": "Status",
+        "symbol-header": "Symbol",
+        "topinfo-description": "Fondtillgångar digitaliserar investeringsfondandelar, erbjuder automatiserad insamling av förvaltningsavgifter, investerargovernance och omfattande regulatorisk efterlevnad. Idealiskt för finansiella institutioner, effektiviserar de administrativa processer, säkerställer transparent avgiftshantering och möjliggör säker investerarröstning. Kontraktet erbjuder stark säkerhet, anpassningsbara fondattribut och förbättrad operationell effektivitet.",
+        "topinfo-title": "Digital tillgång för institutionell fondhantering",
+        "total-supply-header": "Total Utbud"
+      },
+      "tabs": {
+        "details": "Detaljer",
+        "events": "Händelser",
+        "holders": "Innehavare",
+        "permissions": "Behörigheter",
+        "underlying-assets": "Underliggande tillgångar"
+      }
+    },
+    "platform": {
+      "settings": {
+        "platform-management": "Plattformsförvaltning"
+      }
+    },
+    "sidebar": {
+      "asset-designer": "Tillgångsdesigner",
+      "asset-management": {
+        "asset-activity": "Tillgångsaktivitet",
+        "bonds": "Obligationer",
+        "cryptocurrencies": "Kryptovalutor",
+        "dashboard": "Instrumentpanel",
+        "equities": "Aktier",
+        "funds": "Fonder",
+        "group-title": "Tillgångsförvaltning",
+        "stablecoins": "Stablecoins",
+        "view-all": "Visa alla"
+      },
+      "asset-types": {
+        "bond": "Obligation",
+        "cryptocurrency": "Kryptovaluta",
+        "equity": "Aktie",
+        "fund": "Fond",
+        "stablecoin": "Stablecoin"
+      },
+      "platform-management": {
+        "group-title": "Plattformsförvaltning",
+        "settings": "Inställningar",
+        "user-management": "Användarhantering"
+      },
+      "portfolio-management": {
+        "dashboard": "Instrumentpanel",
+        "group-title": "Min portfölj",
+        "my-activity": "Min aktivitet",
+        "my-assets": "Mina tillgångar"
+      }
+    },
+    "stablecoins": {
+      "burn-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "available-balance": "Tillgängligt saldo: {balance}",
+          "description": "Ange det belopp du vill bränna.",
+          "title": "Ange Belopp"
+        },
+        "button-label": "Bränn Tillgångar",
+        "description": "Ta bort tokens permanent från cirkulation för att minska utbudet.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "burn-description": "Detaljer om bränningsoperationen",
+          "burn-title": "Bränn",
+          "description": "Verifiera detaljerna för din bränning innan du fortsätter.",
+          "title": "Granska och bekräfta bränning"
+        },
+        "title": "Bränn",
+        "trigger-label": "Bränn"
+      },
+      "charts": {
+        "asset-statistics-title": "Tillgångsstatistik"
+      },
+      "collateral": {
+        "collateral-proof-expiration": "Utgång för säkerhetsbevis",
+        "collateral-proof-expiration-info": "Från denna punkt är säkerhetsbeviset ogiltigt",
+        "collateral-proof-validity": "Säkerhetsbevis giltighet",
+        "collateral-proof-validity-info": "Hur länge säkerhetsbeviset är giltigt",
+        "committed-collateral-ratio": "Åtagna säkerhetsförhållande",
+        "committed-collateral-ratio-info": "Förhållandet mellan den säkerhet som åtagits och det totala utbudet av token",
+        "proven-collateral": "Bevisad säkerhet",
+        "proven-collateral-info": "Den mängd säkerhet som har bevisats hållas av token",
+        "required-collateral-threshold": "Krav på säkerhetströskel",
+        "required-collateral-threshold-info": "Den mängd säkerhet som måste bevisas"
+      },
+      "create-form": {
+        "basics": {
+          "decimals-label": "Decimaler",
+          "description": "Definiera viktiga detaljer som namn, symbol och synlighet.",
+          "isin-label": "ISIN",
+          "isin-placeholder": "DEFI4EVER2024",
+          "name-label": "Namn",
+          "name-placeholder": "TotallyNotTether",
+          "symbol-label": "Symbol",
+          "symbol-placeholder": "SAFU",
+          "title": "Grundläggande information"
+        },
+        "button-label": "Utfärda en ny stabilcoin",
+        "configuration": {
+          "collateral-proof-validity-label": "Bevis på säkerhets giltighet",
+          "description": "Specificera avancerade inställningar som giltighet för säkerhetsbevis.",
+          "title": "Konfiguration"
+        },
+        "description": "Definiera och lansera en ny stabilcoin-tillgång.",
+        "summary": {
+          "asset-basics-description": "Grundläggande tillgångsinformation och inställningar.",
+          "asset-basics-title": "Tillgångsgrundläggande",
+          "collateral-proof-validity-label": "Bevis på säkerhets giltighet",
+          "configuration-description": "Tillgångsupply och ytterligare inställningar.",
+          "configuration-title": "Konfiguration",
+          "decimals-label": "Decimaler",
+          "description": "Granska och bekräfta detaljerna för din nya stabilcoin innan skapandet.",
+          "isin-label": "ISIN",
+          "name-label": "Namn",
+          "seconds": "sekunder",
+          "symbol-label": "Symbol",
+          "title": "Granska och bekräfta detaljerna för din nya stabilcoin innan skapandet.",
+          "error-duplicate": "En stabilcoin med samma detaljer finns redan. Vänligen försök igen med minst en annan parameter."
+        },
+        "title": "Skapa stabilcoin",
+        "trigger-label": "Utfärda en ny stabilcoin"
+      },
+      "details": {
+        "contract-address": "Kontraktsadress",
+        "creator": "Skapare",
+        "decimals": "Decimaler",
+        "details-page-description": "Utforska omfattande data och mått för {name}.",
+        "details-page-title": "{name} Detaljer",
+        "isin": "ISIN",
+        "name": "Namn",
+        "ownership-concentration": "Ägandekoncentration",
+        "ownership-concentration-info": "Procentandel ägd av de fem största innehavarna",
+        "stablecoin-details-description": "Detaljer för stabilcoinen",
+        "symbol": "Symbol",
+        "total-burned": "Bränd tillgång",
+        "total-burned-info": "Mängd tokens som permanent har tagits bort från cirkulation",
+        "total-holders": "# av innehavare",
+        "total-holders-info": "Mängd adresser som för närvarande håller tillgångarna",
+        "total-supply": "Total tillgång",
+        "total-supply-info": "Den totala tillgången av token"
+      },
+      "events": {
+        "events-page-description": "Spåra historiska aktiviteter och transaktioner som involverar {name}.",
+        "events-page-title": "{name} Händelser"
+      },
+      "grant-role-form": {
+        "address": {
+          "address-label": "Admin plånboksadress",
+          "description": "Sök efter en användare med deras namn eller e-post, eller ange manuellt en plånboksadress.",
+          "manual-placeholder": "0x0000000000000000000000000000000000000000",
+          "manual-toggle": "Ange adress manuellt...",
+          "search-placeholder": "Sök efter en användare",
+          "search-toggle": "Sök efter en användare istället...",
+          "title": "Välj ny admin"
+        },
+        "button-label": "Tilldela roller",
+        "description": "Tilldela administrativa behörigheter till en ny användare.",
+        "roles": {
+          "description": "Välj de roller som ska beviljas den nya administratören. Minst en roll måste väljas.",
+          "title": "Välj adminroller"
+        },
+        "summary": {
+          "admin-address-label": "Adminadress",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din rollbeviljande innan du fortsätter.",
+          "grant-description": "Detaljer för beviljande av rolloperation",
+          "grant-title": "Bevilja roll",
+          "roles-label": "Roller",
+          "title": "Granska och bekräfta rollbeviljande"
+        },
+        "title": "Bevilja roll"
+      },
+      "manage": {
+        "actions": {
+          "burn": "Bränna",
+          "grant-role": "Bevilja roll",
+          "mint": "Prägla",
+          "pause": "Pausa",
+          "unpause": "Återuppta",
+          "update-collateral": "Uppdatera säkerhet",
+          "transfer": "Överföra"
+        },
+        "manage": "Hantera"
+      },
+      "mint-form": {
+        "amount": {
+          "amount-label": "Mängd",
+          "collateral-available": "Tillgänglig säkerhet: {collateral}",
+          "description": "Ange den mängd du vill prägla.",
+          "title": "Ange mängd"
+        },
+        "recipients": {
+          "title": "Välj mottagare",
+          "description": "Välj vem som ska ta emot de präglade tokens"
+        },
+        "button-label": "Prägla tillgångar",
+        "description": "Utfärda nya tokens för att öka stabilcoinens cirkulerande tillgång.",
+        "summary": {
+          "amount-label": "Mängd",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din prägling innan du fortsätter.",
+          "mint-description": "Detaljer för präglingoperation",
+          "mint-title": "Prägla",
+          "title": "Granska och bekräfta prägling"
+        },
+        "title": "Prägla",
+        "trigger-label": "Prägla"
+      },
+      "pause-form": {
+        "pause": {
+          "button-label": "Pausa transaktioner",
+          "description": "Tillfälligt stoppa alla transaktioner och interaktioner för denna stabilcoin.",
+          "title": "Pausa stabilcointransaktioner"
+        },
+        "summary": {
+          "asset-label": "Tillgång",
+          "current-state-label": "Aktuell status",
+          "description": "Verifiera detaljerna för din pausoperation innan du fortsätter.",
+          "pause-description": "Pausoperationens detaljer",
+          "pause-title": "Pausa",
+          "state-active": "Aktiv",
+          "state-paused": "Pausad",
+          "target-state-label": "Målstatus",
+          "title": "Granska och bekräfta pausoperationen"
+        },
+        "unpause": {
+          "button-label": "Återuppta transaktioner",
+          "description": "Återuppta transaktioner och interaktioner för denna stablecoin.",
+          "title": "Återuppta Stablecoin-transaktioner"
+        }
+      },
+      "related-actions": {
+        "decrease-supply": {
+          "description": "En tillgångschef kan bränna befintliga stablecoins, förutsatt att tillräcklig säkerhet finns.",
+          "title": "Minska tillgången"
+        },
+        "increase-supply": {
+          "description": "En tillgångschef kan prägla nya stablecoins, förutsatt att tillräcklig säkerhet finns.",
+          "title": "Öka tillgången"
+        },
+        "title": "Relaterade åtgärder",
+        "update-collateral": {
+          "description": "En tillgångschef behöver uppdatera och verifiera säkerheten som stöder stablecoin. Detta säkerställer att tillgången alltid är fullt säkerställd.",
+          "title": "Uppdatera säkerhet"
+        }
+      },
+      "table": {
+        "actions-header": "Åtgärder",
+        "address-header": "Adress",
+        "asset-management": "Tillgångshantering",
+        "committed-collateral-header": "Förbrukad säkerhet",
+        "name-header": "Namn",
+        "page-description": "Översikt och administrativa åtgärder för dina stablecoin-tillgångar.",
+        "page-title": "Stable Coins",
+        "private-header": "Privat",
+        "private-status": "Privat",
+        "public-status": "Offentlig",
+        "related-actions": {
+          "issue-new": {
+            "description": "Skapa och lansera en ny stablecoin med definierade parametrar och säkerhet. Effektivisera tokenutplacering för att stödja nya projekt och marknadssegment.",
+            "title": "Utfärda en ny stablecoin"
+          },
+          "mechanics": {
+            "button": "Lär dig mer",
+            "description": "Lär dig hur du justerar viktiga stablecoin-parametrar, säkerhetsmetoder och stabilitetsmekanismer.",
+            "title": "Stablecoin-mekanik"
+          },
+          "title": "Relaterade åtgärder",
+          "usecases": {
+            "button": "Utforska",
+            "description": "Utforska de praktiska tillämpningarna och integrationerna av stablecoins. Maximera nyttan över betalningar, sparande, utlåning och decentraliserade finanssystem.",
+            "title": "Användningsfall"
+          }
+        },
+        "status-header": "Status",
+        "symbol-header": "Symbol",
+        "topinfo-description": "Stablecoins är digitala valutor som är utformade för att upprätthålla ett stabilt värde genom att vara stödda av verkliga tillgångar eller reserver. De erbjuder fördelarna med digitala tillgångar — såsom hastighet, transparens och programmerbarhet — samtidigt som de undviker prisvolatilitet som vanligtvis är förknippad med kryptovalutor. Detta StableCoin-kontrakt säkerställer att varje utfärdad token är fullt säkerställd, vilket ger institutioner säker, reviderbar och pålitlig digital penhantering. Nyckelfunktioner inkluderar säkerhetsstödd utfärdande, omfattande rollbaserade kontroller, robusta pausmekanismer och efterlevnad av regler.",
+        "topinfo-title": "En säker och säkerställd digital valuta",
+        "total-supply-header": "Total tillgång"
+      },
+      "tabs": {
+        "details": "Detaljer",
+        "events": "Händelser",
+        "holders": "Innehavare",
+        "permissions": "Behörigheter",
+        "underlying-assets": "Underliggande tillgångar"
+      },
+      "update-collateral-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "description": "Ange det belopp du vill uppdatera säkerheten till. Se till att beloppet är större än eller lika med den nuvarande tillgången.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Uppdatera säkerhetsbelopp",
+        "description": "Justera säkerheten som stöder stablecoin för att återspegla aktuella krav.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din uppdatering av bevisad säkerhet innan du fortsätter.",
+          "title": "Granska och bekräfta uppdatering av bevisad säkerhet",
+          "update-description": "Uppdaterar detaljer för säkerhetsoperationen",
+          "update-title": "Uppdatera säkerhet"
+        },
+        "title": "Uppdatera säkerhet",
+        "trigger-label": "Uppdatera säkerhet"
+      }
+    },
+    "users": {
+      "banned_reason": "Bannad för {reason}",
+      "columns": {
+        "email": "E-post",
+        "kyc_status": "KYC-status",
+        "last_activity": "Senaste aktivitet",
+        "name": "Namn",
+        "role": "Roll",
+        "status": "Status",
+        "wallet": "Plånbok"
+      },
+      "detail": {
+        "edit_user": "Redigera användare",
+        "charts": {
+          "transaction-history-last-month": {
+            "title": "Transaktionsvolym / dag",
+            "description": "Visar transaktioner under den senaste månaden"
+          },
+          "transaction-history-last-year": {
+            "title": "Transaktionsvolym / månad",
+            "description": "Visar transaktioner under det senaste året"
+          }
+        },
+        "fields": {
+          "asset_supply": "Tillgångstillgång",
+          "created_at": "Skapad den",
+          "email": "E-post",
+          "last_activity": "Senaste aktivitet",
+          "last_login": "Senaste inloggning",
+          "name": "Namn",
+          "status": "Aldrig",
+          "transactions": "Ej verifierad",
+          "verified_at": "Status",
+          "wallet": "Transaktioner"
+        },
+        "platform-management": "Verifierad den",
+        "tabs": {
+          "details": "Plånbok",
+          "holdings": "Innehav",
+          "latest-events": "Senaste händelser",
+          "permissions": "Behörigheter"
+        },
+        "values": {
+          "asset_supply": "Tillgångsförsörjning",
+          "created_at": "Skapad den",
+          "email": "E-post",
+          "last_activity": "Senaste aktivitet",
+          "last_login": "Senaste inloggning",
+          "name": "Namn",
+          "never": "Aldrig",
+          "not_verified": "Ej verifierad",
+          "status": "Status",
+          "transactions": "Transaktioner",
+          "verified_at": "Verifierad den",
+          "wallet": "Plånbok"
+        }
+      },
+      "holdings": {
+        "title": "Innehav",
+        "table": {
+          "actions-header": "Åtgärd",
+          "balance-header": "Balans",
+          "holder-type-header": "Typ",
+          "last-activity-header": "Senaste aktivitet",
+          "name-header": "Namn",
+          "status-header": "Status",
+          "symbol-header": "Symbol",
+          "type-header": "Tillgångstyp"
+        }
+      },
+      "latest-events": {
+        "title": "Senaste händelser",
+        "view-all": "Visa fler händelser"
+      },
+      "kyc_status": {
+        "notVerified": "Ej verifierad",
+        "verified": "Verifierad"
+      },
+      "page-description": "Hantera användare och deras roller",
+      "page-title": "Användare",
+      "platform-management": "Plattformsadministration",
+      "roles": {
+        "admin": "Admin",
+        "issuer": "Utfärdare",
+        "user": "Användare"
+      },
+      "status": {
+        "active": "Aktiv",
+        "banned": "Avstängd"
+      },
+      "title": "Användare"
+    },
+    "charts": {
+      "asset-type-formatter": {
+        "bonds": "Obligationer",
+        "cryptocurrencies": "Kryptovalutor",
+        "equities": "Aktier",
+        "funds": "Fonder",
+        "stablecoins": "Stabila mynt"
+      }
+    },
+    "asset-holders-tab": {
+      "actions-header": "Åtgärder",
+      "balance-header": "Balans",
+      "block-form": {
+        "block-button-label": "Blockera användare",
+        "block-description": "Förhindra att denna användare utför några transaktioner eller interaktioner.",
+        "block-title": "Blockera användartransaktioner",
+        "block-trigger-label": "Blockera",
+        "summary": {
+          "asset-label": "Tillgång",
+          "block-title": "Blockera",
+          "current-state-label": "Aktuellt tillstånd",
+          "description": "Verifiera detaljerna för din blockering innan du fortsätter.",
+          "operation-description": "Detaljer för blockering",
+          "state-active": "Aktiv",
+          "state-blocked": "Blockerad",
+          "target-state-label": "Mål tillstånd",
+          "title": "Granska och bekräfta blockering",
+          "unblock-title": "Avblockera"
+        },
+        "unblock-button-label": "Avblockera användare",
+        "unblock-description": "Återställ denna användares möjlighet att transagera och interagera.",
+        "unblock-title": "Återställ användartransaktioner",
+        "unblock-trigger-label": "Avblockera"
+      },
+      "freeze-form": {
+        "amount": {
+          "amount-label": "Belopp",
+          "balance-description": "Tillgänglig balans: {balance} För närvarande fryst: {frozen}",
+          "description": "Ange det belopp du vill frysa.",
+          "title": "Ange belopp"
+        },
+        "button-label": "Frys fonder",
+        "description": "Tillfälligt begränsa en användares tillgång till sina fonder.",
+        "summary": {
+          "amount-label": "Belopp",
+          "asset-label": "Tillgång",
+          "description": "Verifiera detaljerna för din frysningsoperation innan du fortsätter.",
+          "freeze-title": "Frys",
+          "operation-description": "Detaljer för frysningsoperation",
+          "title": "Granska och bekräfta frysningsoperation"
+        },
+        "title": "Begränsa användarfonder",
+        "trigger-label": "Frys"
+      },
+      "frozen-header": "Fryst",
+      "holders-page-description": "Visa plånböcker som innehåller {name}, inklusive saldon och status.",
+      "holders-page-title": "{name} Innehavare",
+      "holder-type-header": "Typ",
+      "last-activity-header": "Senaste aktivitet",
+      "status-header": "Status",
+      "wallet-header": "Plånbok"
+    },
+    "asset-permissions-tab": {
+      "actions-header": "Åtgärder",
+      "edit-form": {
+        "button-label": "Redigera behörigheter",
+        "description": "Uppdatera de behörigheter och åtkomstnivåer som tilldelats denna användare.",
+        "roles": {
+          "description": "Välj roller att tilldela denna användare. Minst en roll måste väljas.",
+          "title": "Välj användarroller"
+        },
+        "summary": {
+          "current-roles-label": "Aktuella roller",
+          "description": "Verifiera detaljerna innan du fortsätter. Denna åtgärd kommer att ändra rollerna för användaren.",
+          "new-roles-label": "Nya roller",
+          "operation-description": "Detaljer för uppdatering av roller",
+          "title": "Granska och bekräfta nya roller",
+          "update-title": "Uppdatera roller",
+          "user-label": "Användare"
+        },
+        "title": "Ändra användarbehörigheter",
+        "trigger-label": "Redigera roller"
+      },
+      "last-activity-header": "Senaste aktivitet",
+      "page-description": "Behörighetsadministration för {name} stabila mynt",
+      "page-title": "{name} Behörigheter",
+      "permissions-page-description": "Hantera användarroller och åtkomsträttigheter för {name}.",
+      "permissions-page-title": "{name} Behörigheter",
+      "revoke-all-form": {
+        "button-label": "Återkalla åtkomst",
+        "description": "Helt återkalla denna användares åtkomst och behörigheter.",
+        "summary": {
+          "description": "Verifiera detaljerna innan du fortsätter. Denna åtgärd kommer att återkalla alla behörigheter för användaren.",
+          "operation-description": "Detaljer för återkallande av alla behörigheter",
+          "revoke-title": "Återkalla alla",
+          "roles-to-revoke-label": "Roller att återkalla",
+          "title": "Granska och bekräfta",
+          "user-label": "Användare"
+        },
+        "title": "Ta bort all användartillgång",
+        "trigger-label": "Återkalla alla"
+      },
+      "roles-header": "Roller",
+      "table-title": "Behörigheter",
+      "wallet-header": "Plånbok"
+    }
+  },
+  "asset-management": "Tillgångshantering",
+  "asset-type": {
+    "bond": "Obligation",
+    "stablecoin": "Stabil mynt",
+    "equity": "Aktie",
+    "cryptocurrency": "Kryptovaluta",
+    "fund": "Fond"
+  },
+  "asset-status": {
+    "active": "Aktiv",
+    "paused": "Pausad",
+    "blocked": "Blockerad"
+  },
+  "auth": {
+    "account": "Konto",
+    "add-account": "Lägg till konto",
+    "already-have-account": "Har du redan ett konto?",
+    "avatar": "Avatar",
+    "avatar-description": "Klicka på avataren för att ladda upp en anpassad från dina filer.",
+    "avatar-instructions": "En avatar är valfri men starkt rekommenderad.",
+    "change-password": "Ändra lösenord",
+    "change-password-description": "Ange ditt nuvarande lösenord och ett nytt lösenord.",
+    "change-password-instructions": "Vänligen använd minst 8 tecken.",
+    "change-password-success": "Ditt lösenord har ändrats.",
+    "current-password": "Nuvarande lösenord",
+    "current-password-placeholder": "Ange ditt nuvarande lösenord",
+    "current-session": "Aktuell session",
+    "delete-account": "Ta bort konto",
+    "delete-account-description": "Ta bort ditt konto permanent och allt innehåll. Detta kommer ATT ta bort din åtkomst till din privata nyckel och du KOMMER att förlora åtkomst till dina tillgångar! Denna åtgärd är inte reversibel, så vänligen fortsätt med försiktighet.",
+    "delete-account-email": "Vänligen kontrollera din e-post för att verifiera borttagningen av ditt konto.",
+    "delete-account-instructions": "Vänligen bekräfta borttagningen av ditt konto. Denna åtgärd är inte reversibel, så vänligen fortsätt med försiktighet.",
+    "delete-account-not-fresh": "Du måste vara nyligen inloggad för att ta bort ditt konto.",
+    "delete-account-success": "Ditt konto har tagits bort.",
+    "disabled-credentials-description": "Välj en leverantör för att logga in på ditt konto",
+    "dont-have-account": "Har du inget konto?",
+    "email": "E-post",
+    "email-description": "Ange den e-postadress du vill använda för att logga in.",
+    "email-instructions": "Vänligen använd en giltig e-postadress.",
+    "email-placeholder": "m@example.com",
+    "email-verification": "Vänligen kontrollera din e-post för verifieringslänken.",
+    "email-verify-change": "Vänligen kontrollera din e-post för att verifiera ändringen.",
+    "failed-to-validate": "Misslyckades med att validera",
+    "forgot-password": "Glömt lösenord",
+    "forgot-password-action": "Skicka återställningslänk",
+    "forgot-password-description": "Ange din e-post för att återställa ditt lösenord",
+    "forgot-password-email": "Kontrollera din e-post för återställningslänken.",
+    "forgot-password-link": "Glömt ditt lösenord?",
+    "link": "Länk",
+    "magic-link": "Magisk länk",
+    "magic-link-action": "Skicka magisk länk",
+    "magic-link-description": "Ange din e-post för att ta emot en magisk länk",
+    "magic-link-email": "Kontrollera din e-post för den magiska länken",
+    "name": "Namn",
+    "name-description": "Vänligen ange ditt fullständiga namn eller ett visningsnamn.",
+    "name-instructions": "Vänligen använd högst 32 tecken.",
+    "name-placeholder": "John Doe",
+    "new-password": "Nytt lösenord",
+    "new-password-placeholder": "Ange ditt nya lösenord",
+    "passkey": "Nyckel",
+    "password": "Lösenord",
+    "password-description": "Ange ditt nuvarande lösenord.",
+    "password-instructions": "Vänligen använd minst 8 tecken.",
+    "password-placeholder": "Ange ditt lösenord",
+    "pincode-form": {
+      "name-label": "Pincode namn",
+      "pincode-label": "Pincode",
+      "setting-up": "Sätter upp...",
+      "submit": "Ställ in Pincode"
+    },
+    "provider-link-success": "Leverantör kopplad framgångsrikt.",
+    "provider-unlink-success": "Leverantör avkopplad framgångsrikt.",
+    "providers": "Leverantörer",
+    "providers-description": "Anslut ditt konto med en tredjepartstjänst.",
+    "providers-loading-error": "Kunde inte ladda kontoinformation",
+    "remember-me": "Kom ihåg mig",
+    "reset-password": "Återställ lösenord",
+    "reset-password-action": "Spara nytt lösenord",
+    "reset-password-description": "Ange ditt nya lösenord nedan",
+    "reset-password-invalid-token": "Ogiltig återställningslänk för lösenord",
+    "reset-password-success": "Lösenord återställt framgångsrikt",
+    "revoke": "Återkalla",
+    "save": "Spara",
+    "sessions": "Sessioner",
+    "sessions-description": "Hantera dina aktiva sessioner och återkalla åtkomst.",
+    "set-password": "Ställ in lösenord",
+    "set-password-description": "Kontrollera din e-post för att ställa in ditt lösenord.",
+    "set-password-email-sent": "Kontrollera din e-post för att ställa in ditt lösenord.",
+    "settings": "Inställningar",
+    "sign-in": "Logga in",
+    "sign-in-action": "Logga in",
+    "sign-in-description": "Ange din e-post nedan för att logga in på ditt konto",
+    "sign-in-username-description": "Ange ditt användarnamn nedan för att logga in på ditt konto",
+    "sign-in-with": "Logga in med",
+    "sign-out": "Logga ut",
+    "sign-up": "Registrera dig",
+    "sign-up-action": "Skapa ett konto",
+    "sign-up-description": "Ange din information för att skapa ett konto",
+    "sign-up-email": "Kontrollera din e-post för verifieringslänken.",
+    "signin": {
+      "description": "Ange din e-post nedan för att logga in på ditt konto",
+      "email": {
+        "label": "E-post",
+        "placeholder": "m@example.com"
+      },
+      "no-account": "Har du inget konto?",
+      "password": {
+        "label": "Lösenord"
+      },
+      "remember-me": "Kom ihåg mig",
+      "sign-in-with-passkey": "Logga in med nyckel",
+      "sign-up": "Registrera dig",
+      "submit": "Logga in",
+      "submitting": "Loggar in...",
+      "title": "Logga in på ditt konto"
+    },
+    "signup": {
+      "description": "Ange informationen nedan för att skapa ditt konto och hanterade blockchain-plånbok",
+      "email": {
+        "label": "E-post",
+        "placeholder": "wolf@wallstreet.com"
+      },
+      "error": {
+        "generic": "Ett fel inträffade"
+      },
+      "have-account": "Har du redan ett konto?",
+      "name": {
+        "label": "Namn",
+        "placeholder": "Warren Buffett Jr."
+      },
+      "page": {
+        "alert": {
+          "description": "Den första användaren som registrerar sig kommer att ges administratörsrollen. Du kan lägga till andra administratörer senare.",
+          "title": "Har du just skapat denna dAPP?"
+        }
+      },
+      "password": {
+        "label": "Lösenord"
+      },
+      "sign-in": "Logga in",
+      "submit": "Skapa konto",
+      "submitting": "Skapar konto...",
+      "title": "Skapa ett konto",
+      "wallet-pin": {
+        "label": "Välj en säker plånbok PIN-kod"
+      },
+      "wallet-pin-confirm": {
+        "label": "Bekräfta plånbok PIN-kod"
+      }
+    },
+    "unlink": "Koppla bort",
+    "username": "Användarnamn",
+    "username-description": "Ange det användarnamn du vill använda för att logga in.",
+    "username-instructions": "Vänligen använd högst 32 tecken.",
+    "username-placeholder": "John Doe",
+    "username-sign-in-placeholder": "Användarnamn eller e-post",
+    "wallet-security": {
+      "pincode-instruction": "Ange en 6-siffrig PIN-kod för att säkra din plånbok.",
+      "pincode-set": "PIN-kod inställd framgångsrikt",
+      "setup-pincode": "Ställ in PIN-kod",
+      "verification-description": "Vänligen ställ in en PIN-kod för att säkra din plånbok.",
+      "verification-required": "Verifiering krävs"
+    },
+    "wrong-role": {
+      "description": "Du har inte den nödvändiga rollen för att få åtkomst till denna sida. Vänligen logga in med ett konto som har lämpliga behörigheter.",
+      "go-to-portfolio": "Gå till portfölj",
+      "title": "Du är inte auktoriserad att få åtkomst till denna sida"
+    }
+  },
+  "components": {
+    "active-pill": {
+      "active": "Aktiv",
+      "paused": "Pausad"
+    },
+    "address-avatar": {
+      "avatar": "Avatar"
+    },
+    "area-chart": {
+      "info-icon-label": "Info"
+    },
+    "asset-events-table": {
+      "asset": "Tillgång",
+      "detail-sheet": {
+        "asset": "Tillgång",
+        "asset-type": "Tillgångstyp",
+        "date": "Datum",
+        "details-button": "Detaljer",
+        "details-for-event": "Detaljer för {event} händelse",
+        "sender": "Avsändare",
+        "transaction-hash": "Transaktionshash"
+      },
+      "details": {
+        "account": "Konto",
+        "amount": "Belopp",
+        "bond-amount": "Obligationsbelopp",
+        "burned": "Bränd",
+        "details-header": "Detaljer",
+        "from": "Från",
+        "holder": "Innehavare",
+        "new-admin-role": "Ny administratörsroll",
+        "new-amount": "Nytt belopp",
+        "new-mint": "Ny mint",
+        "old-amount": "Gammalt belopp",
+        "previous-admin-role": "Tidigare administratörsroll",
+        "role": "Roll",
+        "to": "Till",
+        "token": "Token",
+        "underlying-amount": "Underliggande belopp",
+        "user": "Användare",
+        "value": "Värde"
+      },
+      "event": "Händelse",
+      "events": "Händelser",
+      "sender": "Avsändare",
+      "timestamp": "Tidsstämpel"
+    },
+    "asset-status-pill": {
+      "blocked": "Blockerad"
+    },
+    "asset-type-icon": {
+      "bond-initials": "BN",
+      "cryptocurrency-initials": "CC",
+      "equity-initials": "EQ",
+      "fund-initials": "FN",
+      "not-available-initials": "NA",
+      "stablecoin-initials": "SC"
+    },
+    "charts": {
+      "assets": {
+        "asset-distribution": "Tillgångsfördelning",
+        "asset-distribution-description": "Portföljallokering efter tillgångstyp",
+        "asset-distribution-no-data": "Ingen tillgångsdata tillgänglig",
+        "collateral-ratio": {
+          "description": "Belopp av säkerhet som är fri vs använd",
+          "label": "Säkerhetskvot",
+          "no-data": "Ingen säkerhetsdata tillgänglig"
+        },
+        "free-collateral-ratio": {
+          "label": "Fri"
+        },
+        "last-updated": "Senast uppdaterad",
+        "total-supply": {
+          "description": "Visar den totala tillgången av token",
+          "label": "Total tillgång",
+          "no-data": "Ingen data tillgänglig i detta fönster",
+          "title": "Total tillgång"
+        },
+        "total-supply-changed": {
+          "burned-label": "Totalt bränt",
+          "description": "Visar förändringen i tillgången av token",
+          "minted-label": "Totalt mintat",
+          "no-data": "Ingen data tillgänglig i detta fönster",
+          "title": "Förändringar i tillgång"
+        },
+        "total-transfers": {
+          "description": "Visar de totala överföringarna av token",
+          "label": "Totala överföringar",
+          "no-data": "Ingen data tillgänglig i detta fönster",
+          "title": "Totala överföringar"
+        },
+        "total-volume": {
+          "description": "Visar den totala volymen av token",
+          "label": "Total volym",
+          "no-data": "Ingen data tillgänglig i detta fönster",
+          "title": "Total volym"
+        },
+        "used-collateral-ratio": {
+          "label": "Åtagit"
+        },
+        "wallet-distribution": "Plånboksfördelning",
+        "wallet-distribution-description": "Antal innehavare vs de belopp de har",
+        "wallet-distribution-no-data": "Ingen plånboksdata tillgänglig",
+        "asset-type-pluralizer": {
+          "bond": "Obligationer",
+          "cryptocurrency": "Kryptovalutor",
+          "equity": "Aktier",
+          "fund": "Fonder",
+          "stablecoin": "Stabila mynt"
+        }
+      }
+    },
+    "data-table": {
+      "clear-filters": "Rensa filter",
+      "details": "Detaljer",
+      "export": "Exportera",
+      "failed-export": "Misslyckades med att exportera data",
+      "go-to-first-page": "Gå till första sidan",
+      "go-to-last-page": "Gå till sista sidan",
+      "go-to-next-page": "Gå till nästa sida",
+      "go-to-previous-page": "Gå till föregående sida",
+      "hide": "Dölj",
+      "no-results": "Inga resultat",
+      "no-results-found": "Inga resultat hittades.",
+      "open-menu": "Öppna meny",
+      "page-info": "Sida {current} av {total}",
+      "reset": "Återställ",
+      "rows-per-page": "Rader per sida",
+      "search": "Sök...",
+      "selected": "valda",
+      "selected-rows-info": "{selected} av {total} rad(er) valda.",
+      "sort-ascending": "Sortera stigande",
+      "sort-descending": "Sortera fallande",
+      "toggle-columns": "Växla kolumner",
+      "view": "Visa"
+    },
+    "detail-grid": {
+      "info-icon-label": "Ytterligare information"
+    },
+    "form": {
+      "assets": {
+        "default-placeholder": "Välj ett alternativ",
+        "loading": "Laddar...",
+        "no-asset-found": "Ingen tillgång hittades.",
+        "search-placeholder": "Sök efter en tillgång..."
+      },
+      "button": {
+        "next": "Nästa",
+        "previous": "Föregående",
+        "processing": "Bearbetar...",
+        "send-transaction": "Skicka transaktion",
+        "sending-transaction": "Skickar transaktion..."
+      },
+      "input": {
+        "letters-only": "Vänligen ange endast bokstäver",
+        "password-min-length": "Lösenordet måste vara minst 6 tecken långt",
+        "pin-code-length": "PIN-koden måste vara exakt 6 siffror",
+        "pin-code-match": "PIN-koderna matchar inte",
+        "valid-email": "Vänligen ange en giltig e-postadress"
+      },
+      "progress": {
+        "completed-step": "Avslutad steg",
+        "current-step": "Aktuellt steg",
+        "step-of-total": "Steg {current} av {total}",
+        "upcoming-step": "Kommande steg"
+      },
+      "select": {
+        "default-placeholder": "Välj ett alternativ"
+      },
+      "summary": {
+        "security-confirmation": {
+          "description": "Ange din PIN-kod för att bekräfta och signera transaktionen.",
+          "title": "Säkerhetsbekräftelse"
+        }
+      },
+      "users": {
+        "default-placeholder": "Välj ett alternativ",
+        "loading": "Laddar...",
+        "no-user-found": "Ingen användare hittades.",
+        "search-placeholder": "Sök efter en användare..."
+      },
+      "pincode-dialog": {
+        "title": "Ange din PIN-kod för att bekräfta",
+        "description": "För att signera transaktionen, vänligen ange din PIN-kod för verifiering och auktorisering."
+      }
+    },
+    "logo": {
+      "alt-text": "SettleMint"
+    },
+    "search": {
+      "assets-section": "Tillgångar",
+      "no-results": "Inga resultat hittades",
+      "placeholder": "Sök efter tillgångar eller användare...",
+      "users-section": "Användare"
+    },
+    "transaction-details": {
+      "blob-gas-price-label": "Blob gaspris",
+      "blob-gas-used-label": "Blob gas använt",
+      "block-hash-label": "Blockhash",
+      "block-number-label": "Blocknummer",
+      "contract-label": "Kontrakt",
+      "created-at-label": "Skapad den",
+      "description": "Visa detaljerna för en transaktion",
+      "effective-gas-price-label": "Effektivt gaspris",
+      "from-label": "Från",
+      "function-label": "Funktion",
+      "gas-used-label": "Gas använt",
+      "receipt-title": "Kvitto",
+      "revert-reason-label": "Återställningsorsak",
+      "status-label": "Status",
+      "title": "Transaktioner",
+      "transaction-hash-label": "Transaktionshash",
+      "transaction-index-label": "Transaktionsindex",
+      "transaction-title": "Transaktion",
+      "trigger-label": "Detaljer",
+      "type-label": "Typ"
+    },
+    "transaction-hash": {
+      "view-on-explorer": "Visa på utforskaren"
+    },
+    "transactions-history": {
+      "title": "Transaktioner",
+      "description": "Visar transaktioner under de senaste {interval}",
+      "chart-label": "Transaktion"
+    },
+    "transactions-table": {
+      "columns": {
+        "actions": "Åtgärder",
+        "created-at": "Tidsstämpel",
+        "contract": "Kontrakt",
+        "function": "Funktion",
+        "from": "Från",
+        "status": "Status",
+        "transaction-hash": "Transaktionshash"
+      }
+    }
+  },
+  "error": {
+    "error-id": "Fel-ID",
+    "go-home": "Gå hem",
+    "title": "Något gick fel!",
+    "try-again": "Försök igen",
+    "unknown-error": "Okänt fel",
+    "validation-errors": "Valideringsfel",
+    "cryptocurrency": {
+      "duplicate": "En kryptovaluta med dessa detaljer finns redan. Vänligen ändra minst en av detaljerna."
+    },
+    "stablecoin": {
+      "duplicate": "Ett stabilt mynt med dessa detaljer finns redan. Vänligen ändra minst en av detaljerna."
+    },
+    "bond": {
+      "duplicate": "Ett obligation med dessa uppgifter finns redan. Vänligen ändra minst en av uppgifterna."
+    },
+    "equity": {
+      "duplicate": "Ett eget kapital med dessa uppgifter finns redan. Vänligen ändra minst en av uppgifterna."
+    },
+    "fund": {
+      "duplicate": "En fond med dessa uppgifter finns redan. Vänligen ändra minst en av uppgifterna."
+    }
+  },
+  "holder-type": {
+    "admin": "Admin",
+    "creator-owner": "Skapare / Ägare",
+    "regular": "Regelbunden Innehavare",
+    "supply-manager": "Leveranschef"
+  },
+  "layout": {
+    "header": {
+      "app-description": "Tillgångstokenisering",
+      "app-name": "SettleMint",
+      "home": "Hem",
+      "issuer-portal": "Utgivarpanel"
+    },
+    "navigation": {
+      "admin": "Utgivarpanel",
+      "home": "Hem",
+      "portfolio": "Min portfölj"
+    },
+    "user-dropdown": {
+      "documentation": "Dokumentation",
+      "logout": "Logga ut",
+      "pending-transactions": "Väntande Transaktioner"
+    }
+  },
+  "portfolio": {
+    "dashboard": {
+      "page-title": "Portfölj",
+      "portfolio-management": "Portföljhantering",
+      "my-assets": "Mina Tillgångar",
+      "latest-events": "Senaste händelser"
+    },
+    "activity": {
+      "page-description": "Din aktivitet på kedjan",
+      "page-title": "Aktivitet",
+      "portfolio-management": "Portföljhantering",
+      "tabs": {
+        "recent-transactions": "Senaste transaktioner",
+        "all-events": "Alla händelser"
+      }
+    },
+    "asset-types": {
+      "bond": "Obligation",
+      "cryptocurrency": "Kryptovaluta",
+      "equity": "Eget kapital",
+      "fund": "Fond",
+      "stablecoin": "Stabilcoin",
+      "unknown": "Okänd"
+    },
+    "greeting": {
+      "morning": "God morgon",
+      "afternoon": "God eftermiddag",
+      "evening": "God kväll",
+      "you-have": "Du har"
+    },
+    "my-assets": {
+      "description": "Visa och hantera dina digitala tillgångar",
+      "portfolio-management": "Portföljhantering",
+      "title": "Mina Tillgångar",
+      "table": {
+        "actions-header": "Åtgärd",
+        "balance-header": "Saldo",
+        "name-header": "Namn",
+        "status-header": "Status",
+        "symbol-header": "Symbol",
+        "type-header": "Typ"
+      },
+      "stablecoin": {
+        "transfer-form": {
+          "trigger-label": "Överför",
+          "title": "Överför Stabilcoin",
+          "description": "Överför dina stabilcoin-tokens till en annan adress",
+          "button-label": "Överför",
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Specificera det belopp du vill överföra",
+            "value-label": "Belopp",
+            "balance-available": "Tillgängligt saldo: {balance}"
+          },
+          "recipients": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot token",
+            "address-label": "Mottagaradress",
+            "address-placeholder": "Sök efter en användare",
+            "search-user-link": "Sök efter en användare istället...",
+            "manual-entry-link": "Ange adress manuellt..."
+          },
+          "summary": {
+            "title": "Granska och bekräfta överföring",
+            "description": "Verifiera uppgifterna för din överföring innan du fortsätter",
+            "transfer-title": "Överför",
+            "transfer-description": "Överföringsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp",
+            "recipient-label": "Mottagare"
+          }
+        }
+      },
+      "fund": {
+        "transfer-form": {
+          "trigger-label": "Överför",
+          "title": "Överför Fond",
+          "description": "Överför dina fondtokens till en annan adress",
+          "button-label": "Överför",
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Specificera det belopp du vill överföra",
+            "value-label": "Belopp",
+            "balance-available": "Tillgängligt saldo: {balance}"
+          },
+          "recipients": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot token",
+            "address-label": "Mottagaradress",
+            "address-placeholder": "Sök efter en användare",
+            "search-user-link": "Sök efter en användare istället...",
+            "manual-entry-link": "Ange adress manuellt..."
+          },
+          "summary": {
+            "title": "Granska och bekräfta överföring",
+            "description": "Verifiera uppgifterna för din överföring innan du fortsätter",
+            "transfer-title": "Överför",
+            "transfer-description": "Överföringsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp",
+            "recipient-label": "Mottagare"
+          }
+        }
+      },
+      "equity": {
+        "transfer-form": {
+          "trigger-label": "Överför",
+          "title": "Överför Eget Kapital",
+          "description": "Överför dina eget kapital-tokens till en annan adress",
+          "button-label": "Överför",
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Specificera det belopp du vill överföra",
+            "value-label": "Belopp",
+            "balance-available": "Tillgängligt saldo: {balance}"
+          },
+          "recipients": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot token",
+            "address-label": "Mottagaradress",
+            "address-placeholder": "Sök efter en användare",
+            "search-user-link": "Sök efter en användare istället...",
+            "manual-entry-link": "Ange adress manuellt..."
+          },
+          "summary": {
+            "title": "Granska och bekräfta överföring",
+            "description": "Verifiera detaljerna för din överföring innan du fortsätter",
+            "transfer-title": "Överför",
+            "transfer-description": "Överföringsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp",
+            "recipient-label": "Mottagare"
+          }
+        }
+      },
+      "cryptocurrency": {
+        "transfer-form": {
+          "trigger-label": "Överför",
+          "title": "Överför kryptovaluta",
+          "description": "Överför dina kryptovalutatokens till en annan adress",
+          "button-label": "Överför",
+          "amount": {
+            "title": "Belopp",
+            "description": "Ange beloppet av tokens du vill överföra",
+            "amount-label": "Belopp",
+            "balance-description": "Tillgängligt saldo:"
+          },
+          "recipients": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot tokens",
+            "address-label": "Mottagaradress",
+            "address-placeholder": "Sök efter en användare",
+            "search-user-link": "Sök efter en användare istället...",
+            "manual-entry-link": "Ange adress manuellt..."
+          },
+          "summary": {
+            "title": "Granska och bekräfta överföring",
+            "description": "Verifiera detaljerna för din överföring innan du fortsätter",
+            "transfer-title": "Överför",
+            "transfer-description": "Överföringsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp",
+            "recipient-label": "Mottagare"
+          }
+        }
+      },
+      "bond": {
+        "transfer-form": {
+          "trigger-label": "Överför",
+          "title": "Överför obligation",
+          "description": "Överför dina obligationstokens till en annan adress",
+          "button-label": "Överför",
+          "amount": {
+            "title": "Belopp",
+            "description": "Ange beloppet av tokens du vill överföra",
+            "amount-label": "Belopp",
+            "balance-description": "Tillgängligt saldo:"
+          },
+          "recipients": {
+            "title": "Välj mottagare",
+            "description": "Välj vem som ska ta emot tokens",
+            "address-label": "Mottagaradress",
+            "address-placeholder": "Sök efter en användare",
+            "search-user-link": "Sök efter en användare istället...",
+            "manual-entry-link": "Ange adress manuellt..."
+          },
+          "summary": {
+            "title": "Granska och bekräfta överföring",
+            "description": "Verifiera detaljerna för din överföring innan du fortsätter",
+            "transfer-title": "Överför",
+            "transfer-description": "Överföringsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp",
+            "recipient-label": "Mottagare"
+          }
+        },
+        "redeem-form": {
+          "trigger-label": "Lösa in",
+          "title": "Lösa in obligation",
+          "description": "Lös in dina obligationstokens för den underliggande tillgången.",
+          "button-label": "Lösa in tillgångar",
+          "amount": {
+            "title": "Ange belopp",
+            "description": "Ange det belopp du vill lösa in.",
+            "amount-label": "Belopp",
+            "balance-description": "Tillgängligt saldo:"
+          },
+          "summary": {
+            "title": "Granska och bekräfta inlösen",
+            "description": "Verifiera detaljerna för din inlösen innan du fortsätter",
+            "redeem-title": "Lösa in",
+            "redeem-description": "Inlösningsoperationens detaljer",
+            "asset-label": "Tillgång",
+            "value-label": "Belopp"
+          }
+        }
+      }
+    },
+    "settings": {
+      "profile": {
+        "portfolio-management": "Portföljhantering",
+        "title": "Profil"
+      }
+    },
+    "transfer-form": {
+      "asset-types": "{type} {name} ({symbol})",
+      "amount": {
+        "amount-label": "Belopp",
+        "balance-description": "Saldo:",
+        "description": "Specificera det belopp du vill överföra",
+        "title": "Ange belopp",
+        "decimals-label": "Decimaler",
+        "decimals-description": "Antal decimaler för token"
+      },
+      "description": "Överför enkelt ett belopp av {type} {name} ({symbol}) genom att välja en mottagare och specificera beloppet.",
+      "recipients": {
+        "description": "Ange en plånboksadress för att skicka tokens direkt.",
+        "title": "Välj mottagare",
+        "wallet-address-label": "Plånboksadress"
+      },
+      "select-asset": {
+        "asset-description": "Välj en tillgång från din portfölj",
+        "asset-label": "Tillgång",
+        "description": "Välj den tillgång du vill överföra",
+        "title": "Välj tillgång",
+        "trigger-label": "Överför tillgångar"
+      },
+      "summary": {
+        "description": "Verifiera detaljerna för din överföring innan du fortsätter. Se till att mottagaren och beloppet är korrekta.",
+        "title": "Granska och bekräfta överföring"
+      },
+      "transfer": "Överför",
+      "transferring": "Överföring pågår..."
+    }
+  },
+  "theme": {
+    "dark": "Mörk",
+    "light": "Ljus",
+    "switch-to-mode": "Byt till {mode} läge",
+    "system": "System",
+    "toggle-label": "Växla tema"
+  },
+  "transactions": {
+    "sending": "Skickar transaktion",
+    "success": "Transaktion har behandlats framgångsrikt"
+  }
+}

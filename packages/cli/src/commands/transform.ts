@@ -33,8 +33,6 @@ export async function transformCommand(args: string[] = []) {
       return;
     }
 
-    console.log(path.join(__dirname, "../dist/utils/transform.js"));
-
     // Run the transform
     const result = await run(
       path.join(__dirname, "../dist/utils/transform.js"),

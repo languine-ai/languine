@@ -79,11 +79,6 @@ const COMMANDS: Record<string, Command> = {
       ["remove <locale,...>", "Remove target locales"],
     ],
   },
-  transform: {
-    description: "Transform files",
-    usage: "languine transform <directory>",
-    subcommands: [["<directory>", "Directory containing React components"]],
-  },
   overrides: {
     description: "Manage translation overrides",
     usage: "languine overrides <pull>",
@@ -93,6 +88,11 @@ const COMMANDS: Record<string, Command> = {
     description: "Manage translations",
     usage: "languine translations <delete>",
     subcommands: [["delete", "Delete all translation keys for the project"]],
+  },
+  transform: {
+    description: "Transform files",
+    usage: "languine transform <directory>",
+    subcommands: [["<directory>", "Directory containing React components"]],
   },
 };
 
