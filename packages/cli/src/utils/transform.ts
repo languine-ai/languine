@@ -227,26 +227,39 @@ export class TransformService {
     const transformedTranslations: Record<string, Record<string, string>> = {};
     const seenValues = new Map<string, string>();
 
+    // First pass: Process items with API keys
     for (const item of this.state.collectedTranslations) {
-      // Prefer API-generated key if available, fall back to local key
-      const generatedKey =
-        this.state.apiKeys[item.originalKey] ||
-        this.state.keyMap[item.originalKey];
-      if (!generatedKey) {
-        console.warn(`No key found for translation: ${item.originalKey}`);
-        continue;
+      const apiKey = this.state.apiKeys[item.originalKey];
+      if (apiKey) {
+        // Extract component and descriptive key from the API-generated key
+        const [component, ...keyParts] = apiKey.split(".");
+        const descriptiveKey = keyParts.join(".");
+
+        if (!transformedTranslations[component]) {
+          transformedTranslations[component] = {};
+        }
+
+        if (!seenValues.has(item.value)) {
+          transformedTranslations[component][descriptiveKey] = item.value;
+          seenValues.set(item.value, descriptiveKey);
+        }
       }
+    }
 
-      // Extract just the numeric key part for the JSON
-      const keyParts = generatedKey.split(".");
-      const simpleKey = keyParts[keyParts.length - 1];
-      const [component] = item.functionName.split(".");
+    // Second pass: Process remaining items using original keys (should be rare)
+    for (const item of this.state.collectedTranslations) {
+      if (
+        !this.state.apiKeys[item.originalKey] &&
+        !seenValues.has(item.value)
+      ) {
+        console.warn(`Using original key for: ${item.originalKey}`);
+        const [component, ...keyParts] = item.originalKey.split(".");
+        const simpleKey = keyParts.join(".");
 
-      if (!transformedTranslations[component]) {
-        transformedTranslations[component] = {};
-      }
+        if (!transformedTranslations[component]) {
+          transformedTranslations[component] = {};
+        }
 
-      if (!seenValues.has(item.value)) {
         transformedTranslations[component][simpleKey] = item.value;
         seenValues.set(item.value, simpleKey);
       }
@@ -329,9 +342,16 @@ export class TransformService {
     );
 
     if (existingTranslation) {
-      // Reuse the existing key for this value
-      this.state.keyMap[originalKey] =
-        this.state.keyMap[existingTranslation.originalKey];
+      // If we have an API key for the existing translation, use that
+      const existingApiKey =
+        this.state.apiKeys[existingTranslation.originalKey];
+      if (existingApiKey) {
+        this.state.keyMap[originalKey] = existingApiKey;
+      } else {
+        // Otherwise use the existing key mapping
+        this.state.keyMap[originalKey] =
+          this.state.keyMap[existingTranslation.originalKey];
+      }
     } else {
       this.state.collectedTranslations.push({
         originalKey,
@@ -567,13 +587,24 @@ export class TransformService {
     }
     this.state.elementCounts[elementName]++;
 
-    // If this is the first occurrence, just return the element name
-    if (this.state.elementCounts[elementName] === 1) {
-      return elementName;
+    // Generate a temporary key for this element
+    const tempKey =
+      this.state.elementCounts[elementName] === 1
+        ? elementName
+        : `${elementName}_${this.state.elementCounts[elementName] - 1}`;
+
+    // Check if we have an API-generated key for this element
+    const functionName = this.getFunctionName(path);
+    const originalKey = `${functionName}.${tempKey}`;
+    const apiKey = this.state.apiKeys[originalKey];
+
+    // If we have an API key, extract just the key part (after the component prefix)
+    if (apiKey) {
+      const keyParts = apiKey.split(".");
+      return keyParts[keyParts.length - 1];
     }
 
-    // For subsequent occurrences, add _N suffix where N starts from 1
-    return `${elementName}_${this.state.elementCounts[elementName] - 1}`;
+    return tempKey;
   }
 
   private getElementName(path: Path): string {
@@ -812,8 +843,11 @@ export class TransformService {
 
     this.storeTranslation(componentName, key, cleanText, path);
 
-    // Use the mapped key if available, otherwise use the original key
-    const mappedKey = this.state.keyMap[originalKey] || originalKey;
+    // Use the API-generated key if available, otherwise use keyMap or original key
+    const mappedKey =
+      this.state.apiKeys[originalKey] ||
+      this.state.keyMap[originalKey] ||
+      originalKey;
 
     const replacement = j.jsxExpressionContainer(
       j.callExpression(j.identifier("t"), [j.literal(mappedKey)]),
@@ -1060,18 +1094,41 @@ export class TransformService {
   private async generateAPIKeys(
     translations: CollectedTranslation[],
   ): Promise<Record<string, string>> {
+    console.log(
+      "Sending to API:",
+      translations.map((t) => ({
+        key: t.originalKey,
+        value: t.value,
+      })),
+    );
+
     const result = await client.jobs.startTransformJob.mutate({
       projectId: "prj_xpuq472jzv5zv9uey0s5h6eu",
       translations: translations.map((t) => ({
-        key: `${t.functionName}.${t.originalKey}`,
+        key: t.originalKey,
         value: t.value,
       })),
     });
 
+    console.log("API Response:", result);
+
+    // Create a map of original keys to API-generated keys
     const keys: Record<string, string> = {};
-    for (const translation of result) {
-      keys[translation.key] = translation.value;
+
+    // The API returns an array of objects with newKeys
+    if (result && Array.isArray(result) && result.length > 0) {
+      translations.forEach((translation, index) => {
+        if (result[index]?.key) {
+          keys[translation.originalKey] = result[index].key;
+        } else {
+          console.warn(`No API key generated for: ${translation.originalKey}`);
+        }
+      });
+    } else {
+      console.warn("Invalid API response format:", result);
     }
+
+    console.log("Final key mapping:", keys);
 
     return keys;
   }
