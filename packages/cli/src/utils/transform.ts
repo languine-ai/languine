@@ -34,12 +34,6 @@ interface SelectPattern {
   variable: string;
 }
 
-interface Variable {
-  name: string;
-  node: Node;
-  pluralCondition?: Node;
-}
-
 /**
  * Service for transforming JSX/TSX files to use translations.
  * Handles extraction of text content, attributes, and dynamic content.
@@ -1078,8 +1072,6 @@ export class TransformService {
     for (const translation of result) {
       keys[translation.key] = translation.value;
     }
-
-    console.log("keys", keys);
 
     return keys;
   }

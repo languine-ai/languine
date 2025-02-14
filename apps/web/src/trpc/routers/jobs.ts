@@ -1,4 +1,5 @@
 import type { startTranslationsTask } from "@/jobs/translate/start-translations";
+import { transformKeys } from "@/jobs/utils/transform";
 import { tasks } from "@trigger.dev/sdk/v3";
 import { createTRPCRouter, protectedProcedure } from "../init";
 import { hasProjectAccess } from "../permissions/project";
@@ -71,6 +72,8 @@ export const jobsRouter = createTRPCRouter({
     // .use(hasProjectAccess)
     .mutation(async ({ input, ctx }) => {
       console.log("input", input.translations);
-      return input.translations;
+      const result = await transformKeys(input.translations);
+      console.log("result", result);
+      return result;
     }),
 });
