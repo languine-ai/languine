@@ -24,6 +24,7 @@ export async function transformCommand(args: string[] = []) {
     const files = await fastGlob(["**/*.tsx", "**/*.jsx"], {
       cwd: directory,
       absolute: true,
+      ignore: ["**/node_modules/**", "**/.*/**", "**/dist/**", "**/build/**"],
     });
 
     spin.stop(`Found ${files.length} React components`);
@@ -39,7 +40,7 @@ export async function transformCommand(args: string[] = []) {
       files,
       {
         parser: "tsx",
-        verbose: 0,
+        silent: true,
       },
     );
 

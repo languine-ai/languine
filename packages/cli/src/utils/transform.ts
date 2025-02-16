@@ -77,9 +77,7 @@ export class TransformService {
     "tabIndex",
   ]);
 
-  constructor(
-    private translationFile: string = path.resolve("translations.json"),
-  ) {
+  constructor(private translationFile: string = path.resolve("en.json")) {
     this.loadTranslations();
   }
 
@@ -376,7 +374,7 @@ export class TransformService {
       await this.transformStringLiterals(j, root, componentName);
 
       const savedTranslations = await this.saveTranslations();
-      console.log("Saved translations:", savedTranslations);
+      // console.log("Saved translations:", savedTranslations);
     } catch (error) {
       console.error("Error transforming with generated keys:", error);
       if (error instanceof Error) {
@@ -1094,13 +1092,13 @@ export class TransformService {
   private async generateAPIKeys(
     translations: CollectedTranslation[],
   ): Promise<Record<string, string>> {
-    console.log(
-      "Sending to API:",
-      translations.map((t) => ({
-        key: t.originalKey,
-        value: t.value,
-      })),
-    );
+    // console.log(
+    //   "Sending to API:",
+    //   translations.map((t) => ({
+    //     key: t.originalKey,
+    //     value: t.value,
+    //   })),
+    // );
 
     const result = await client.jobs.startTransformJob.mutate({
       projectId: "prj_xpuq472jzv5zv9uey0s5h6eu",
@@ -1110,7 +1108,7 @@ export class TransformService {
       })),
     });
 
-    console.log("API Response:", result);
+    // console.log("API Response:", result);
 
     // Create a map of original keys to API-generated keys
     const keys: Record<string, string> = {};
@@ -1128,7 +1126,7 @@ export class TransformService {
       console.warn("Invalid API response format:", result);
     }
 
-    console.log("Final key mapping:", keys);
+    // console.log("Final key mapping:", keys);
 
     return keys;
   }
