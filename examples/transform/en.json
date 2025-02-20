@@ -1,0 +1,63 @@
+{
+  "Hero": {
+    "mainHeading": "This is a hero text about our startup!",
+    "secondaryDescription": "And this is the best description about it.",
+    "contactFoundersButtonText": "Talk to founders",
+    "signInButtonText": "Sign In",
+    "imageAltText": "This is a great hero of our startup",
+    "altTextDescription": "This is a great hero of our startup"
+  },
+  "Header": {
+    "homeLink": "Home",
+    "aboutLink": "About",
+    "contactLink": "Contact",
+    "homeNavigationTitle": "Go to home",
+    "aboutNavigationTitle": "Go to about",
+    "contactNavigationTitle": "Go to contact",
+    "homeLinkText": "Home",
+    "aboutLinkText": "About",
+    "contactLinkText": "Contact"
+  },
+  "ProfileScreen": {
+    "pageTitle": "My Profile",
+    "fullNameLabel": "Full Name",
+    "bioLabel": "Bio",
+    "bioInstructions": "Your bio should be at least 50 characters long",
+    "saveButtonText": "Save Changes",
+    "lastUpdatedStatus": "Last updated: Yesterday at 2:30 PM",
+    "fullNamePlaceholder": "Enter your full name",
+    "bioPlaceholder": "Tell us about yourself",
+    "bioGuideline": "Your bio should be at least 50 characters long",
+    "lastUpdateStatus": "Last updated: Yesterday at 2:30 PM"
+  },
+  "UserDashboard": {
+    "welcomeBackGreeting": "Welcome back,",
+    "notificationCenterTitle": "Notification Center",
+    "unreadNotificationCount": "You have",
+    "unreadNotificationText": "unread notification",
+    "markAllButtonText": "Mark all as read",
+    "preferencesSectionTitle": "Your Preferences",
+    "currentThemeLabel": "Current theme:",
+    "themeModeLabel": "mode",
+    "interfaceLanguageLabel": "Interface language:",
+    "lastLoginInfo": "Last login:",
+    "updateProfileButtonText": "Update Profile",
+    "settingsButtonText": "Settings",
+    "accountStatusText": "Your account is protected with advanced security measures. Last security check was performed 3 days ago.",
+    "contactSupportText": "Need help? Contact our support team available 24/7.",
+    "changeClickPrompt": "Click to change your preferences",
+    "h1_1": "Welcome back, {name}!",
+    "p_5": "You have {notifications}unread notification",
+    "span_4": "{theme} mode",
+    "span_6": "{language, select, en {English} other {Other}}",
+    "welcomeMessage": "Welcome back,",
+    "unreadNotificationLabel": "unread notification",
+    "preferencesTitle": "Your Preferences",
+    "modeLabel": "mode",
+    "accountStatusMessage": "Your account is protected with advanced security measures. Last security check was performed 3 days ago.",
+    "contactHelpMessage": "Need help? Contact our support team available 24/7.",
+    "changeClickInstruction": "Click to change your preferences",
+    "accountStatusInfo": "Your account is protected with advanced security measures. Last security check was performed 3 days ago.",
+    "contactSupportInfo": "Need help? Contact our support team available 24/7."
+  }
+}
