@@ -1,10 +1,10 @@
 {
   "HomePage": {
-    "title": "Startseite",
-    "param": "Hallo {name}",
-    "plural": "Sie haben {count, plural, =0 {noch keine Follower} =1 {einen Follower} other {# Follower}}.",
+    "title": "TEST2",
+    "param": "TEST1",
+    "plural": "Du hast {count, plural, =0 {noch keine Follower} =1 {einen Follower} other {# Follower}}.",
     "select": "{gender, select, female {Sie} male {Er} other {Sie}} ist online.",
-    "escaped": "Escape geschweifte Klammern mit einfachen Anführungszeichen (z.B. '{name}')",
+    "escaped": "Flache geschweifte Klammern mit einfachen Anführungszeichen escapen (z.B. '{name}')",
     "rich": "Bitte beziehen Sie sich auf <guidelines>die Richtlinien</guidelines>.",
     "number": "Verfügbar ab {price, number, currency}",
     "date": "Bestellt am {orderDate, date, medium}"

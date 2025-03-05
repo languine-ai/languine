@@ -1,15 +1,16 @@
-export default {
-  hello: "Hello",
-  welcome: "Hello {name}!",
-  "about.you": "Hello {name}! You are {age} years old",
-  "scope.test": "A scope",
-  "scope.more.test": "A scope",
-  "scope.more.param": "A scope with {param}",
-  "scope.more.and.more.test": "A scope",
-  "scope.more.stars#one": "1 star on GitHub",
-  "scope.more.stars#other": "{count} stars on GitHub",
-  "missing.translation.in.fr": "This should work",
-  "cows#one": "A cow",
-  "cows#other": "{count} cows",
-  "languine.hello": "Hello Languine",
-} as const;
+import type { Dictionary } from "../types";
+
+const dictionary: Dictionary = {
+  web: {
+    home: {
+      hero: {
+        announcement: "Hello {name}! You are {age} years old",
+        title: "Transform Your Business Operations Today",
+        description:
+          "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
+      },
+    },
+  },
+};
+
+export default dictionary;

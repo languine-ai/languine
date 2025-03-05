@@ -165,17 +165,53 @@ export class JavaScriptParser extends BaseParser {
   private preprocessInput(input: string): string {
     let processed = input.trim();
 
-    if (processed.startsWith("export default")) {
-      processed = processed.slice("export default".length).trim();
+    // Remove TypeScript imports first
+    processed = processed.replace(
+      /^import\s+[^;]+;(\s*import\s+[^;]+;)*\s*/m,
+      "",
+    );
+
+    // Extract the object literal from variable declaration or export
+    const objectMatch = processed.match(
+      /(?:const\s+\w+(?:\s*:\s*\w+)?\s*=\s*)?({[\s\S]*?})\s*(?:;|\s*as\s+const\s*;)?$/,
+    );
+    if (objectMatch) {
+      processed = objectMatch[1];
+    } else {
+      // Handle export default cases
+      if (processed.includes("export default")) {
+        // Try to match direct object export with optional 'as const'
+        const directExportMatch = processed.match(
+          /export\s+default\s+({[\s\S]*?})\s*(?:as\s+const)?\s*;?$/,
+        );
+        if (directExportMatch) {
+          processed = directExportMatch[1];
+        } else {
+          // Try to match variable export
+          const exportMatch = processed.match(/export\s+default\s+(\w+)\s*;?/);
+          if (exportMatch) {
+            // Find the variable declaration that matches the exported identifier
+            const varName = exportMatch[1];
+            const varMatch = processed.match(
+              new RegExp(
+                `const\\s+${varName}(?:\\s*:\\s*\\w+)?\\s*=\\s*({[\\s\\S]*?})\\s*;`,
+              ),
+            );
+            if (varMatch) {
+              processed = varMatch[1];
+            }
+          }
+        }
+      }
     }
 
-    if (processed.endsWith("as const;")) {
-      processed = processed.slice(0, -"as const;".length).trim();
-    } else if (processed.endsWith("as const")) {
-      processed = processed.slice(0, -"as const".length).trim();
-    }
+    // Clean up any remaining 'as const'
+    processed = processed.replace(/\s+as\s+const\s*;?$/, "");
 
-    return processed;
+    // Remove any trailing semicolons
+    processed = processed.replace(/;$/, "");
+
+    return processed.trim();
   }
 
   private evaluateJavaScript(input: string): unknown {

@@ -46,7 +46,7 @@
     "@react-email/font": "0.0.9",
     "@shikijs/rehype": "^2.3.1",
     "@tanstack/react-query": "5.66.0",
-    "@trigger.dev/sdk": "3.3.13",
+    "@trigger.dev/sdk": "3.3.17",
     "@trpc/client": "11.0.0-rc.700",
     "@trpc/react-query": "11.0.0-rc.700",
     "@trpc/server": "11.0.0-rc.700",
@@ -84,7 +84,7 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
-    "@trigger.dev/build": "3.3.13",
+    "@trigger.dev/build": "3.3.17",
     "@types/node": "22",
     "@types/pg": "8.11.11",
     "@types/react": "19",
