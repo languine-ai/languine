@@ -222,6 +222,155 @@ describe("JavaScript/TypeScript Parser", () => {
         `export default {\n  b: "second",\n  a: "first",\n  c: "third"\n} as const;\n`,
       );
     });
+
+    test("handles TypeScript dictionary format with type imports", async () => {
+      const input = `import type { Dictionary } from "../types";
+
+const dictionary: Dictionary = {
+  web: {
+    home: {
+      hero: {
+        title: "Welcome",
+        description: "This is a test"
+      }
+    }
+  }
+};
+
+export default dictionary;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.home.hero.title": "Welcome",
+        "web.home.hero.description": "This is a test",
+      });
+    });
+
+    test("handles TypeScript dictionary format with multiple imports", async () => {
+      const input = `import type { Dictionary } from "../types";
+import type { OtherType } from "./other";
+
+const dictionary: Dictionary = {
+  web: {
+    home: {
+      title: "Hello"
+    }
+  }
+};
+
+export default dictionary;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.home.title": "Hello",
+      });
+    });
+
+    test("handles TypeScript dictionary format with comments", async () => {
+      const input = `import type { Dictionary } from "../types";
+
+// Main dictionary
+const dictionary: Dictionary = {
+  // Web section
+  web: {
+    /* Home page translations */
+    home: {
+      title: "Welcome"
+    }
+  }
+};
+
+export default dictionary;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.home.title": "Welcome",
+      });
+    });
+
+    test("handles different variable names for dictionary", async () => {
+      const input = `import type { Dictionary } from "../types";
+
+const translations: Dictionary = {
+  web: {
+    title: "Hello"
+  }
+};
+
+export default translations;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.title": "Hello",
+      });
+    });
+
+    test("handles different type names for dictionary", async () => {
+      const input = `import type { Translations } from "../types";
+
+const dictionary: Translations = {
+  web: {
+    title: "Hello"
+  }
+};
+
+export default dictionary;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.title": "Hello",
+      });
+    });
+
+    test("handles different variable and type names", async () => {
+      const input = `import type { LocaleMessages } from "./types";
+
+const messages: LocaleMessages = {
+  web: {
+    title: "Hello"
+  }
+};
+
+export default messages;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.title": "Hello",
+      });
+    });
+
+    test("handles type annotation from different import path", async () => {
+      const input = `import type { I18nDictionary } from "@/i18n/types";
+
+const i18n: I18nDictionary = {
+  web: {
+    title: "Hello"
+  }
+};
+
+export default i18n;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.title": "Hello",
+      });
+    });
+
+    test("handles direct dictionary definition without type annotations", async () => {
+      const input = `const dictionary = {
+  web: {
+    home: {
+      hero: {
+        announcement: "Read our latest article",
+        title: "Transform Your Business Operations Today",
+        description: "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+      }
+    }
+  }
+};
+
+export default dictionary;`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "web.home.hero.announcement": "Read our latest article",
+        "web.home.hero.title": "Transform Your Business Operations Today",
+        "web.home.hero.description":
+          "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
+      });
+    });
   });
 
   describe("serialize", () => {
