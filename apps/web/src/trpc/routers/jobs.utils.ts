@@ -53,7 +53,8 @@ export async function checkTranslationLimits(
 ): Promise<TranslationLimitCheckResult | null> {
   const { totalKeys, totalDocuments } = await getOrganizationLimits(org.id);
 
-  const nextTotalDocuments = totalDocuments + 1 * input.targetLanguages.length;
+  const nextTotalDocuments =
+    totalDocuments > 0 ? totalDocuments + 1 * input.targetLanguages.length : 0;
   const currentDocumentsLimit =
     TIERS_MAX_DOCUMENTS[org.tier as keyof typeof TIERS_MAX_DOCUMENTS];
 
