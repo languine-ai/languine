@@ -36,19 +36,6 @@ export const TIER_PRICES = {
   // 9: 9999,
 };
 
-export const TIER_MAX_LANGUAGES = {
-  0: 2,
-  1: 4,
-  2: 8,
-  3: 16,
-  4: 24,
-  5: 32,
-  6: 40,
-  // 7: 48,
-  // 8: 56,
-  // 9: 64,
-};
-
 export const PRODUCT_ID_MAP_PRODUCTION = {
   1: "0cb12733-d7f9-4795-baa1-76cb4edcd239",
   2: "1d63b754-06d6-4186-9be5-817e7693264f",

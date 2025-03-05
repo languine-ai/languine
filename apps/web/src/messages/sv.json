@@ -663,7 +663,7 @@
     "title": "Uppgradera plan",
     "upgrade_to_tier": "Uppgradera till nivå {tier}",
     "cancel": "Avbryt",
-    "description": "Uppgradera din plan för att öka dina gränser. Du får tillgång till fler översättningsnycklar, dokument, språk och prioriterad support."
+    "description": "Uppgradera din plan för att öka dina gränser. Du får tillgång till fler översättningsnycklar, dokument och prioriterad support."
   },
   "test_translation": {
     "title": "Testa översättning",

@@ -51,10 +51,6 @@ export function Pricing() {
               </li>
               <li className="flex items-center gap-2 text-sm text-secondary">
                 <MdCheck className="w-4 h-4 text-primary" />
-                <span>{t("free.features.languages")}</span>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-secondary">
-                <MdCheck className="w-4 h-4 text-primary" />
                 <span>{t("free.features.keys_limit")}</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-secondary">
@@ -86,10 +82,6 @@ export function Pricing() {
               <li className="flex items-center gap-2 text-sm text-secondary">
                 <MdCheck className="w-4 h-4 text-primary" />
                 <span>{t("pro.features.priority_support")}</span>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-secondary">
-                <MdCheck className="w-4 h-4 text-primary" />
-                <span>{t("pro.features.languages")}</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-secondary">
                 <MdCheck className="w-4 h-4 text-primary" />

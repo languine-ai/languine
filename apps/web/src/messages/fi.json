@@ -663,7 +663,7 @@
     "title": "Päivitä suunnitelma",
     "upgrade_to_tier": "Päivitä tasolle {tier}",
     "cancel": "Peruuta",
-    "description": "Päivitä suunnitelmasi kasvattaaksesi rajoja. Saat pääsyn useampiin käännösavaimiin, asiakirjoihin, kieliin ja ensisijaiseen tukeen."
+    "description": "Päivitä suunnitelmasi kasvattaaksesi rajoja. Saat pääsyn useampiin käännösavaimiin, asiakirjoihin ja ensisijaiseen tukeen."
   },
   "test_translation": {
     "title": "Testaa käännös",

@@ -663,7 +663,7 @@
     "title": "Tarif upgraden",
     "upgrade_to_tier": "Upgrade auf Tarif {tier}",
     "cancel": "Stornieren",
-    "description": "Upgrade Ihren Tarif, um Ihre Limits zu erhöhen. Sie erhalten Zugriff auf mehr Übersetzungsschlüssel, Dokumente, Sprachen und priorisierte Unterstützung."
+    "description": "Upgrade Ihren Tarif, um Ihre Limits zu erhöhen. Sie erhalten Zugriff auf mehr Übersetzungsschlüssel, Dokumente und priorisierte Unterstützung."
   },
   "test_translation": {
     "title": "Übersetzung testen",
