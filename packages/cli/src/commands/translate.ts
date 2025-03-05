@@ -289,42 +289,9 @@ export async function translateCommand(args: string[] = []) {
         commitLink: gitInfo?.commitLink,
       });
 
-      if (error?.code === "LANGUAGES_LIMIT_REACHED") {
-        s.stop();
-        note(
-          "Languages limit reached. Upgrade your plan to increase your limit.",
-          "Limit reached",
-        );
-
-        const shouldUpgrade = await select({
-          message: "Would you like to upgrade your plan now?",
-          options: [
-            { label: "Upgrade plan", value: "upgrade" },
-            { label: "Cancel", value: "cancel" },
-          ],
-        });
-
-        if (shouldUpgrade === "upgrade") {
-          if (meta?.plan === "free") {
-            await open(
-              `${LANGUINE_BASE_URL}/${meta?.organizationId}/default/settings?tab=billing&modal=plan&tier=${Number(meta?.tier) + 1}`,
-            );
-          } else {
-            await open(
-              `${LANGUINE_BASE_URL}/api/portal?id=${meta?.polarCustomerId}`,
-            );
-          }
-
-          note("Run `languine translate` again to continue.", "What's next?");
-        }
-
-        process.exit(1);
-      }
-
       if (
         error?.code === "DOCUMENT_LIMIT_REACHED" ||
-        error?.code === "KEY_LIMIT_REACHED" ||
-        error?.code === "LANGUAGES_LIMIT_REACHED"
+        error?.code === "KEY_LIMIT_REACHED"
       ) {
         s.stop();
 
@@ -338,12 +305,6 @@ export async function translateCommand(args: string[] = []) {
           case "KEY_LIMIT_REACHED":
             note(
               "Translation keys limit reached. Upgrade your plan to increase your limit.",
-              "Limit reached",
-            );
-            break;
-          case "LANGUAGES_LIMIT_REACHED":
-            note(
-              "Languages limit reached. Upgrade your plan to increase your limit.",
               "Limit reached",
             );
             break;

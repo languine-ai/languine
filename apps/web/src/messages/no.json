@@ -663,7 +663,7 @@
     "title": "Oppgrader plan",
     "upgrade_to_tier": "Oppgrader til nivå {tier}",
     "cancel": "Kanseller",
-    "description": "Oppgrader planen din for å øke grensene dine. Du får tilgang til flere oversettelsesnøkler, dokumenter, språk og prioritert støtte."
+    "description": "Oppgrader planen din for å øke grensene dine. Du får tilgang til flere oversettelsesnøkler, dokumenter og prioritert støtte."
   },
   "test_translation": {
     "title": "Test oversettelse",

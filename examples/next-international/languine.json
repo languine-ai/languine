@@ -1,7 +1,7 @@
 {
   "locale": {
     "source": "en",
-    "targets": ["sv", "de"]
+    "targets": ["sv", "de", "fr", "it", "es", "pl", "no", "nl", "fi", "pt"]
   },
   "files": {
     "ts": {

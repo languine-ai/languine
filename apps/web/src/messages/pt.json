@@ -663,7 +663,7 @@
     "title": "Atualizar Plano",
     "upgrade_to_tier": "Atualizar para o nível {tier}",
     "cancel": "Cancelar",
-    "description": "Atualize seu plano para aumentar seus limites. Você terá acesso a mais chaves de tradução, documentos, idiomas e suporte prioritário."
+    "description": "Atualize seu plano para aumentar seus limites. Você terá acesso a mais chaves de tradução, documentos e suporte prioritário."
   },
   "test_translation": {
     "title": "Teste de Tradução",

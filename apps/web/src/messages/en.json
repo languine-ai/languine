@@ -388,8 +388,7 @@
         "context_memory": "Context memory",
         "community_support": "Community support",
         "keys_limit": "Up to 100 keys",
-        "docs_limit": "Up to 5 documents",
-        "languages": "2 languages"
+        "docs_limit": "Up to 5 documents"
       }
     },
     "pro": {
@@ -663,7 +662,7 @@
     "title": "Upgrade Plan",
     "upgrade_to_tier": "Upgrade to tier {tier}",
     "cancel": "Cancel",
-    "description": "Upgrade your plan to increase your limits. You'll get access to more translation keys, documents, languages, and priority support."
+    "description": "Upgrade your plan to increase your limits. You'll get access to more translation keys, documents, and priority support."
   },
   "test_translation": {
     "title": "Test Translation",

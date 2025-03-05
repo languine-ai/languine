@@ -8,33 +8,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import {
-  TIERS_MAX_DOCUMENTS,
-  TIERS_MAX_KEYS,
-  TIER_MAX_LANGUAGES,
-} from "@/lib/tiers";
+import { TIERS_MAX_DOCUMENTS, TIERS_MAX_KEYS } from "@/lib/tiers";
 import { useTranslations } from "next-intl";
 
 interface PlanSettingsProps {
   tier: number;
   keysUsed: number;
   documentsUsed: number;
-  languagesUsed: number;
 }
 
 export function PlanSettings({
   tier,
   keysUsed = 0,
   documentsUsed = 0,
-  languagesUsed = 0,
 }: PlanSettingsProps) {
   const t = useTranslations("plan_settings");
 
   const maxKeys = TIERS_MAX_KEYS[tier as keyof typeof TIERS_MAX_KEYS] || 0;
   const maxDocuments =
     TIERS_MAX_DOCUMENTS[tier as keyof typeof TIERS_MAX_DOCUMENTS] || 0;
-  const maxLanguages =
-    TIER_MAX_LANGUAGES[tier as keyof typeof TIER_MAX_LANGUAGES] || 0;
 
   const getPercentage = (value: number, max: number) =>
     Math.min(100, Math.round((value / max) * 100));
@@ -69,24 +61,6 @@ export function PlanSettings({
         <CardContent>
           <Progress
             value={getPercentage(documentsUsed, maxDocuments)}
-            className="h-2"
-          />
-        </CardContent>
-      </Card>
-
-      <Card className="bg-transparent">
-        <CardHeader>
-          <CardTitle className="text-sm font-normal">
-            {t("languages")}
-          </CardTitle>
-          <CardDescription>
-            {languagesUsed.toLocaleString()}/{maxLanguages.toLocaleString()}{" "}
-            {t("languagesUsed")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Progress
-            value={getPercentage(languagesUsed, maxLanguages)}
             className="h-2"
           />
         </CardContent>
