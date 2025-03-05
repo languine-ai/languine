@@ -10,11 +10,7 @@ import {
 } from "@/components/ui/card";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { usePlanModal } from "@/hooks/use-plan-modal";
-import {
-  TIERS_MAX_DOCUMENTS,
-  TIERS_MAX_KEYS,
-  TIER_MAX_LANGUAGES,
-} from "@/lib/tiers";
+import { TIERS_MAX_DOCUMENTS, TIERS_MAX_KEYS } from "@/lib/tiers";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
@@ -35,8 +31,6 @@ export function CurrentTier({
   const maxKeys = TIERS_MAX_KEYS[tier as keyof typeof TIERS_MAX_KEYS];
   const maxDocuments =
     TIERS_MAX_DOCUMENTS[tier as keyof typeof TIERS_MAX_DOCUMENTS];
-  const maxLanguages =
-    TIER_MAX_LANGUAGES[tier as keyof typeof TIER_MAX_LANGUAGES];
 
   return (
     <div>
@@ -48,9 +42,7 @@ export function CurrentTier({
             {tier > 0 ? `${t("tier")} ${tier}` : t("free")}
           </CardTitle>
           <CardDescription>
-            {maxKeys.toLocaleString()} {t("translationKeys")},{" "}
-            {maxDocuments.toLocaleString()} {t("documents")}, {maxLanguages}{" "}
-            {t("languages")}
+            {maxKeys.toLocaleString()} {t("translationKeys")}
           </CardDescription>
         </CardHeader>
         <CardContent className="flex gap-4">

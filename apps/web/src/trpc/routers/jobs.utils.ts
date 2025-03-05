@@ -2,11 +2,7 @@ import { connectDb } from "@/db";
 import { getOrganizationLimits } from "@/db/queries/organization";
 import type { organizations } from "@/db/schema";
 import { projects } from "@/db/schema";
-import {
-  TIERS_MAX_DOCUMENTS,
-  TIERS_MAX_KEYS,
-  TIER_MAX_LANGUAGES,
-} from "@/lib/tiers";
+import { TIERS_MAX_DOCUMENTS, TIERS_MAX_KEYS } from "@/lib/tiers";
 import { TRPCError } from "@trpc/server";
 import { eq } from "drizzle-orm";
 import type { jobsSchema } from "./schema";
@@ -57,24 +53,8 @@ export async function checkTranslationLimits(
 ): Promise<TranslationLimitCheckResult | null> {
   const { totalKeys, totalDocuments } = await getOrganizationLimits(org.id);
 
-  if (
-    input.targetLanguages.length >
-    TIER_MAX_LANGUAGES[org.tier as keyof typeof TIER_MAX_LANGUAGES]
-  ) {
-    return {
-      meta: {
-        plan: org.plan,
-        tier: org.tier,
-        organizationId: org.id,
-      },
-      error: {
-        code: "LANGUAGES_LIMIT_REACHED",
-        message: "You have reached the maximum number of languages",
-      },
-    };
-  }
-
-  const nextTotalDocuments = totalDocuments + 1 * input.targetLanguages.length;
+  const nextTotalDocuments =
+    totalDocuments > 0 ? totalDocuments + 1 * input.targetLanguages.length : 0;
   const currentDocumentsLimit =
     TIERS_MAX_DOCUMENTS[org.tier as keyof typeof TIERS_MAX_DOCUMENTS];
 

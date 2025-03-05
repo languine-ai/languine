@@ -1,10 +1,5 @@
 import { Slider } from "@/components/ui/slider";
-import {
-  TIERS_MAX_DOCUMENTS,
-  TIERS_MAX_KEYS,
-  TIER_MAX_LANGUAGES,
-  TIER_PRICES,
-} from "@/lib/tiers";
+import { TIERS_MAX_DOCUMENTS, TIERS_MAX_KEYS, TIER_PRICES } from "@/lib/tiers";
 import NumberFlow from "@number-flow/react";
 import { useTranslations } from "next-intl";
 
@@ -33,13 +28,6 @@ export function PricingSlider({
     return (
       TIERS_MAX_DOCUMENTS[tier as keyof typeof TIERS_MAX_DOCUMENTS] ||
       TIERS_MAX_DOCUMENTS[1]
-    );
-  };
-
-  const getLanguagesForTier = (tier: number) => {
-    return (
-      TIER_MAX_LANGUAGES[tier as keyof typeof TIER_MAX_LANGUAGES] ||
-      TIER_MAX_LANGUAGES[1]
     );
   };
 
@@ -81,13 +69,6 @@ export function PricingSlider({
               {getDocumentsForTier(currentTier).toLocaleString()}
             </span>
             <span className="text-secondary">{t("documents")}</span>
-          </div>
-
-          <div className="text-xs flex items-center justify-between px-2 pb-2">
-            <span className="text-primary">
-              {getLanguagesForTier(currentTier).toLocaleString()}
-            </span>
-            <span className="text-secondary">{t("languages")}</span>
           </div>
         </div>
 

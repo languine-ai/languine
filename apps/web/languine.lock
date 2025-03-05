@@ -264,7 +264,6 @@ files:
     pricing.free.features.community_support: 1cf7168782187634fbc408c66b895dbc
     pricing.free.features.keys_limit: 68ded5c952acf17cd71488921eb409fb
     pricing.free.features.docs_limit: 1778b411fe46f59bc4454d89b01bb122
-    pricing.free.features.languages: 258b956ff3f1550eeeda8300ff9835a9
     pricing.pro.title: abd900517e55dce0437dac136a8568d7
     pricing.pro.includes_free: 048d1ba13c785db62638cfca520b0a5f
     pricing.pro.features.github_action: ba6fa6e325e04710d41ade5d4fc49717
@@ -452,7 +451,7 @@ files:
     changePlan.title: 9622c46ac664d07f743905654edd5f26
     changePlan.upgrade_to_tier: 61cbfbdd35af1bb14696b17fd92e63a0
     changePlan.cancel: ea4788705e6873b424c65e91c2846b19
-    changePlan.description: 37a2fcfd330ad6061664a10cb47ffe15
+    changePlan.description: 2409737476c01aaf0e7eb9048c248dcd
     test_translation.title: 46c178749fb7452b7ed65f7ec3343aff
     test_translation.description: 4b09fc95c9a7e3c04fc424cea93117b4
     support.title: db5eb84117d06047c97c9a0191b5fffe
