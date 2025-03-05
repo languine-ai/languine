@@ -1,16 +1,6 @@
 version: 1
 files:
   locales/en.ts:
-    hello: 8b1a9953c4611296a827abf8c47804d7
-    welcome: 0d1ea4aafcf7aeec186e17aa1db6fb7e
-    about.you: 0f164b8f901c34b60a9404edfbd936df
-    scope.test: 22ee036710eb3575335c189c521fcdda
-    scope.more.test: 22ee036710eb3575335c189c521fcdda
-    scope.more.param: 12997ce10673c868d3216cede2fe8402
-    scope.more.and.more.test: 22ee036710eb3575335c189c521fcdda
-    scope.more.stars#one: d5c2b1f0808fcda59bdb56533bce44b3
-    scope.more.stars#other: 4c75358e31702976a0fb81eae353fea5
-    missing.translation.in.fr: d585ba23d44a6353781d3af2ed8425c5
-    cows#one: 04b75fc47a0f8ef2efb80a771382e37f
-    cows#other: 6e870695c85d05f4fbee4603c8bb32b9
-    languine.hello: 32577afe238d06352e0499d3ddf2879c
+    web.home.hero.announcement: 0f164b8f901c34b60a9404edfbd936df
+    web.home.hero.title: 87848172d8e4cfd6db9f6b7b455581a9
+    web.home.hero.description: 6af7262a0bdcc4f277a65507537d1101
