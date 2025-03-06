@@ -2,6 +2,7 @@ import { connectDb, primaryDb } from "@/db";
 import { projects, translations } from "@/db/schema";
 import type {
   DeleteKeysSchema,
+  DeleteTranslationsSchema,
   ProjectLocalesSchema,
 } from "@/trpc/routers/schema";
 import { UTCDate } from "@date-fns/utc";
@@ -254,4 +255,12 @@ export const getOverriddenTranslations = async ({
         eq(translations.overridden, true),
       ),
     );
+};
+
+export const deleteTranslations = async ({
+  projectId,
+}: DeleteTranslationsSchema) => {
+  return primaryDb
+    .delete(translations)
+    .where(eq(translations.projectId, projectId));
 };
