@@ -121,7 +121,7 @@ export async function deleteCommand(args: string[] = []) {
     // Empty the languine.lock file
     try {
       const lockPath = join(process.cwd(), "languine.lock");
-      await writeFile(lockPath, "{}", "utf-8");
+      await writeFile(lockPath, "", "utf-8");
       s.message("Cleared languine.lock file");
     } catch (error) {
       console.error(chalk.red("Failed to clear languine.lock file"));
