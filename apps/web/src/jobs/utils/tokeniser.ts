@@ -1,6 +1,13 @@
 import { createFinalPrompt } from "./prompt";
 import type { PromptOptions } from "./types";
 
+/**
+ * Estimates the number of tokens required for a given content and prompt options.
+ *
+ * @param content - An array of objects containing a key and source text.
+ * @param options - Optional prompt options.
+ * @returns The estimated number of tokens.
+ */
 export function estimateTokensForContent(
   content: Array<{ key: string; sourceText: string }>,
   options?: PromptOptions,
