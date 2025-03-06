@@ -254,7 +254,7 @@ files:
     pricing.title: 467c18a9436478b8db6c9f6124784d74
     pricing.free.title: b24ce0cd392a5b0b8dedc66c25213594
     pricing.free.price: b24ce0cd392a5b0b8dedc66c25213594
-    pricing.free.keys_limit: 68ded5c952acf17cd71488921eb409fb
+    pricing.free.keys_limit: 87817711e7f538d4bb92c9d7a0adc7d4
     pricing.free.description: beed456178e89c22031175a81ac64faf
     pricing.free.features.unlimited_projects: 29be4d95ae3d4131e1f3f2bf97d334dd
     pricing.free.features.fine_tuning: dd4e28c05b95e8f69925f58a472c041a
@@ -262,7 +262,7 @@ files:
     pricing.free.features.analytics: a768caa988605a2846599cf7e2d0c26a
     pricing.free.features.context_memory: f0ae622dd995d57acd0e697cb95c068e
     pricing.free.features.community_support: 1cf7168782187634fbc408c66b895dbc
-    pricing.free.features.keys_limit: 68ded5c952acf17cd71488921eb409fb
+    pricing.free.features.keys_limit: 87817711e7f538d4bb92c9d7a0adc7d4
     pricing.free.features.docs_limit: 1778b411fe46f59bc4454d89b01bb122
     pricing.pro.title: abd900517e55dce0437dac136a8568d7
     pricing.pro.includes_free: 048d1ba13c785db62638cfca520b0a5f
@@ -274,7 +274,7 @@ files:
     pricing.pro.features.keys_limit: 8144a202e83b7990c4fa47a9afa1dd65
     pricing.pro.features.docs_limit: a2f1779e50d585ab84bcb5b2af4efec7
     pricing.cta: a698f6a6e17c887e558c625a4e19800b
-    pricing.keys_limit_explanation: d74aedb7dfbacb3a7cc87d387275543a
+    pricing.keys_limit_explanation: f88686e0bcfbe82f1fcb7b8c143b16bc
     createTeam.teamName: a415526ab37ab308188999eda9b481db
     createTeam.teamNamePlaceholder: 0c5521fcea9b8efdcae81b16ec0dcac8
     createTeam.createTeamButton: 566b03c72e8a6206b2efc9e5fab5823c

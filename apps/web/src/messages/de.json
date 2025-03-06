@@ -378,7 +378,7 @@
     "free": {
       "title": "Kostenlos",
       "price": "Kostenlos",
-      "keys_limit": "Bis zu 100 Schlüssel",
+      "keys_limit": "Bis zu 500 Schlüssel",
       "description": "Perfekt zum Ausprobieren",
       "features": {
         "unlimited_projects": "Unbegrenzte Projekte",
@@ -387,7 +387,7 @@
         "analytics": "Analytik",
         "context_memory": "Kontextspeicher",
         "community_support": "Community-Support",
-        "keys_limit": "Bis zu 100 Schlüssel",
+        "keys_limit": "Bis zu 500 Schlüssel",
         "docs_limit": "Bis zu 5 Dokumente",
         "languages": "2 Sprachen"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Automatisierung starten",
-    "keys_limit_explanation": "Übersetzter Schlüssel: Wenn Sie 20 Quellschlüssel (wie \"Anmelden\" oder \"Willkommen!\") haben und diese in 5 Sprachen übersetzen, entspricht das 100 übersetzten Schlüsseln (20 Schlüssel x 5 Sprachen)."
+    "keys_limit_explanation": "Wir berechnen pro Schlüssel unabhängig von der Wortanzahl, um vorhersehbare Preise zu gewährleisten. Zum Beispiel: Wenn Sie 20 Quellschlüssel (wie \"Anmelden\" oder \"Willkommen!\") haben und diese in 5 Sprachen übersetzen, ergibt das 100 übersetzte Schlüssel (20 Schlüssel × 5 Sprachen)."
   },
   "createTeam": {
     "teamName": "Teamname",

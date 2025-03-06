@@ -378,7 +378,7 @@
     "free": {
       "title": "Gratis",
       "price": "Gratis",
-      "keys_limit": "Tot 100 sleutels",
+      "keys_limit": "Tot 500 sleutels",
       "description": "Perfect voor uitproberen",
       "features": {
         "unlimited_projects": "Onbeperkte projecten",
@@ -387,7 +387,7 @@
         "analytics": "Analytics",
         "context_memory": "Contextgeheugen",
         "community_support": "Gemeenschapssteun",
-        "keys_limit": "Tot 100 sleutels",
+        "keys_limit": "Tot 500 sleutels",
         "docs_limit": "Tot 5 documenten",
         "languages": "2 talen"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Begin met automatiseren",
-    "keys_limit_explanation": "Vertaald sleutel: Als u 20 bronsleutels heeft (zoals \"Aanmelden\" of \"Welkom!\") en deze in 5 talen vertaalt, komt dat neer op 100 vertaalde sleutels (20 sleutels x 5 talen)."
+    "keys_limit_explanation": "We rekenen per sleutel ongeacht het aantal woorden, voor voorspelbare prijzen. Bijvoorbeeld: Als je 20 bronsleutels hebt (zoals \"Aanmelden\" of \"Welkom!\") en deze in 5 talen vertaalt, dan komt dat neer op 100 vertaalde sleutels (20 sleutels × 5 talen)."
   },
   "createTeam": {
     "teamName": "Teamnaam",

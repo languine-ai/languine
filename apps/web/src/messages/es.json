@@ -378,7 +378,7 @@
     "free": {
       "title": "Gratis",
       "price": "Gratis",
-      "keys_limit": "Hasta 100 claves",
+      "keys_limit": "Hasta 500 claves",
       "description": "Perfecto para probar",
       "features": {
         "unlimited_projects": "Proyectos ilimitados",
@@ -387,7 +387,7 @@
         "analytics": "Analíticas",
         "context_memory": "Memoria de contexto",
         "community_support": "Soporte comunitario",
-        "keys_limit": "Hasta 100 claves",
+        "keys_limit": "Hasta 500 claves",
         "docs_limit": "Hasta 5 documentos",
         "languages": "2 idiomas"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Comience a automatizar",
-    "keys_limit_explanation": "Clave traducida: Si tiene 20 claves de origen (como \"Regístrate\" o \"¡Bienvenido!\") y las traduce a 5 idiomas, eso equivale a 100 claves traducidas (20 claves x 5 idiomas)."
+    "keys_limit_explanation": "Cobramos por clave independientemente del conteo de palabras, para una tarificación predecible. Por ejemplo: Si tienes 20 claves de origen (como \"Regístrate\" o \"¡Bienvenido!\") y las traduces a 5 idiomas, eso equivale a 100 claves traducidas (20 claves × 5 idiomas)."
   },
   "createTeam": {
     "teamName": "Nombre del Equipo",

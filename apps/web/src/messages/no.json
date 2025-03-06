@@ -378,7 +378,7 @@
     "free": {
       "title": "Gratis",
       "price": "Gratis",
-      "keys_limit": "Opptil 100 nøkler",
+      "keys_limit": "Opptil 500 nøkler",
       "description": "Perfekt når du prøver ut",
       "features": {
         "unlimited_projects": "Ubegrensede prosjekter",
@@ -387,7 +387,7 @@
         "analytics": "Analyse",
         "context_memory": "Kontekstmemo",
         "community_support": "Fellesskapsstøtte",
-        "keys_limit": "Opptil 100 nøkler",
+        "keys_limit": "Opptil 500 nøkler",
         "docs_limit": "Opptil 5 dokumenter",
         "languages": "2 språk"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Begynn å automatisere",
-    "keys_limit_explanation": "Oversatt nøkkel: Hvis du har 20 kilde nøkler (som \"Registrer deg\" eller \"Velkommen!\") og oversetter dem til 5 språk, tilsvarer det 100 oversatte nøkler (20 nøkler x 5 språk)."
+    "keys_limit_explanation": "Vi tar betalt per nøkkel uavhengig av antall ord, for forutsigbare priser. For eksempel: Hvis du har 20 kildnøkler (som \"Registrer deg\" eller \"Velkommen!\") og oversetter dem til 5 språk, blir det 100 oversatte nøkler (20 nøkler × 5 språk)."
   },
   "createTeam": {
     "teamName": "Teamnavn",

@@ -378,7 +378,7 @@
     "free": {
       "title": "Ilmainen",
       "price": "Ilmainen",
-      "keys_limit": "Enintään 100 avainta",
+      "keys_limit": "Jopa 500 avainta",
       "description": "Ihan täydellinen kokeiluun",
       "features": {
         "unlimited_projects": "Rajoittamaton määrä projekteja",
@@ -387,7 +387,7 @@
         "analytics": "Analytiikka",
         "context_memory": "Kontekstimuisti",
         "community_support": "Yhteisön tuki",
-        "keys_limit": "Enintään 100 avainta",
+        "keys_limit": "Jopa 500 avainta",
         "docs_limit": "Enintään 5 asiakirjaa",
         "languages": "2 kieltä"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Aloita automaatio",
-    "keys_limit_explanation": "Käännetty avain: Jos sinulla on 20 lähdeavainta (kuten \"Rekisteröidy\" tai \"Tervetuloa!\") ja käännät ne 5 kielelle, se tarkoittaa 100 käännettyä avainta (20 avainta x 5 kieltä)."
+    "keys_limit_explanation": "Perimme maksun avainta kohden sanamäärästä riippumatta, jotta hinnoittelu on ennakoitavaa. Esimerkiksi: Jos sinulla on 20 lähdeavainta (kuten \"Rekisteröidy\" tai \"Tervetuloa!\") ja käännet ne 5 kielelle, se tarkoittaa 100 käännettyä avainta (20 avainta × 5 kieltä)."
   },
   "createTeam": {
     "teamName": "Tiimin nimi",
