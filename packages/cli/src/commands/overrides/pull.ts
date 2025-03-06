@@ -1,3 +1,6 @@
+import { mkdir } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { basename, dirname, join } from "node:path";
 import { createParser } from "@/parsers/index.ts";
 import { client } from "@/utils/api.js";
 import { loadConfig } from "@/utils/config.ts";
@@ -6,6 +9,16 @@ import { intro, outro, spinner } from "@clack/prompts";
 import chalk from "chalk";
 import { z } from "zod";
 
+interface Translation {
+  translationKey: string;
+  translatedText: string;
+  sourceFile: string;
+  targetLanguage: string;
+  sourceFormat: string;
+}
+
+type GroupedOverrides = Record<string, Record<string, Translation[]>>;
+
 const argsSchema = z.array(z.string()).transform((args) => {
   const localesIndex = args.findIndex((arg) => arg.startsWith("--locales="));
   return {
@@ -13,6 +26,11 @@ const argsSchema = z.array(z.string()).transform((args) => {
       localesIndex !== -1 ? args[localesIndex].slice(9).split(",") : undefined,
   };
 });
+
+// Helper function to get target file path
+function getTargetPath(sourceFile: string, locale: string): string {
+  return join("src", "locales", locale, sourceFile);
+}
 
 export async function pullCommand(args: string[] = []) {
   intro("Pull translation overrides");
@@ -42,46 +60,62 @@ export async function pullCommand(args: string[] = []) {
   s.start("Pulling overrides...");
 
   try {
-    // Fetch overrides for each locale
-    for (const locale of targetLocales) {
-      //   const overrides = await client.translate.getOverridesForLocale.query({
-      //     projectId: config.projectId,
-      //     targetLanguage: locale,
-      //   });
+    const overrides = await client.translate.getOverriddenTranslations.query({
+      projectId: config.projectId!,
+    });
 
-      // Process each file format in the config
-      for (const [format, fileConfig] of Object.entries(config.files)) {
-        const parser = createParser({ type: format });
+    // Group overrides by source file and target language
+    const groupedOverrides = overrides.reduce(
+      (acc: GroupedOverrides, override: Translation) => {
+        if (!acc[override.sourceFile]) {
+          acc[override.sourceFile] = {};
+        }
+        if (!acc[override.sourceFile][override.targetLanguage]) {
+          acc[override.sourceFile][override.targetLanguage] = [];
+        }
+        acc[override.sourceFile][override.targetLanguage].push(override);
+        return acc;
+      },
+      {} as GroupedOverrides,
+    );
 
-        // Process each file pattern
-        // for (const pattern of fileConfig.include) {
-        //   const targetPath = transformLocalePath(pattern, locale);
+    // Process each source file that has overrides
+    for (const [sourceFile, localeOverrides] of Object.entries(
+      groupedOverrides,
+    )) {
+      // Process each locale that has overrides for this file
+      for (const [locale, overridesForLocale] of Object.entries(
+        localeOverrides as Record<string, Translation[]>,
+      )) {
+        if (!targetLocales.includes(locale)) continue;
+        if (overridesForLocale.length === 0) continue;
 
-        //   // Create directory if it doesn't exist
-        //   await mkdir(dirname(targetPath), { recursive: true });
+        const targetPath = getTargetPath(sourceFile, locale);
+        const parser = createParser({
+          type: overridesForLocale[0].sourceFormat,
+        });
 
-        //   // Read existing translations or create empty object
-        //   let existingTranslations: Record<string, string> = {};
-        //   try {
-        //     const content = await readFile(targetPath, "utf-8");
-        //     existingTranslations = await parser.parse(content);
-        //   } catch (error) {
-        //     // File doesn't exist or can't be parsed, use empty object
-        //   }
+        // Create directory if it doesn't exist
+        await mkdir(dirname(targetPath), { recursive: true });
 
-        //   // Apply overrides
-        //   for (const override of overrides) {
-        //     existingTranslations[override.translationKey] =
-        //       override.translatedText;
-        //   }
+        // Read existing translations or create empty object
+        let existingTranslations: Record<string, string> = {};
+        try {
+          const content = await readFile(targetPath, "utf-8");
+          existingTranslations = await parser.parse(content);
+        } catch (error) {
+          // File doesn't exist or can't be parsed, use empty object
+        }
 
-        //   // Write back to file
-        //   const serialized = await parser.serialize(
-        //     locale,
-        //     existingTranslations,
-        //   );
-        //   await writeFile(targetPath, serialized);
-        // }
+        // Apply overrides
+        for (const override of overridesForLocale) {
+          existingTranslations[override.translationKey] =
+            override.translatedText;
+        }
+
+        // Write back to file
+        const serialized = await parser.serialize(locale, existingTranslations);
+        await writeFile(targetPath, serialized);
       }
     }
 

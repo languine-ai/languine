@@ -181,3 +181,11 @@ export const organizationStatsSchema = z.object({
 });
 
 export type OrganizationStatsSchema = z.infer<typeof organizationStatsSchema>;
+
+export const getOverriddenTranslationsSchema = z.object({
+  projectId: z.string(),
+});
+
+export type GetOverriddenTranslationsSchema = z.infer<
+  typeof getOverriddenTranslationsSchema
+>;
