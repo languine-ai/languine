@@ -401,7 +401,7 @@
         "priority_support": "Supporto prioritario",
         "priority_queues": "Code di traduzione prioritarie",
         "languages": "A partire da 4 lingue",
-        "keys_limit": "A partire da 5.000 chiavi",
+        "keys_limit": "A partire da 3 000 chiavi",
         "docs_limit": "A partire da 25 documenti"
       }
     },

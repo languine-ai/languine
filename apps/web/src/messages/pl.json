@@ -401,7 +401,7 @@
         "priority_support": "Priorytetowe wsparcie",
         "priority_queues": "Priorytetowe kolejki tłumaczeń",
         "languages": "Od 4 języków",
-        "keys_limit": "Od 5 000 kluczy",
+        "keys_limit": "Zaczynając od 3 000 kluczy",
         "docs_limit": "Od 25 dokumentów"
       }
     },
