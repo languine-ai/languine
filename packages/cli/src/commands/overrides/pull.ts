@@ -1,6 +1,6 @@
 import { mkdir } from "node:fs/promises";
 import { readFile, writeFile } from "node:fs/promises";
-import { basename, dirname, join } from "node:path";
+import { dirname, join } from "node:path";
 import { createParser } from "@/parsers/index.ts";
 import { client } from "@/utils/api.js";
 import { loadConfig } from "@/utils/config.ts";

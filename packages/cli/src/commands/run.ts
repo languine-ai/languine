@@ -4,6 +4,7 @@ import { localeCommand } from "@/commands/locale.ts";
 import { commands as overridesCommands } from "@/commands/overrides/index.ts";
 import { syncCommand } from "@/commands/sync.ts";
 import { translateCommand } from "@/commands/translate.ts";
+import { commands as translationsCommands } from "@/commands/translations/index.ts";
 import { isCancel, select } from "@clack/prompts";
 import chalk from "chalk";
 
@@ -81,6 +82,11 @@ const COMMANDS: Record<string, Command> = {
     description: "Manage translation overrides",
     usage: "languine overrides <pull>",
     subcommands: [["pull", "Pull overrides from the server"]],
+  },
+  translations: {
+    description: "Manage translations",
+    usage: "languine translations <delete>",
+    subcommands: [["delete", "Delete all translation keys for the project"]],
   },
 };
 
@@ -181,6 +187,10 @@ export async function runCommands() {
           label: "Manage translation overrides",
         },
         {
+          value: "translations",
+          label: "Manage translations",
+        },
+        {
           value: "help",
           label: "Show help for a command",
         },
@@ -215,6 +225,9 @@ export async function runCommands() {
       case "overrides":
         await overridesCommands();
         break;
+      case "translations":
+        await translationsCommands();
+        break;
     }
     return;
   }
@@ -248,6 +261,10 @@ export async function runCommands() {
         await overridesCommands(subCommand);
         break;
       }
+      case "translations": {
+        await translationsCommands(subCommand, args);
+        break;
+      }
       default:
         console.error(chalk.red(`Unknown command: ${mainCommand}`));
         showHelp();
@@ -274,6 +291,10 @@ export async function runCommands() {
       {
         value: "overrides",
         label: "Manage translation overrides",
+      },
+      {
+        value: "translations",
+        label: "Manage translations",
       },
       {
         value: "help",
@@ -309,6 +330,9 @@ export async function runCommands() {
       break;
     case "overrides":
       await overridesCommands();
+      break;
+    case "translations":
+      await translationsCommands();
       break;
   }
 }
