@@ -98,6 +98,7 @@ export function PricingSlider({
           }}
           suffix={`/${t("period")}`}
         />
+        <span className="text-xs text-secondary ml-2">Excl. VAT</span>
       </div>
     </div>
   );
