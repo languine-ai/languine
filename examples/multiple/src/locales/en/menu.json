@@ -1,0 +1,9 @@
+{
+  "menu": {
+    "home": "Home2",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register"
+  }
+}

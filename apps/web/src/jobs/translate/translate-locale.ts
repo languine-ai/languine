@@ -1,8 +1,4 @@
-import {
-  createDocument,
-  createTranslations,
-  getOverridesForLocale,
-} from "@/db/queries/translate";
+import { createDocument, createTranslations } from "@/db/queries/translate";
 import { schemaTask } from "@trigger.dev/sdk/v3";
 import { z } from "zod";
 import { calculateChunkSize } from "../utils/chunk";
@@ -106,29 +102,10 @@ export const translateLocaleTask = schemaTask({
       };
     }
 
-    // Get all overrides for this locale upfront
-    const overrides = await getOverridesForLocale({
-      projectId: payload.projectId,
-      targetLanguage: payload.targetLocale,
-    });
-
-    // Add overrides to translations result
-    for (const override of overrides) {
-      translations.push({
-        key: override.translationKey,
-        translatedText: override.translatedText,
-      });
-    }
-
-    // Filter out overridden keys from content
-    const nonOverriddenContent = payload.content.filter(
-      (content) => !overrides.some((o) => o.translationKey === content.key),
-    );
-
     // Split remaining content into chunks
     const contentChunks = [];
-    for (let i = 0; i < nonOverriddenContent.length; i += chunkSize) {
-      contentChunks.push(nonOverriddenContent.slice(i, i + chunkSize));
+    for (let i = 0; i < payload.content.length; i += chunkSize) {
+      contentChunks.push(payload.content.slice(i, i + chunkSize));
     }
 
     // Process all chunks in parallel

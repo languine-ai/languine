@@ -1,6 +1,7 @@
 import { commands as authCommands } from "@/commands/auth/index.ts";
 import { commands as initCommands } from "@/commands/init.ts";
 import { localeCommand } from "@/commands/locale.ts";
+import { commands as overridesCommands } from "@/commands/overrides/index.ts";
 import { syncCommand } from "@/commands/sync.ts";
 import { transformCommand } from "@/commands/transform.ts";
 import { translateCommand } from "@/commands/translate.ts";
@@ -81,6 +82,11 @@ const COMMANDS: Record<string, Command> = {
     description: "Transform files",
     usage: "languine transform <directory>",
     subcommands: [["<directory>", "Directory containing React components"]],
+  },
+  overrides: {
+    description: "Manage translation overrides",
+    usage: "languine overrides <pull>",
+    subcommands: [["pull", "Pull overrides from the server"]],
   },
 };
 
@@ -178,6 +184,10 @@ export async function runCommands() {
           label: "Manage target locales",
         },
         {
+          value: "overrides",
+          label: "Manage translation overrides",
+        },
+        {
           value: "help",
           label: "Show help for a command",
         },
@@ -212,6 +222,9 @@ export async function runCommands() {
       case "transform":
         await transformCommand();
         break;
+      case "overrides":
+        await overridesCommands();
+        break;
     }
     return;
   }
@@ -245,10 +258,15 @@ export async function runCommands() {
         await transformCommand([subCommand, ...args].filter(Boolean));
         break;
       }
-      default:
+      case "overrides": {
+        await overridesCommands(subCommand);
+        break;
+      }
+      default: {
         console.error(chalk.red(`Unknown command: ${mainCommand}`));
         showHelp();
         process.exit(1);
+      }
     }
     return;
   }
@@ -267,6 +285,10 @@ export async function runCommands() {
       {
         value: "locale",
         label: "Manage target locales",
+      },
+      {
+        value: "overrides",
+        label: "Manage translation overrides",
       },
       {
         value: "help",
@@ -299,6 +321,9 @@ export async function runCommands() {
       break;
     case "locale":
       await localeCommand();
+      break;
+    case "overrides":
+      await overridesCommands();
       break;
   }
 }

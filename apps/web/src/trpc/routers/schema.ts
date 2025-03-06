@@ -191,3 +191,11 @@ export const transformSchema = z.object({
     }),
   ),
 });
+
+export const getOverriddenTranslationsSchema = z.object({
+  projectId: z.string(),
+});
+
+export type GetOverriddenTranslationsSchema = z.infer<
+  typeof getOverriddenTranslationsSchema
+>;
