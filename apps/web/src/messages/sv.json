@@ -413,7 +413,7 @@
         "priority_support": "Prioriterat stöd",
         "priority_queues": "Prioriterade översättningsköer",
         "languages": "Från 4 språk",
-        "keys_limit": "Från 5 000 nycklar",
+        "keys_limit": "Börjar från 3 000 nycklar",
         "docs_limit": "Från 25 dokument"
       }
     },

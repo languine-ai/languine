@@ -401,7 +401,7 @@
         "priority_support": "Prioritätsunterstützung",
         "priority_queues": "Prioritätsübersetzungswarteschlangen",
         "languages": "Ab 4 Sprachen",
-        "keys_limit": "Ab 5.000 Schlüsseln",
+        "keys_limit": "Ab 3.000 Schlüsseln",
         "docs_limit": "Ab 25 Dokumenten"
       }
     },

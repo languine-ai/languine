@@ -401,7 +401,7 @@
         "priority_support": "우선 지원",
         "priority_queues": "우선 번역 대기열",
         "languages": "최소 4개 언어",
-        "keys_limit": "최소 5,000개 키",
+        "keys_limit": "3,000개의 키부터 시작",
         "docs_limit": "최소 25개 문서"
       }
     },

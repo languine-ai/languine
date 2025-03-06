@@ -271,7 +271,7 @@ files:
     pricing.pro.features.priority_support: d62f9dcbe63520f9fb0857b3c615b210
     pricing.pro.features.priority_queues: 7f8fc85a9455f20bc1ef7c0600a50c8a
     pricing.pro.features.languages: 3abcfd9dff220ae00b9488e24f603d35
-    pricing.pro.features.keys_limit: 8144a202e83b7990c4fa47a9afa1dd65
+    pricing.pro.features.keys_limit: a0fe87ea6f4dca08e4cac94acc4baf56
     pricing.pro.features.docs_limit: a2f1779e50d585ab84bcb5b2af4efec7
     pricing.cta: a698f6a6e17c887e558c625a4e19800b
     pricing.keys_limit_explanation: f88686e0bcfbe82f1fcb7b8c143b16bc

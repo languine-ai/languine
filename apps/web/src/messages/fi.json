@@ -401,7 +401,7 @@
         "priority_support": "Etusijatuettu",
         "priority_queues": "Etusijajonot käännöksille",
         "languages": "Alkaen 4 kielestä",
-        "keys_limit": "Alkaen 5 000 avainta",
+        "keys_limit": "Aloittaen 3 000 avaimesta",
         "docs_limit": "Alkaen 25 asiakirjasta"
       }
     },

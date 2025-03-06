@@ -401,7 +401,7 @@
         "priority_support": "Suporte prioritário",
         "priority_queues": "Filas de tradução prioritárias",
         "languages": "A partir de 4 idiomas",
-        "keys_limit": "A partir de 5.000 chaves",
+        "keys_limit": "Começando a partir de 3 000 chaves",
         "docs_limit": "A partir de 25 documentos"
       }
     },
