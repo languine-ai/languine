@@ -7,6 +7,43 @@
     "escaped": "Escape curly braces with single quotes (e.g. '{name'})",
     "rich": "Please refer to <guidelines>the guidelines</guidelines>.",
     "number": "Available from {price, number, currency}",
-    "date": "Ordered on {orderDate, date, medium}"
+    "date": "Ordered on {orderDate, date, medium}",
+    "testimonials": {
+      "title": "Hear from Our Thriving Community",
+      "items": [
+        {
+          "title": "Best decision",
+          "description": "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+          "author": {
+            "name": "Hayden Bleasel",
+            "image": "https://github.com/haydenbleasel.png"
+          }
+        },
+        {
+          "title": "Game changer",
+          "description": "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+          "author": {
+            "name": "Lee Robinson",
+            "image": "https://github.com/leerob.png"
+          }
+        },
+        {
+          "title": "Exceeded expectations",
+          "description": "Implementation was smooth and the results were immediate. Our team adapted quickly and productivity soared.",
+          "author": {
+            "name": "shadcn",
+            "image": "https://github.com/shadcn.png"
+          }
+        },
+        {
+          "title": "Outstanding support",
+          "description": "Not only is the platform powerful, but the customer support team has been exceptional in helping us maximize its potential.",
+          "author": {
+            "name": "Pontus Abrahamsson",
+            "image": "https://github.com/pontusab.png"
+          }
+        }
+      ]
+    }
   }
 }

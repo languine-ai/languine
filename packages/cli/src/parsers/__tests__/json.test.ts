@@ -38,6 +38,47 @@ describe("JSON Parser", () => {
       });
     });
 
+    test("parses arrays and preserves array structure", async () => {
+      const input = `{
+        "testimonials": {
+          "title": "Hear from Our Thriving Community",
+          "items": [
+            {
+              "title": "Best decision",
+              "description": "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+              "author": {
+                "name": "Hayden Bleasel",
+                "image": "https://github.com/haydenbleasel.png"
+              }
+            },
+            {
+              "title": "Game changer",
+              "description": "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+              "author": {
+                "name": "Lee Robinson",
+                "image": "https://github.com/leerob.png"
+              }
+            }
+          ]
+        }
+      }`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        "testimonials.title": "Hear from Our Thriving Community",
+        "testimonials.items[0].title": "Best decision",
+        "testimonials.items[0].description":
+          "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+        "testimonials.items[0].author.name": "Hayden Bleasel",
+        "testimonials.items[0].author.image":
+          "https://github.com/haydenbleasel.png",
+        "testimonials.items[1].title": "Game changer",
+        "testimonials.items[1].description":
+          "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+        "testimonials.items[1].author.name": "Lee Robinson",
+        "testimonials.items[1].author.image": "https://github.com/leerob.png",
+      });
+    });
+
     test("repairs malformed JSON", async () => {
       const input = `{
         hello: "world",
@@ -183,6 +224,49 @@ describe("JSON Parser", () => {
       const translations = {};
       const result = await parser.serialize("en", translations);
       expect(JSON.parse(result)).toEqual({});
+    });
+
+    test("serializes arrays correctly", async () => {
+      const input = {
+        "testimonials.title": "Hear from Our Thriving Community",
+        "testimonials.items[0].title": "Best decision",
+        "testimonials.items[0].description":
+          "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+        "testimonials.items[0].author.name": "Hayden Bleasel",
+        "testimonials.items[0].author.image":
+          "https://github.com/haydenbleasel.png",
+        "testimonials.items[1].title": "Game changer",
+        "testimonials.items[1].description":
+          "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+        "testimonials.items[1].author.name": "Lee Robinson",
+        "testimonials.items[1].author.image": "https://github.com/leerob.png",
+      };
+      const result = await parser.serialize("en", input);
+      expect(JSON.parse(result)).toEqual({
+        testimonials: {
+          title: "Hear from Our Thriving Community",
+          items: [
+            {
+              title: "Best decision",
+              description:
+                "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+              author: {
+                name: "Hayden Bleasel",
+                image: "https://github.com/haydenbleasel.png",
+              },
+            },
+            {
+              title: "Game changer",
+              description:
+                "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+              author: {
+                name: "Lee Robinson",
+                image: "https://github.com/leerob.png",
+              },
+            },
+          ],
+        },
+      });
     });
   });
 });
