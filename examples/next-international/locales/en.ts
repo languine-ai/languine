@@ -1,10 +1,8 @@
-import type { Dictionary } from "../types";
-
-const dictionary: Dictionary = {
+export default {
   web: {
     home: {
       hero: {
-        announcement: "Hello {name}! You are {age} years old",
+        announcement: "Read our latest article",
         title: "Transform Your Business Operations Today",
         description:
           "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy.",
@@ -12,5 +10,3 @@ const dictionary: Dictionary = {
     },
   },
 };
-
-export default dictionary;

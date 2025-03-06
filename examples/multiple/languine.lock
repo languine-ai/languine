@@ -1,0 +1,12 @@
+version: 1
+files:
+  src/locales/en/hero.json:
+    hero.title: eaa915e5e764b18f0c68e0b8c5edae1f
+    hero.description: 9a6903167c131aa085d3eb1e5b06ff9b
+    hero.cta: f88b12c6e29f09d28dc74104cf8eb0bd
+  src/locales/en/menu.json:
+    menu.home: 8cf04a9734132302f96da8e113e80ce5
+    menu.about: 8f7f4c1ce7a4f933663d10543562b096
+    menu.contact: bbaff12800505b22a853e8b7f4eb6a22
+    menu.login: 99dea78007133396a7b8ed70578ac6ae
+    menu.register: 0ba7583639a274c434bbe6ef797115a4

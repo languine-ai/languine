@@ -1,6 +1,7 @@
 import { commands as authCommands } from "@/commands/auth/index.ts";
 import { commands as initCommands } from "@/commands/init.ts";
 import { localeCommand } from "@/commands/locale.ts";
+import { commands as overridesCommands } from "@/commands/overrides/index.ts";
 import { syncCommand } from "@/commands/sync.ts";
 import { translateCommand } from "@/commands/translate.ts";
 import { isCancel, select } from "@clack/prompts";
@@ -75,6 +76,11 @@ const COMMANDS: Record<string, Command> = {
       ["add <locale,...>", "Add new target locales"],
       ["remove <locale,...>", "Remove target locales"],
     ],
+  },
+  overrides: {
+    description: "Manage translation overrides",
+    usage: "languine overrides <pull>",
+    subcommands: [["pull", "Pull overrides from the server"]],
   },
 };
 
@@ -171,6 +177,10 @@ export async function runCommands() {
           label: "Manage target locales",
         },
         {
+          value: "overrides",
+          label: "Manage translation overrides",
+        },
+        {
           value: "help",
           label: "Show help for a command",
         },
@@ -202,6 +212,9 @@ export async function runCommands() {
       case "locale":
         await localeCommand();
         break;
+      case "overrides":
+        await overridesCommands();
+        break;
     }
     return;
   }
@@ -231,6 +244,10 @@ export async function runCommands() {
         await localeCommand([subCommand, ...args].filter(Boolean));
         break;
       }
+      case "overrides": {
+        await overridesCommands(subCommand);
+        break;
+      }
       default:
         console.error(chalk.red(`Unknown command: ${mainCommand}`));
         showHelp();
@@ -253,6 +270,10 @@ export async function runCommands() {
       {
         value: "locale",
         label: "Manage target locales",
+      },
+      {
+        value: "overrides",
+        label: "Manage translation overrides",
       },
       {
         value: "help",
@@ -285,6 +306,9 @@ export async function runCommands() {
       break;
     case "locale":
       await localeCommand();
+      break;
+    case "overrides":
+      await overridesCommands();
       break;
   }
 }

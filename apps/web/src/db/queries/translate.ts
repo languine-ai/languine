@@ -234,23 +234,23 @@ export const getTranslationsByKey = async ({
     .orderBy(asc(translations.targetLanguage));
 };
 
-export const getOverridesForLocale = async ({
+export const getOverriddenTranslations = async ({
   projectId,
-  targetLanguage,
 }: {
   projectId: string;
-  targetLanguage: string;
 }) => {
   return primaryDb
     .select({
       translationKey: translations.translationKey,
       translatedText: translations.translatedText,
+      sourceFile: translations.sourceFile,
+      targetLanguage: translations.targetLanguage,
+      sourceFormat: translations.sourceFormat,
     })
     .from(translations)
     .where(
       and(
         eq(translations.projectId, projectId),
-        eq(translations.targetLanguage, targetLanguage),
         eq(translations.overridden, true),
       ),
     );

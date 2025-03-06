@@ -1,6 +1,7 @@
 import { connectDb } from "@/db";
 import {
   deleteKeys,
+  getOverriddenTranslations,
   getProjectLocales,
   getTranslationsByKey,
   getTranslationsBySlug,
@@ -13,6 +14,7 @@ import { isOrganizationMember } from "../permissions/organization";
 import { hasProjectAccess } from "../permissions/project";
 import {
   deleteKeysSchema,
+  getOverriddenTranslationsSchema,
   projectLocalesSchema,
   translateSchema,
   translationsByKeySchema,
@@ -85,5 +87,13 @@ export const translateRouter = createTRPCRouter({
       }
 
       return updatedTranslations;
+    }),
+
+  getOverriddenTranslations: protectedProcedure
+    .input(getOverriddenTranslationsSchema)
+    .use(hasProjectAccess)
+    .query(async ({ input }) => {
+      const data = await getOverriddenTranslations(input);
+      return data;
     }),
 });
