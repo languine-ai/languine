@@ -63,3 +63,41 @@ The `locale remove` command is used to remove a locale from your application.
 ```bash title="Terminal"
     npx languine@latest locale remove pt,fr
 ```
+
+
+---
+
+### Overrides
+
+The `overrides` command is used to manage translation overrides in your application saved in languine.ai. Overrides allow you to customize specific translations from the Languine Dashboard.
+
+The `overrides pull` command is used to pull the latest overrides from the Languine Dashboard
+
+```bash title="Terminal"
+    npx languine@latest overrides pull
+```
+
+
+## Overrides for source locale
+
+Sometimes you may want to get overrides for the source locale. For example, as a developer you might add translations in en.json but want to have spell checks, overrides and maintain consistent tone with other languages. You can enable this by adding your source locale to the target locales as follows:
+
+```bash title="languine.json"
+{
+  "locale": {
+    "source": "en",
+    "targets": [
+      "sv",
+      "en" <- Add your source locale here
+    ]
+  },
+  "files": {
+    "json": {
+      "include": [
+        "src/locales/[locale]/*.json"
+      ]
+    }
+  }
+}
+
+```
