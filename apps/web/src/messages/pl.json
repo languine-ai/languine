@@ -378,7 +378,7 @@
     "free": {
       "title": "Darmowy",
       "price": "Darmowy",
-      "keys_limit": "Do 100 kluczy",
+      "keys_limit": "Do 500 kluczy",
       "description": "Idealny do wypróbowania",
       "features": {
         "unlimited_projects": "Nieograniczone projekty",
@@ -387,7 +387,7 @@
         "analytics": "Analiza",
         "context_memory": "Pamięć kontekstowa",
         "community_support": "Wsparcie społeczności",
-        "keys_limit": "Do 100 kluczy",
+        "keys_limit": "Do 500 kluczy",
         "docs_limit": "Do 5 dokumentów",
         "languages": "2 języki"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "Rozpocznij automatyzację",
-    "keys_limit_explanation": "Przetłumaczony klucz: Jeśli masz 20 kluczy źródłowych (jak \"Zarejestruj się\" lub \"Witaj!\") i przetłumaczysz je na 5 języków, to daje 100 przetłumaczonych kluczy (20 kluczy x 5 języków)."
+    "keys_limit_explanation": "Naliczamy opłatę za klucz, niezależnie od liczby słów, aby zapewnić przewidywalne ceny. Na przykład: Jeśli masz 20 kluczy źródłowych (takich jak \"Zarejestruj się\" lub \"Witamy!\") i przetłumaczysz je na 5 języków, to daje 100 przetłumaczonych kluczy (20 kluczy × 5 języków)."
   },
   "createTeam": {
     "teamName": "Nazwa zespołu",

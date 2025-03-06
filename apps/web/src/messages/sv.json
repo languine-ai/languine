@@ -390,7 +390,7 @@
     "free": {
       "title": "Gratis",
       "price": "Gratis",
-      "keys_limit": "Upp till 100 nycklar",
+      "keys_limit": "Upp till 500 nycklar",
       "description": "Perfekt när du testar",
       "features": {
         "unlimited_projects": "Obegränsade projekt",
@@ -399,7 +399,7 @@
         "analytics": "Analys",
         "context_memory": "Kontextminne",
         "community_support": "Gemenskapsstöd",
-        "keys_limit": "Upp till 100 nycklar",
+        "keys_limit": "Upp till 500 nycklar",
         "docs_limit": "Upp till 5 dokument",
         "languages": "2 språk"
       }
@@ -418,7 +418,7 @@
       }
     },
     "cta": "Börja automatisera",
-    "keys_limit_explanation": "Översatt nyckel: Om du har 20 källnycklar (som \"Registrera dig\" eller \"Välkommen!\") och översätter dem till 5 språk, motsvarar det 100 översatta nycklar (20 nycklar x 5 språk)."
+    "keys_limit_explanation": "Vi debiterar per nyckel oavsett antal ord, för förutsägbara priser. Till exempel: Om du har 20 källnycklar (som \"Registrera dig\" eller \"Välkommen!\") och översätter dem till 5 språk, blir det 100 översatta nycklar (20 nycklar × 5 språk)."
   },
   "createTeam": {
     "teamName": "Teamnamn",

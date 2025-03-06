@@ -378,7 +378,7 @@
     "free": {
       "title": "무료",
       "price": "무료",
-      "keys_limit": "최대 100개 키",
+      "keys_limit": "최대 500개의 키",
       "description": "시험해 보기 완벽",
       "features": {
         "unlimited_projects": "무제한 프로젝트",
@@ -387,7 +387,7 @@
         "analytics": "분석",
         "context_memory": "맥락 기억",
         "community_support": "커뮤니티 지원",
-        "keys_limit": "최대 100개 키",
+        "keys_limit": "최대 500개의 키",
         "docs_limit": "최대 5개 문서",
         "languages": "2개 언어"
       }
@@ -406,7 +406,7 @@
       }
     },
     "cta": "자동화 시작",
-    "keys_limit_explanation": "번역된 키: 20개의 소스 키(예: \"가입하기\" 또는 \"환영합니다!\")가 있고 이를 5개 언어로 번역하면, 총 100개의 번역된 키가 됩니다(20 키 x 5 언어)."
+    "keys_limit_explanation": "우리는 단어 수에 관계없이 키당 요금을 부과하여 예측 가능한 가격을 제공합니다. 예를 들어: 20개의 소스 키(예: \"가입하기\" 또는 \"환영합니다!\")가 있고 이를 5개 언어로 번역하면 100개의 번역된 키(20개 키 × 5개 언어)가 됩니다."
   },
   "createTeam": {
     "teamName": "팀 이름",
