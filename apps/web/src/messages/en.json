@@ -400,7 +400,7 @@
         "priority_support": "Priority support",
         "priority_queues": "Priority translation queues",
         "languages": "Starting from 4 languages",
-        "keys_limit": "Starting from 5 000 keys",
+        "keys_limit": "Starting from 3 000 keys",
         "docs_limit": "Starting from 25 documents"
       }
     },
