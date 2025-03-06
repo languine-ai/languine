@@ -2,6 +2,7 @@ import { mkdir } from "node:fs/promises";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { createParser } from "@/parsers/index.ts";
+import type { Config } from "@/types.js";
 import { client } from "@/utils/api.js";
 import { loadConfig } from "@/utils/config.ts";
 import { loadSession } from "@/utils/session.js";
@@ -28,8 +29,38 @@ const argsSchema = z.array(z.string()).transform((args) => {
 });
 
 // Helper function to get target file path
-function getTargetPath(sourceFile: string, locale: string): string {
-  return join("src", "locales", locale, sourceFile);
+function getTargetPath(
+  sourceFile: string,
+  locale: string,
+  config: Config,
+): string {
+  // Find the matching file format configuration based on the source file extension
+  const sourceExt = sourceFile.split(".").pop() || "";
+  const fileFormat = Object.entries(config.files).find(([format]) => {
+    // Check if the format matches the file extension
+    // Handle special cases like 'ts' matching '.ts' files
+    return format === sourceExt;
+  });
+
+  if (!fileFormat) {
+    throw new Error(`No matching file configuration found for ${sourceFile}`);
+  }
+
+  // Get the first include pattern
+  const pattern = fileFormat[1].include[0];
+  const globPattern = typeof pattern === "string" ? pattern : pattern.glob;
+
+  if (globPattern.includes("*")) {
+    // If the pattern contains a wildcard, it's a directory-based pattern
+    // Replace [locale] in the directory structure and keep the source filename
+    const sourceFilename = sourceFile.split("/").pop() || "";
+    const targetDir = dirname(globPattern).replace("[locale]", locale);
+    return join(targetDir, sourceFilename);
+  }
+
+  // If no wildcard, it's a file-based pattern
+  // Simply replace [locale] in the entire pattern
+  return globPattern.replace("[locale]", locale);
 }
 
 export async function pullCommand(args: string[] = []) {
@@ -90,7 +121,7 @@ export async function pullCommand(args: string[] = []) {
         if (!targetLocales.includes(locale)) continue;
         if (overridesForLocale.length === 0) continue;
 
-        const targetPath = getTargetPath(sourceFile, locale);
+        const targetPath = getTargetPath(sourceFile, locale, config);
         const parser = createParser({
           type: overridesForLocale[0].sourceFormat,
         });
