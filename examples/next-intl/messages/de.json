@@ -1,12 +1,49 @@
 {
   "HomePage": {
-    "title": "TEST2",
-    "param": "TEST1",
-    "plural": "Du hast {count, plural, =0 {noch keine Follower} =1 {einen Follower} other {# Follower}}.",
+    "title": "Startseite",
+    "param": "Hallo {name}",
+    "plural": "Sie haben {count, plural, =0 {noch keine Follower} =1 {einen Follower} other {# Follower}}.",
     "select": "{gender, select, female {Sie} male {Er} other {Sie}} ist online.",
-    "escaped": "Flache geschweifte Klammern mit einfachen Anführungszeichen escapen (z.B. '{name}')",
+    "escaped": "Escape geschweifte Klammern mit einfachen Anführungszeichen (z.B. '{name}')",
     "rich": "Bitte beziehen Sie sich auf <guidelines>die Richtlinien</guidelines>.",
     "number": "Verfügbar ab {price, number, currency}",
-    "date": "Bestellt am {orderDate, date, medium}"
+    "date": "Bestellt am {orderDate, date, medium}",
+    "testimonials": {
+      "title": "Hören Sie von unserer florierenden Gemeinschaft",
+      "items": [
+        {
+          "title": "Beste Entscheidung",
+          "description": "Unser Ziel war es, den Handel für KMUs zu optimieren, um ihn einfacher und schneller als je zuvor zu gestalten, und das haben wir gemeinsam erreicht.",
+          "author": {
+            "name": "Hayden Bleasel",
+            "image": "https://github.com/haydenbleasel.png"
+          }
+        },
+        {
+          "title": "Wendepunkt",
+          "description": "Diese Plattform hat revolutioniert, wie wir unsere täglichen Abläufe handhaben. Die Effizienzgewinne waren bemerkenswert.",
+          "author": {
+            "name": "Lee Robinson",
+            "image": "https://github.com/leerob.png"
+          }
+        },
+        {
+          "title": "Übertraf die Erwartungen",
+          "description": "Die Implementierung verlief reibungslos und die Ergebnisse waren sofort sichtbar. Unser Team hat sich schnell angepasst und die Produktivität ist gestiegen.",
+          "author": {
+            "name": "shadcn",
+            "image": "https://github.com/shadcn.png"
+          }
+        },
+        {
+          "title": "Hervorragender Support",
+          "description": "Die Plattform ist nicht nur leistungsstark, sondern das Kundenserviceteam war auch außergewöhnlich darin, uns zu helfen, ihr Potenzial zu maximieren.",
+          "author": {
+            "name": "Pontus Abrahamsson",
+            "image": "https://github.com/pontusab.png"
+          }
+        }
+      ]
+    }
   }
 }

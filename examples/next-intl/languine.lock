@@ -9,3 +9,20 @@ files:
     HomePage.rich: 5b52f7ec9c36ff4e7529db7dee960271
     HomePage.number: 3ec19f117576c611e4c7cdefb1e45670
     HomePage.date: 3d3fb4ee4f80c4cef43a32d21ddb53ef
+    HomePage.testimonials.title: c8b70f7b83d0741ffe501fee665d5a2a
+    HomePage.testimonials.items[0].title: f857211672176537a843eab7be70d2ba
+    HomePage.testimonials.items[0].description: c50d4192eaf731e898ab4ad3d668360e
+    HomePage.testimonials.items[0].author.name: 9f2b80ed9fac811de9393e6eb3cc1501
+    HomePage.testimonials.items[0].author.image: 384183481f44944e652a4ad2c34afa3b
+    HomePage.testimonials.items[1].title: 61e9280329f934d79c77a0100a5e1246
+    HomePage.testimonials.items[1].description: 9f3f18fa18f5434a1c76f6740c48e58e
+    HomePage.testimonials.items[1].author.name: 695037b11203c0b0a77a3d6b47ba71ea
+    HomePage.testimonials.items[1].author.image: ffaedc70a04f4c785275d9a6b751dfab
+    HomePage.testimonials.items[2].title: caa65639a0b4bea79e610021c161952c
+    HomePage.testimonials.items[2].description: d700e9f790660381b21e3a02d8caa688
+    HomePage.testimonials.items[2].author.name: 63651b303126a9017bbdab177f35182b
+    HomePage.testimonials.items[2].author.image: 7f91ce2781e18537fb6229eaaf770b13
+    HomePage.testimonials.items[3].title: 035ef73f1fa9e97e62e031aeacc22f4c
+    HomePage.testimonials.items[3].description: 1bafa43ea32ca115e49d29b76afd9a3e
+    HomePage.testimonials.items[3].author.name: 45d4151f6e3685afdf8cd11459f2e0d7
+    HomePage.testimonials.items[3].author.image: d4027431de0c0b3cb1fd77ba67a638b7
