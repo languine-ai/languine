@@ -378,7 +378,7 @@
     "free": {
       "title": "Free",
       "price": "Free",
-      "keys_limit": "Up to 100 keys",
+      "keys_limit": "Up to 500 keys",
       "description": "Perfect when trying out",
       "features": {
         "unlimited_projects": "Unlimited projects",
@@ -387,7 +387,7 @@
         "analytics": "Analytics",
         "context_memory": "Context memory",
         "community_support": "Community support",
-        "keys_limit": "Up to 100 keys",
+        "keys_limit": "Up to 500 keys",
         "docs_limit": "Up to 5 documents"
       }
     },
@@ -405,7 +405,7 @@
       }
     },
     "cta": "Start automating",
-    "keys_limit_explanation": "Translated key: If you have 20 source keys (like \"Sign Up\" or \"Welcome!\") and translate them into 5 languages, that equals 100 translated keys (20 keys x 5 languages)."
+    "keys_limit_explanation": "We charge per key regardless of word count, for predictable pricing. For example: If you have 20 source keys (like \"Sign Up\" or \"Welcome!\") and translate them into 5 languages, that equals 100 translated keys (20 keys × 5 languages)."
   },
   "createTeam": {
     "teamName": "Team Name",
