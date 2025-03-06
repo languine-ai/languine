@@ -199,3 +199,9 @@ export const getOverriddenTranslationsSchema = z.object({
 export type GetOverriddenTranslationsSchema = z.infer<
   typeof getOverriddenTranslationsSchema
 >;
+
+export const deleteTranslationsSchema = z.object({
+  projectId: z.string(),
+});
+
+export type DeleteTranslationsSchema = z.infer<typeof deleteTranslationsSchema>;
