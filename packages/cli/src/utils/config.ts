@@ -1,5 +1,6 @@
 import { readFile, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
+import { commands as initCommands } from "@/commands/init.js";
 import type { Config } from "@/types.js";
 import { outro } from "@clack/prompts";
 import chalk from "chalk";
@@ -19,6 +20,19 @@ export async function configFile() {
 }
 
 /**
+ * Check if configuration exists and run init if needed
+ */
+export async function ensureConfig(): Promise<void> {
+  const { path: filePath } = await configFile();
+
+  try {
+    await readFile(filePath, "utf-8");
+  } catch (error) {
+    await initCommands();
+  }
+}
+
+/**
  * Load the configuration file (languine.json) from the current working directory.
  */
 export async function loadConfig(): Promise<Config> {
@@ -26,13 +40,8 @@ export async function loadConfig(): Promise<Config> {
   const { path: filePath } = await configFile();
   const env = loadEnv(workingDir);
 
-  if (!filePath) {
-    outro(
-      chalk.red(`Could not find ${CONFIG_NAME}. Run 'languine init' first.`),
-    );
-
-    process.exit(1);
-  }
+  // Ensure configuration exists
+  await ensureConfig();
 
   try {
     const content = await readFile(filePath, "utf-8");

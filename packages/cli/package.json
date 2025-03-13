@@ -34,6 +34,7 @@
     "fast-glob": "^3.3.3",
     "fast-xml-parser": "^4.5.1",
     "gettext-parser": "^8.0.0",
+    "jscodeshift": "^17.1.2",
     "jsdom": "^26.0.0",
     "json2php": "^0.0.12",
     "json5": "^2.2.3",
@@ -54,6 +55,7 @@
   },
   "devDependencies": {
     "@types/gettext-parser": "^4.0.4",
+    "@types/jscodeshift": "^0.12.0",
     "@types/mdast": "^4.0.4",
     "@types/plist": "^3.0.5",
     "tsup": "^8.3.6",
