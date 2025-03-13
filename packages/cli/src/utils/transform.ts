@@ -1395,7 +1395,6 @@ export class TransformService {
       // Ensure initialization is complete before proceeding
       await this.ensureInitialized();
 
-      console.log("projectId", this.projectId);
       const result = await client.jobs.startTransformJob.mutate({
         projectId: this.projectId,
         translations: translations.map((t) => ({
