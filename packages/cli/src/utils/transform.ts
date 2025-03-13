@@ -93,8 +93,6 @@ export class TransformService {
   async run() {
     const config = await loadConfig();
 
-    console.log("config", config);
-
     const projectId = config.projectId || process.env.LANGUINE_PROJECT_ID;
 
     if (!projectId) {
@@ -1364,6 +1362,7 @@ export class TransformService {
     translations: CollectedTranslation[],
   ): Promise<Record<string, string>> {
     try {
+      console.log("projectId", this.projectId);
       const result = await client.jobs.startTransformJob.mutate({
         projectId: this.projectId,
         translations: translations.map((t) => ({
