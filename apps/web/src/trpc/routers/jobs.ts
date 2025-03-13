@@ -69,7 +69,7 @@ export const jobsRouter = createTRPCRouter({
 
   startTransformJob: protectedProcedure
     .input(transformSchema)
-    .use(hasProjectAccess)
+    // .use(hasProjectAccess)
     .mutation(async ({ input }) => {
       const result = await transformKeys(input.translations);
 
