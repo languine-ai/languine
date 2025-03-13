@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import type { API, FileInfo, JSCodeshift, Node, Path } from "jscodeshift";
 import { client } from "./api.ts";
+import { loadConfig } from "./config.ts";
 
 // Core types and interfaces
 interface ASTNode extends Node {
@@ -81,8 +82,44 @@ export class TransformService {
   private readonly translationCache = new Map<string, string>();
   private readonly functionNameCache = new Map<string, string>();
   private readonly elementTypeCache = new Map<string, string>();
+  private translationFile = "";
+  private projectId = "";
+  private sourceLocale = "";
 
-  constructor(private translationFile: string = path.resolve("en.json")) {
+  constructor() {
+    this.run();
+  }
+
+  async run() {
+    const config = await loadConfig();
+
+    const projectId = config.projectId || process.env.LANGUINE_PROJECT_ID;
+
+    if (!projectId) {
+      throw new Error("Project ID is required");
+    }
+
+    this.projectId = projectId;
+    this.sourceLocale = config.locale.source;
+
+    // Get the target folder from config
+    const jsonConfig = config.files.json;
+    if (!jsonConfig || !jsonConfig.include || jsonConfig.include.length === 0) {
+      throw new Error("No JSON file configuration found in languine.json");
+    }
+
+    // Get the first include pattern and replace [locale] with source locale
+    const pattern = jsonConfig.include[0];
+    const globPattern = typeof pattern === "string" ? pattern : pattern.glob;
+    const targetPath = globPattern.replace("[locale]", this.sourceLocale);
+
+    // Ensure the directory exists
+    const dir = path.dirname(targetPath);
+    if (!existsSync(dir)) {
+      mkdirSync(dir, { recursive: true });
+    }
+
+    this.translationFile = path.resolve(targetPath);
     this.loadTranslations();
   }
 
@@ -1326,7 +1363,7 @@ export class TransformService {
   ): Promise<Record<string, string>> {
     try {
       const result = await client.jobs.startTransformJob.mutate({
-        projectId: "prj_xpuq472jzv5zv9uey0s5h6eu",
+        projectId: this.projectId,
         translations: translations.map((t) => ({
           key: t.originalKey,
           value: t.value,
@@ -1348,7 +1385,6 @@ export class TransformService {
           }
         });
       } else {
-        console.warn("Invalid API response format:", result);
       }
 
       return keys;
@@ -1366,5 +1402,6 @@ export default async function transform(
   api: API,
 ): Promise<string> {
   const transformer = new TransformService();
+
   return transformer.transform(file, api);
 }
