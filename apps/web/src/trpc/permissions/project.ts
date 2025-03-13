@@ -9,7 +9,6 @@ import { t } from "../init";
  * Also allows access if the request is made with an organization's API key.
  */
 export const hasProjectAccess = t.middleware(async ({ ctx, next, input }) => {
-  console.log("hasProjectAccess", ctx, input);
   // Ensure user is authenticated
   if (!ctx.authenticatedId) {
     throw new TRPCError({

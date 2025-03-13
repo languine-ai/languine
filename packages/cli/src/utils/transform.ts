@@ -93,6 +93,8 @@ export class TransformService {
   async run() {
     const config = await loadConfig();
 
+    console.log("config", config);
+
     const projectId = config.projectId || process.env.LANGUINE_PROJECT_ID;
 
     if (!projectId) {
