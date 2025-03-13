@@ -3,6 +3,7 @@ import { commands as initCommands } from "@/commands/init.ts";
 import { localeCommand } from "@/commands/locale.ts";
 import { commands as overridesCommands } from "@/commands/overrides/index.ts";
 import { syncCommand } from "@/commands/sync.ts";
+import { transformCommand } from "@/commands/transform.ts";
 import { translateCommand } from "@/commands/translate.ts";
 import { commands as translationsCommands } from "@/commands/translations/index.ts";
 import { isCancel, select } from "@clack/prompts";
@@ -87,6 +88,11 @@ const COMMANDS: Record<string, Command> = {
     description: "Manage translations",
     usage: "languine translations <delete>",
     subcommands: [["delete", "Delete all translation keys for the project"]],
+  },
+  transform: {
+    description: "Transform files",
+    usage: "languine transform <directory>",
+    subcommands: [["<directory>", "Directory containing React components"]],
   },
 };
 
@@ -174,6 +180,7 @@ export async function runCommands() {
         { value: "init", label: "Initialize a new Languine configuration" },
         { value: "auth", label: "Manage authentication" },
         { value: "translate", label: "Translate files" },
+        { value: "transform", label: "Transform files" },
         {
           value: "sync",
           label: "Sync deleted keys between source and target files",
@@ -228,6 +235,9 @@ export async function runCommands() {
       case "translations":
         await translationsCommands();
         break;
+      case "transform":
+        await transformCommand();
+        break;
     }
     return;
   }
@@ -263,6 +273,10 @@ export async function runCommands() {
       }
       case "translations": {
         await translationsCommands(subCommand, args);
+        break;
+      }
+      case "transform": {
+        await transformCommand([subCommand, ...args].filter(Boolean));
         break;
       }
       default:

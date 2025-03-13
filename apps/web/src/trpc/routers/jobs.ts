@@ -1,4 +1,5 @@
 import type { startTranslationsTask } from "@/jobs/translate/start-translations";
+import { transformKeys } from "@/jobs/utils/transform";
 import { tasks } from "@trigger.dev/sdk/v3";
 import { createTRPCRouter, protectedProcedure } from "../init";
 import { hasProjectAccess } from "../permissions/project";
@@ -7,7 +8,7 @@ import {
   getProjectOrganization,
   getTranslationTaskOptions,
 } from "./jobs.utils";
-import { jobsSchema } from "./schema";
+import { jobsSchema, transformSchema } from "./schema";
 
 export const jobsRouter = createTRPCRouter({
   startJob: protectedProcedure
@@ -64,5 +65,14 @@ export const jobsRouter = createTRPCRouter({
           polarCustomerId: organization.polarCustomerId,
         },
       };
+    }),
+
+  startTransformJob: protectedProcedure
+    .input(transformSchema)
+    .use(hasProjectAccess)
+    .mutation(async ({ input }) => {
+      const result = await transformKeys(input.translations);
+
+      return result;
     }),
 });

@@ -195,3 +195,13 @@ export const deleteTranslationsSchema = z.object({
 });
 
 export type DeleteTranslationsSchema = z.infer<typeof deleteTranslationsSchema>;
+
+export const transformSchema = z.object({
+  projectId: z.string(),
+  translations: z.array(
+    z.object({
+      key: z.string(),
+      value: z.string(),
+    }),
+  ),
+});
