@@ -72,9 +72,39 @@ export const translateLocaleTask = schemaTask({
         ctx.attempt.number,
       );
 
+      // Handle potential translation failure with retry
+      let translatedText = translatedContent?.[0];
+
+      if (!translatedText) {
+        console.log("Initial markdown translation failed, attempting retry...");
+        const retryContent = await translateDocument(
+          document.sourceText,
+          {
+            sourceLocale: payload.sourceLanguage,
+            targetLocale: payload.targetLocale,
+            sourceFormat: payload.sourceFormat,
+          },
+          ctx.attempt.number,
+        );
+
+        translatedText = retryContent?.[0];
+
+        if (!translatedText) {
+          console.error("Markdown translation failed after retry:", {
+            sourceFile: document.sourceFile,
+            sourceLanguage: payload.sourceLanguage,
+            targetLocale: payload.targetLocale,
+          });
+          return {
+            translations: [],
+            targetLocale: payload.targetLocale,
+          };
+        }
+      }
+
       translations.push({
         key: "content",
-        translatedText: translatedContent?.at(0) ?? "",
+        translatedText,
       });
 
       if (document?.sourceText) {
@@ -84,7 +114,7 @@ export const translateLocaleTask = schemaTask({
           sourceText: document.sourceText,
           sourceLanguage: payload.sourceLanguage,
           targetLanguage: payload.targetLocale,
-          translatedText: translatedContent?.at(0) ?? "",
+          translatedText,
           sourceFile: document.sourceFile,
           sourceFormat: payload.sourceFormat,
           branch: payload.branch,
@@ -111,7 +141,7 @@ export const translateLocaleTask = schemaTask({
     // Process all chunks in parallel
     const chunkResults = await Promise.all(
       contentChunks.map(async (chunk, chunkIndex) => {
-        let translatedContent = await translateKeys(
+        const translatedContent = await translateKeys(
           chunk,
           {
             sourceLocale: payload.sourceLanguage,
@@ -120,12 +150,17 @@ export const translateLocaleTask = schemaTask({
           ctx.attempt.number,
         );
 
-        // Find keys with null values and retry once with remaining keys
-        const remainingKeys = chunk.filter(
-          (content) => !translatedContent[chunkIndex],
-        );
+        console.log("Initial translation results:", translatedContent);
 
-        if (remainingKeys.length > 0) {
+        // Find indices with null values and retry once with remaining keys
+        const nullIndices = chunk
+          .map((_, index) => ({ index, content: chunk[index] }))
+          .filter(({ index }) => !translatedContent[index]);
+
+        console.log("Indices with null translations:", nullIndices);
+
+        if (nullIndices.length > 0) {
+          const remainingKeys = nullIndices.map(({ content }) => content);
           const retryTranslations = await translateKeys(
             remainingKeys,
             {
@@ -134,8 +169,27 @@ export const translateLocaleTask = schemaTask({
             },
             ctx.attempt.number,
           );
-          translatedContent = { ...translatedContent, ...retryTranslations };
+          console.log("Retry translation results:", retryTranslations);
+
+          // Update the null translations with retry results
+          nullIndices.forEach(({ index }, retryIndex) => {
+            translatedContent[index] = retryTranslations[retryIndex];
+          });
         }
+
+        // Validate that all translations are present
+        const missingTranslations = chunk
+          .map((_, index) => ({ index, content: chunk[index] }))
+          .filter(({ index }) => !translatedContent[index]);
+
+        if (missingTranslations.length > 0) {
+          console.error(
+            "Some translations are still missing after retry:",
+            missingTranslations,
+          );
+        }
+
+        console.log("Final translation results:", translatedContent);
 
         await createTranslations({
           projectId: payload.projectId,
