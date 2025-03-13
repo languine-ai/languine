@@ -17,7 +17,7 @@ export async function transformCommand(args: string[] = []) {
   intro("🔍 Starting transformation process");
 
   const spin = spinner();
-  spin.start("Finding React components");
+  spin.start("Finding files to transform");
 
   try {
     // Find all React component files
@@ -27,10 +27,10 @@ export async function transformCommand(args: string[] = []) {
       ignore: ["**/node_modules/**", "**/.*/**", "**/dist/**", "**/build/**"],
     });
 
-    spin.stop(`Found ${files.length} React components`);
+    spin.stop(`Found ${files.length} files to transform`);
 
     if (files.length === 0) {
-      outro("No React components found in the specified directory");
+      outro("No files found in the specified directory");
       return;
     }
 
