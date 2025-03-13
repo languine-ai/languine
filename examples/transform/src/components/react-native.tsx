@@ -17,30 +17,30 @@ export const ProfileScreen = () => {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>{t("ProfileScreen.pageTitle")}</Text>
+      <Text style={styles.title}>My Profile</Text>
 
-        <View style={styles.form}>
-          <Text style={styles.label}>{t("ProfileScreen.fullNameLabel")}</Text>
-          <TextInput style={styles.input} placeholder={t("ProfileScreen.fullNamePlaceholder")} />
+      <View style={styles.form}>
+        <Text style={styles.label}>Full Name</Text>
+        <TextInput style={styles.input} placeholder="Enter your full name" />
 
-          <Text style={styles.label}>{t("ProfileScreen.bioLabel")}</Text>
-          <TextInput
-            style={[styles.input, styles.multiline]}
-            placeholder={t("ProfileScreen.bioPlaceholder")}
-            multiline
-          />
+        <Text style={styles.label}>Bio</Text>
+        <TextInput
+          style={[styles.input, styles.multiline]}
+          placeholder="Tell us about yourself"
+          multiline
+        />
 
-          <Text style={styles.hint}>
-            {t("ProfileScreen.bioGuideline")}
-          </Text>
+        <Text style={styles.hint}>
+          Your bio should be at least 50 characters long
+        </Text>
 
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}>{t("ProfileScreen.saveButtonText")}</Text>
-          </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Save Changes</Text>
+        </TouchableOpacity>
 
-          <Text style={styles.footer}>{t("ProfileScreen.lastUpdateStatus")}</Text>
-        </View>
+        <Text style={styles.footer}>Last updated: Yesterday at 2:30 PM</Text>
       </View>
+    </View>
   );
 };
 
