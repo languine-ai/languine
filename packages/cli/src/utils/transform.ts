@@ -85,9 +85,30 @@ export class TransformService {
   private translationFile = "";
   private projectId = "";
   private sourceLocale = "";
+  private initPromise: Promise<void> | null = null;
 
   constructor() {
-    this.run();
+    // Initialize asynchronously
+    this.initPromise = this.initialize();
+  }
+
+  // Public method to ensure initialization is complete
+  public async ensureInitialized(): Promise<void> {
+    if (this.initPromise) {
+      await this.initPromise;
+    } else {
+      this.initPromise = this.initialize();
+      await this.initPromise;
+    }
+  }
+
+  private async initialize() {
+    try {
+      await this.run();
+    } catch (error) {
+      console.error("Failed to initialize TransformService:", error);
+      throw error;
+    }
   }
 
   async run() {
@@ -125,6 +146,9 @@ export class TransformService {
 
   // Public API
   public async transform(file: FileInfo, api: API): Promise<string> {
+    // Make sure initialization is complete before proceeding
+    await this.ensureInitialized();
+
     try {
       const j = api.jscodeshift;
       const source = this.cleanSource(file.source);
@@ -151,6 +175,9 @@ export class TransformService {
     componentName: string,
   ): Promise<void> {
     try {
+      // Ensure initialization is complete before proceeding
+      await this.ensureInitialized();
+
       // First collect all translations
       await this.collectTranslations(j, root, componentName);
 
@@ -221,6 +248,9 @@ export class TransformService {
     Record<string, Record<string, string>>
   > {
     try {
+      // Ensure initialization is complete before proceeding
+      await this.ensureInitialized();
+
       const transformedTranslations = this.buildTransformedTranslations();
       const finalTranslations = await this.mergePreviousTranslations(
         transformedTranslations,
@@ -1362,6 +1392,9 @@ export class TransformService {
     translations: CollectedTranslation[],
   ): Promise<Record<string, string>> {
     try {
+      // Ensure initialization is complete before proceeding
+      await this.ensureInitialized();
+
       console.log("projectId", this.projectId);
       const result = await client.jobs.startTransformJob.mutate({
         projectId: this.projectId,
@@ -1403,6 +1436,9 @@ export default async function transform(
   api: API,
 ): Promise<string> {
   const transformer = new TransformService();
+
+  // Make sure initialization is complete before proceeding
+  await transformer.ensureInitialized();
 
   return transformer.transform(file, api);
 }
