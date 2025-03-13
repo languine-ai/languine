@@ -4,7 +4,8 @@
     "secondaryDescription": "And this is the best description about it.",
     "contactFoundersButtonText": "Talk to founders",
     "signInButtonText": "Sign In",
-    "altTextDescription": "This is a great hero of our startup"
+    "altTextDescription": "This is a great hero of our startup",
+    "imageAltText": "This is a great hero of our startup"
   },
   "Header": {
     "homeLink": "Home",
@@ -12,7 +13,10 @@
     "contactLink": "Contact",
     "goToHomeAction": "Go to home",
     "goToAboutAction": "Go to about",
-    "goToContactAction": "Go to contact"
+    "goToContactAction": "Go to contact",
+    "homeLinkText": "Home",
+    "aboutLinkText": "About",
+    "contactLinkText": "Contact"
   },
   "ProfileScreen": {
     "pageTitle": "My Profile",
@@ -41,6 +45,9 @@
     "contactSupportMessage": "Need help? Contact our support team available 24/7.",
     "changeClickPrompt": "Click to change your preferences",
     "span_4": "{theme} mode",
-    "span_6": "{language, select, en {English} other {Other}}"
+    "span_6": "{language, select, en {English} other {Other}}",
+    "welcomeBackMessage": "Welcome back,",
+    "lastLoginLabel": "Last login:",
+    "accountStatusMessage": "Your account is protected with advanced security measures. Last security check was performed 3 days ago."
   }
 }
