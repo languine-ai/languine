@@ -1,5 +1,4 @@
 import { api } from "@/lib/polar";
-import { geolocation } from "@vercel/functions";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
@@ -9,8 +8,6 @@ export const GET = async (req: NextRequest) => {
   const customerEmail = req.nextUrl.searchParams.get("customerEmail");
   const customerName = req.nextUrl.searchParams.get("customerName");
   const organizationId = req.nextUrl.searchParams.get("organizationId");
-
-  const { country } = geolocation(req);
 
   if (!productId || !organizationId) {
     return NextResponse.json(
@@ -27,9 +24,6 @@ export const GET = async (req: NextRequest) => {
     customerId: customerId ?? undefined,
     customerEmail: customerEmail ?? undefined,
     customerName: customerName ?? undefined,
-    customerBillingAddress: {
-      country: country ?? "SE",
-    },
     metadata: {
       organizationId,
     },
