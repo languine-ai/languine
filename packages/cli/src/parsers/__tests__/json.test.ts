@@ -150,7 +150,7 @@ describe("JSON Parser", () => {
       expect(result).toEqual({
         "special@key": "value",
         "with spaces": "test",
-        "with.dot": "works",
+        "with\\.dot": "works",
       });
     });
   });

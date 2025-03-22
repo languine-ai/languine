@@ -1,0 +1,19 @@
+version: 1
+files:
+  messages/en.json:
+    chat.poll.allow-multiple: b12390f674492adc8dadac6b407e040d
+    chat.poll.create-poll: 87dde47c3c24ba7cc629ea2dacab3806
+    chat.poll.create-poll\.title: 6cb41bdaa77f037dfa8ec7db1bd346cd
+    chat.poll.create-poll\.question: a97ea56b0e00b2379736ae60869ff66a
+    chat.poll.create-poll\.options: dae8ace18bdcbcc6ae5aece263e14fe8
+    chat.poll.create-poll\.placeholder\.add: ec211f7c20af43e742bf2570c3cb84f9
+    test.*: 73f0a5236a013c8ee6af7d96fee67df5
+    test.image/*, \.jpg, \.jpeg, \.png, \.gif, \.svg, \.webp: fff0d600f8a0b5e19e88bfb821dd1157
+    test.\.mp4, \.mov, \.avi, \.mkv, \.webm, \.mpeg: 554cfab3938e21d9270bd6b75931f96f
+    test.\.mp3, \.wav, \.ogg, \.flac, \.aac, \.wma, \.m4a, \.midi, \.alac: b22f0418e8ac915eb66f829d262d14a2
+    test.\.pdf: abdf095626d4a4ab2bcd4167b128c1f1
+    test.\.docx: 8c7a7a618a6d4acfe85b4b4b1048846d
+    test.\.csv: 01b1b6ebeb388697cca6712b58439069
+    test.\.pptx: a9bec49e3e6504112d702f6449b79631
+    test.\.xlsx: 552c070e14cf0a9151d1b49064e4cde0
+    test.\.zip: daf4de58883c030f033f07e61debf025

@@ -1,0 +1,24 @@
+{
+  "chat": {
+    "poll": {
+      "allow-multiple": "Mehrere Antworten zulassen?",
+      "create-poll": "Umfrage",
+      "create-poll.title": "Umfrage erstellen",
+      "create-poll.question": "Frage",
+      "create-poll.options": "Optionen",
+      "create-poll.placeholder.add": "Hinzufügen"
+    }
+  },
+  "test": {
+    "*": "Alle Dateitypen zulassen",
+    "image/*, .jpg, .jpeg, .png, .gif, .svg, .webp": "Bilder",
+    ".mp4, .mov, .avi, .mkv, .webm, .mpeg": "Videos",
+    ".mp3, .wav, .ogg, .flac, .aac, .wma, .m4a, .midi, .alac": "Audio",
+    ".pdf": ".pdf",
+    ".docx": ".docx",
+    ".csv": ".csv",
+    ".pptx": ".pptx",
+    ".xlsx": ".xlsx",
+    ".zip": ".zip"
+  }
+}
