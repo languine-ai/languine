@@ -1,7 +1,7 @@
 {
     "locale": {
       "source": "en",
-      "targets": ["es", "fr"]
+      "targets": ["es", "sv"]
     },
     "files": {
       "php": {

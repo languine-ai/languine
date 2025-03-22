@@ -1,0 +1,9 @@
+version: 1
+files:
+  locales/en.json:
+    welcome: 91a328d124ccee9f8e7d1f37fd1a6776
+    user.greeting: 05cab6b3c28feaccc7d7b5c5158a2eda
+    user.profile.title: 3d8de6fcc09baf73f7175fe59f278ced
+    user.profile.edit: dfd87bd34b4599aaaef6d0f2c8b6e3d7
+    notifications.messages: 9bedb26e51829d23bd8545dba50e361d
+    notifications.empty: 7d0cb81666069504046f678bb63aae39
