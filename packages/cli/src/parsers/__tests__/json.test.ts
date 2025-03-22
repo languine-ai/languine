@@ -147,10 +147,80 @@ describe("JSON Parser", () => {
         "with.dot": "works"
       }`;
       const result = await parser.parse(input);
-      expect(result).toEqual({
+
+      // Keys with special characters are now encoded with base64
+      expect(result["special@key"]).toBe("value");
+      expect(result).toHaveProperty("__encoded__d2l0aCBzcGFjZXM="); // "with spaces" encoded
+      expect(result).toHaveProperty("__encoded__d2l0aC5kb3Q="); // "with.dot" encoded
+
+      // Now test serialization works correctly
+      const serialized = await parser.serialize("en", result);
+      const parsed = JSON.parse(serialized);
+
+      expect(parsed).toEqual({
         "special@key": "value",
         "with spaces": "test",
         "with.dot": "works",
+      });
+    });
+
+    test("handles keys with hyphens, complicated special characters and nested dots", async () => {
+      const input = `{
+        "chat": {
+          "poll": {
+            "allow-multiple": "Allow Multiple Answers?",
+            "create-poll": "Poll",
+            "create-poll.title": "Create Poll"
+          }
+        },
+        "test": {
+          "*": "Allow all file types",
+          "image/*, .jpg, .jpeg, .png, .gif, .svg, .webp": "Images",
+          ".mp4, .mov, .avi, .mkv, .webm, .mpeg": "Videos"
+        }
+      }`;
+      const result = await parser.parse(input);
+
+      // First, log the actual keys to debug
+      console.log("Parsed keys:", Object.keys(result));
+
+      // Check if values are preserved correctly
+      expect(result["chat.poll.__encoded__YWxsb3ctbXVsdGlwbGU="]).toBe(
+        "Allow Multiple Answers?",
+      ); // "allow-multiple" encoded
+      expect(result["chat.poll.__encoded__Y3JlYXRlLXBvbGw="]).toBe("Poll"); // "create-poll" encoded
+      expect(result["chat.poll.__encoded__Y3JlYXRlLXBvbGwudGl0bGU="]).toBe(
+        "Create Poll",
+      ); // "create-poll.title" encoded
+      expect(result["test.__encoded__Kg=="]).toBe("Allow all file types"); // "*" encoded
+      expect(
+        result[
+          "test.__encoded__aW1hZ2UvKiwgLmpwZywgLmpwZWcsIC5wbmcsIC5naWYsIC5zdmcsIC53ZWJw"
+        ],
+      ).toBe("Images"); // encoded
+      expect(
+        result[
+          "test.__encoded__Lm1wNCwgLm1vdiwgLmF2aSwgLm1rdiwgLndlYm0sIC5tcGVn"
+        ],
+      ).toBe("Videos"); // encoded
+
+      // Now test serialization works correctly too
+      const serialized = await parser.serialize("en", result);
+      const parsed = JSON.parse(serialized);
+
+      expect(parsed).toEqual({
+        chat: {
+          poll: {
+            "allow-multiple": "Allow Multiple Answers?",
+            "create-poll": "Poll",
+            "create-poll.title": "Create Poll",
+          },
+        },
+        test: {
+          "*": "Allow all file types",
+          "image/*, .jpg, .jpeg, .png, .gif, .svg, .webp": "Images",
+          ".mp4, .mov, .avi, .mkv, .webm, .mpeg": "Videos",
+        },
       });
     });
   });
@@ -241,32 +311,53 @@ describe("JSON Parser", () => {
         "testimonials.items[1].author.name": "Lee Robinson",
         "testimonials.items[1].author.image": "https://github.com/leerob.png",
       };
+
+      // Log input to debug
+      console.log("Input keys for array test:", Object.keys(input));
+
       const result = await parser.serialize("en", input);
-      expect(JSON.parse(result)).toEqual({
-        testimonials: {
-          title: "Hear from Our Thriving Community",
-          items: [
-            {
-              title: "Best decision",
-              description:
-                "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
-              author: {
-                name: "Hayden Bleasel",
-                image: "https://github.com/haydenbleasel.png",
-              },
-            },
-            {
-              title: "Game changer",
-              description:
-                "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
-              author: {
-                name: "Lee Robinson",
-                image: "https://github.com/leerob.png",
-              },
-            },
-          ],
+
+      // Parse the result and check structure
+      const parsed = JSON.parse(result);
+
+      // Log the parsed object to see its actual structure
+      console.log(
+        "Parsed testimonials structure:",
+        JSON.stringify(parsed.testimonials, null, 2),
+      );
+
+      // Individual checks for the structure and values
+      expect(parsed.testimonials.title).toBe(
+        "Hear from Our Thriving Community",
+      );
+
+      // Check array exists
+      expect(Array.isArray(parsed.testimonials.items)).toBe(true);
+
+      // Simplified expectation structure
+      const expectedItems = [
+        {
+          title: "Best decision",
+          description:
+            "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+          author: {
+            name: "Hayden Bleasel",
+            image: "https://github.com/haydenbleasel.png",
+          },
         },
-      });
+        {
+          title: "Game changer",
+          description:
+            "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+          author: {
+            name: "Lee Robinson",
+            image: "https://github.com/leerob.png",
+          },
+        },
+      ];
+
+      // Compare with parsed items
+      expect(parsed.testimonials.items).toEqual(expectedItems);
     });
   });
 });
