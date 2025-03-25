@@ -9,7 +9,6 @@ import {
   splitLink,
 } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
-import type { inferRouterInputs } from "@trpc/server";
 import { useState } from "react";
 import superjson from "superjson";
 import { makeQueryClient } from "./query-client";
