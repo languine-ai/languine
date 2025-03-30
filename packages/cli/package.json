@@ -1,6 +1,6 @@
 {
   "name": "languine",
-  "version": "3.1.3-canary.1",
+  "version": "3.1.4",
   "type": "module",
   "bin": "dist/index.js",
   "main": "dist/config.js",

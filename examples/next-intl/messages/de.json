@@ -13,7 +13,7 @@
       "items": [
         {
           "title": "Beste Entscheidung",
-          "description": "Unser Ziel war es, den Handel für KMU zu optimieren, um ihn einfacher und schneller als je zuvor zu gestalten, und das haben wir gemeinsam erreicht.",
+          "description": "Unser Ziel war es, den Handel für KMUs zu optimieren, um ihn einfacher und schneller als je zuvor zu gestalten, und das haben wir gemeinsam erreicht.",
           "author": {
             "name": "Hayden Bleasel",
             "image": "https://github.com/haydenbleasel.png"
@@ -36,7 +36,7 @@
           }
         },
         {
-          "title": "Hervorragender Support",
+          "title": "Herausragender Support",
           "description": "Die Plattform ist nicht nur leistungsstark, sondern das Kundenserviceteam war auch außergewöhnlich darin, uns zu helfen, ihr Potenzial zu maximieren.",
           "author": {
             "name": "Pontus Abrahamsson",

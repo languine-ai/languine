@@ -1,0 +1,8 @@
+version: 1
+files:
+  src/assets/translations/en.json:
+    adcreative\.screen.generate\.card\.desc: 659254265e02c2581f5b65eac56874b8
+    adcreative\.screen.title: c95c91210e835d0f0260015b681d8225
+  src/locales/en.json:
+    adcreative\.screen.generate\.card\.desc: 659254265e02c2581f5b65eac56874b8
+    adcreative\.screen.title: c95c91210e835d0f0260015b681d8225
