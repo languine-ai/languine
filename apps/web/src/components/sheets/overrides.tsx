@@ -14,6 +14,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useOverridesSheet } from "@/hooks/use-overrides-sheet";
+import { displayLanguageName } from "@/lib/format";
 import { trpc } from "@/trpc/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -133,9 +134,7 @@ export function OverridesSheet() {
                     <AccordionTrigger className="text-sm !no-underline">
                       <div className="flex items-center gap-2">
                         <span className="text-primary capitalize">
-                          {new Intl.DisplayNames([translation.targetLanguage], {
-                            type: "language",
-                          }).of(translation.targetLanguage)}
+                          {displayLanguageName(translation.targetLanguage)}
                         </span>
                         <span className="text-secondary">
                           [{translation.targetLanguage}]

@@ -11,3 +11,13 @@ export const formatTimeAgo = (date: Date) => {
     return `${Math.floor(diffInSeconds / 2592000)}mo`;
   return `${Math.floor(diffInSeconds / 31536000)}y`;
 };
+
+export function displayLanguageName(locale: string) {
+  try {
+    return new Intl.DisplayNames(["en"], {
+      type: "language",
+    }).of(locale);
+  } catch (error) {
+    return locale;
+  }
+}
