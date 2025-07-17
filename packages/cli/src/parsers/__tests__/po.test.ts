@@ -58,10 +58,14 @@ msgstr ""
       const input = `
 msgid "with_quotes"
 msgstr "text with "quotes" inside"
+
+msgid "with_escaped_quotes"
+msgstr "text with escaped \\"quotes\\" inside"
 `;
       const result = await parser.parse(input);
       expect(result).toEqual({
         with_quotes: 'text with "quotes" inside',
+        with_escaped_quotes: 'text with escaped "quotes" inside',
       });
     });
 
@@ -69,6 +73,37 @@ msgstr "text with "quotes" inside"
       const input = "";
       const result = await parser.parse(input);
       expect(result).toEqual({});
+    });
+
+    test("handles headers in input", async () => {
+      const input = `
+"POT-Creation-Date: 2025-07-11 19:57+0900\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: ko\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+# This is a comment
+#: another comment
+msgid "key"
+msgstr "value"
+`;
+      const result = await parser.parse(input);
+      expect(result).toEqual({
+        key: "value",
+      });
+
+      const serialized = await parser.serialize("ko", result);
+      expect(serialized).toBe(
+        '"POT-Creation-Date: 2025-07-11 19:57+0900\\n"\n": \\n"\n"MIME-Version: 1.0\\n"\n": \\n"\n"Content-Type: text/plain; charset=utf-8\\n"\n": \\n"\n"Content-Transfer-Encoding: 8bit\\n"\n": \\n"\n"X-Generator: @lingui/cli\\n"\n": \\n"\n"Language: ko\\n"\n": \\n"\n"Project-Id-Version: \\n"\n": \\n"\n"Report-Msgid-Bugs-To: \\n"\n": \\n"\n"PO-Revision-Date: \\n"\n": \\n"\n"Last-Translator: \\n"\n": \\n"\n"Language-Team: \\n"\n": \\n"\n"Plural-Forms: \\n"\n": \\n"\n\n# This is a comment\n#: another comment\nmsgid "key"\nmsgstr "value"\n',
+      );
     });
   });
 
@@ -98,7 +133,7 @@ msgstr "text with "quotes" inside"
       };
       const result = await parser.serialize("en", input);
       expect(result).toBe(
-        'msgid "with_quotes"\nmsgstr "text with "quotes" inside"\n',
+        'msgid "with_quotes"\nmsgstr "text with \\"quotes\\" inside"\n',
       );
     });
 

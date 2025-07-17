@@ -1,33 +1,22 @@
+import PO from "pofile";
 import { BaseParser } from "../core/base-parser.js";
 
 export class PoParser extends BaseParser {
+  #po: PO = null!;
+
   async parse(input: string) {
     try {
+      this.#po = PO.parse(input);
       const result: Record<string, string> = {};
-      const lines = input.split("\n");
-      let currentKey = "";
-      let currentValue = "";
 
-      for (const line of lines) {
-        const trimmed = line.trim();
-
-        if (isSkippableLine(trimmed)) {
+      for (const item of this.#po.items) {
+        if (!item.msgid) {
           continue;
         }
 
-        if (trimmed.startsWith("msgid")) {
-          if (currentKey) {
-            result[currentKey] = currentValue;
-          }
-          currentKey = parseMsgId(trimmed);
-          currentValue = "";
-        } else if (trimmed.startsWith("msgstr")) {
-          currentValue = parseMsgStr(trimmed);
-        }
-      }
+        const value = item.msgstr.at(0) || "";
 
-      if (currentKey) {
-        result[currentKey] = currentValue;
+        result[item.msgid] = value;
       }
 
       return result;
@@ -44,17 +33,34 @@ export class PoParser extends BaseParser {
     _originalData?: Record<string, string>,
   ): Promise<string> {
     try {
-      if (Object.keys(data).length === 0) {
-        return "";
+      if (!this.#po) {
+        this.#po = new PO();
       }
 
-      const result = Object.entries(data)
-        .map(([key, value]) => {
-          return `msgid "${key}"\nmsgstr "${value}"`;
-        })
-        .join("\n\n");
+      if (Object.keys(data).length === 0) {
+        return removeEmptyItem(this.#po.toString());
+      }
 
-      return `${result}\n`;
+      const originalPoItems = Object.fromEntries(
+        this.#po.items.map((item) => [item.msgid, item]),
+      );
+
+      this.#po.items = Object.entries(data).map(([key, value]) => {
+        let item = originalPoItems[key];
+
+        if (!item) {
+          item = new PO.Item();
+          item.msgid = key;
+        }
+
+        if (value) {
+          item.msgstr = [value];
+        }
+
+        return item;
+      });
+
+      return removeEmptyItem(this.#po.toString());
     } catch (error) {
       throw new Error(
         `Failed to serialize PO: ${error instanceof Error ? error.message : String(error)}`,
@@ -63,20 +69,6 @@ export class PoParser extends BaseParser {
   }
 }
 
-function isSkippableLine(line: string): boolean {
-  return !line || line.startsWith("#");
-}
-
-function parseMsgId(line: string): string {
-  const match = line.match(/msgid "(.*)"/);
-  return match ? unescapeQuotes(match[1]) : "";
-}
-
-function parseMsgStr(line: string): string {
-  const match = line.match(/msgstr "(.*)"/);
-  return match ? unescapeQuotes(match[1]) : "";
-}
-
-function unescapeQuotes(str: string): string {
-  return str.replace(/\\"/g, '"');
+function removeEmptyItem(serialized: string): string {
+  return serialized.replace(/^msgid ""\nmsgstr ""(\n{1,2})/, "");
 }
