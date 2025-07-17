@@ -38,7 +38,7 @@ export class PoParser extends BaseParser {
       }
 
       if (Object.keys(data).length === 0) {
-        return removeEmptyItem(this.#po.toString());
+        return this.#po.toString();
       }
 
       const originalPoItems = Object.fromEntries(
@@ -60,15 +60,11 @@ export class PoParser extends BaseParser {
         return item;
       });
 
-      return removeEmptyItem(this.#po.toString());
+      return this.#po.toString();
     } catch (error) {
       throw new Error(
         `Failed to serialize PO: ${error instanceof Error ? error.message : String(error)}`,
       );
     }
   }
-}
-
-function removeEmptyItem(serialized: string): string {
-  return serialized.replace(/^msgid ""\nmsgstr ""(\n{1,2})/, "");
 }

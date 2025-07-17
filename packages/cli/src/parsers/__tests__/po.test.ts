@@ -102,7 +102,7 @@ msgstr "value"
 
       const serialized = await parser.serialize("ko", result);
       expect(serialized).toBe(
-        '"POT-Creation-Date: 2025-07-11 19:57+0900\\n"\n": \\n"\n"MIME-Version: 1.0\\n"\n": \\n"\n"Content-Type: text/plain; charset=utf-8\\n"\n": \\n"\n"Content-Transfer-Encoding: 8bit\\n"\n": \\n"\n"X-Generator: @lingui/cli\\n"\n": \\n"\n"Language: ko\\n"\n": \\n"\n"Project-Id-Version: \\n"\n": \\n"\n"Report-Msgid-Bugs-To: \\n"\n": \\n"\n"PO-Revision-Date: \\n"\n": \\n"\n"Last-Translator: \\n"\n": \\n"\n"Language-Team: \\n"\n": \\n"\n"Plural-Forms: \\n"\n": \\n"\n\n# This is a comment\n#: another comment\nmsgid "key"\nmsgstr "value"\n',
+        'msgid ""\nmsgstr ""\n"POT-Creation-Date: 2025-07-11 19:57+0900\\n"\n": \\n"\n"MIME-Version: 1.0\\n"\n": \\n"\n"Content-Type: text/plain; charset=utf-8\\n"\n": \\n"\n"Content-Transfer-Encoding: 8bit\\n"\n": \\n"\n"X-Generator: @lingui/cli\\n"\n": \\n"\n"Language: ko\\n"\n": \\n"\n"Project-Id-Version: \\n"\n": \\n"\n"Report-Msgid-Bugs-To: \\n"\n": \\n"\n"PO-Revision-Date: \\n"\n": \\n"\n"Last-Translator: \\n"\n": \\n"\n"Language-Team: \\n"\n": \\n"\n"Plural-Forms: \\n"\n": \\n"\n\n# This is a comment\n#: another comment\nmsgid "key"\nmsgstr "value"\n',
       );
     });
   });
@@ -115,7 +115,7 @@ msgstr "value"
       };
       const result = await parser.serialize("en", input);
       expect(result).toBe(
-        'msgid "hello"\nmsgstr "world"\n\nmsgid "test"\nmsgstr "value"\n',
+        'msgid ""\nmsgstr ""\n\nmsgid "hello"\nmsgstr "world"\n\nmsgid "test"\nmsgstr "value"\n',
       );
     });
 
@@ -124,7 +124,7 @@ msgstr "value"
         empty: "",
       };
       const result = await parser.serialize("en", input);
-      expect(result).toBe('msgid "empty"\nmsgstr ""\n');
+      expect(result).toBe('msgid ""\nmsgstr ""\n\nmsgid "empty"\nmsgstr ""\n');
     });
 
     test("serializes translations with quotes", async () => {
@@ -133,14 +133,14 @@ msgstr "value"
       };
       const result = await parser.serialize("en", input);
       expect(result).toBe(
-        'msgid "with_quotes"\nmsgstr "text with \\"quotes\\" inside"\n',
+        'msgid ""\nmsgstr ""\n\nmsgid "with_quotes"\nmsgstr "text with \\"quotes\\" inside"\n',
       );
     });
 
     test("handles empty object", async () => {
       const input = {};
       const result = await parser.serialize("en", input);
-      expect(result).toBe("");
+      expect(result).toBe('msgid ""\nmsgstr ""\n');
     });
 
     test("adds newline at end of file", async () => {
@@ -156,14 +156,14 @@ msgstr "value"
       };
       const result = await parser.serialize("en", translations);
       expect(result).toBe(
-        'msgid "hello"\nmsgstr "world"\n\nmsgid "keep"\nmsgstr "value"\n',
+        'msgid ""\nmsgstr ""\n\nmsgid "hello"\nmsgstr "world"\n\nmsgid "keep"\nmsgstr "value"\n',
       );
     });
 
     test("handles object with no translations", async () => {
       const translations = {};
       const result = await parser.serialize("en", translations);
-      expect(result).toBe("");
+      expect(result).toBe('msgid ""\nmsgstr ""\n');
     });
   });
 });
