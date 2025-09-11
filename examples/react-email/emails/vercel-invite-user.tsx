@@ -1,4 +1,4 @@
-import { setupI18n } from "@languine/react-email";
+import { setupI18n } from "@jordanmgsoftware/languine-react-email";
 import {
   Body,
   Button,

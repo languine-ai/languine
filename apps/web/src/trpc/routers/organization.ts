@@ -18,7 +18,7 @@ import { members } from "@/db/schema";
 import InviteEmail from "@/emails/templates/invite";
 import { resend } from "@/lib/resend";
 import { getAppUrl } from "@/lib/url";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { TRPCError } from "@trpc/server";
 import { waitUntil } from "@vercel/functions";
 import { and, ne } from "drizzle-orm";

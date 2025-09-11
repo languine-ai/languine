@@ -1,13 +1,13 @@
 import { loadEnv } from "@/utils/env.js";
 import { getAPIKey } from "@/utils/session.js";
 import { note } from "@clack/prompts";
-import type { AppRouter } from "@languine/web/src/trpc/routers/_app.js";
-import { createTRPCClient, httpBatchLink, loggerLink } from "@trpc/client";
+import type { AppRouter } from "@jordanmgsoftware/languine-web/src/trpc/routers/_app.js";
+import { createTRPCClient, httpBatchLink, loggerLink, type TRPCClient } from "@trpc/client";
 import superjson from "superjson";
 
 const { LANGUINE_DEBUG, LANGUINE_BASE_URL } = loadEnv();
 
-export const client = createTRPCClient<AppRouter>({
+export const client: TRPCClient<AppRouter> = createTRPCClient<AppRouter>({
   links: [
     loggerLink({
       enabled: () => LANGUINE_DEBUG === "true",

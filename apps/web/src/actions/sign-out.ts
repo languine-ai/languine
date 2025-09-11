@@ -1,6 +1,6 @@
 "use server";
 
-import { createClient } from "@languine/supabase/server";
+import { createClient } from "@jordanmgsoftware/languine-supabase/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

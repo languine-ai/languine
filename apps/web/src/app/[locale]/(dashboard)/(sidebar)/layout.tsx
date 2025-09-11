@@ -6,7 +6,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/contexts/session";
 import { TRPCProvider } from "@/trpc/client";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { redirect } from "next/navigation";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 

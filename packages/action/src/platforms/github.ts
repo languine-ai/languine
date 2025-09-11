@@ -42,7 +42,7 @@ export class GitHubProvider implements GitPlatform {
   async setupGit() {
     logger.info("Setting up Git for GitHub...");
     await execAsync('git config --global user.name "Languine Bot"');
-    await execAsync('git config --global user.email "bot@languine.ai"');
+    await execAsync('git config --global user.email "bot@jordanmgsoftware.com"');
     await execAsync('git config --global user.username "languinebot"');
     await execAsync(`git config --global safe.directory ${process.cwd()}`);
   }

@@ -1,5 +1,5 @@
 {
-  "name": "@languine/example",
+  "name": "@jordanmgsoftware/languine-example",
   "version": "1.0.0",
   "dependencies": {
     "languine": "^2.0.5"

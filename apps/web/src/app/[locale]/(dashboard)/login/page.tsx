@@ -4,7 +4,7 @@ import { Logo } from "@/components/logo";
 import MatrixTextWall from "@/components/matrix";
 import { StackedCode } from "@/components/stacked-code";
 import { getOrganizationByUserId } from "@/db/queries/organization";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";

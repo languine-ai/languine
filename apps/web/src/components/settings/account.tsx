@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
 import { trpc } from "@/trpc/client";
-import { createClient } from "@languine/supabase/client";
+import { createClient } from "@jordanmgsoftware/languine-supabase/client";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

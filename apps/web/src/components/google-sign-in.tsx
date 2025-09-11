@@ -2,7 +2,7 @@
 
 import { OutlinedButton } from "@/components/ui/outlined-button";
 import { Spinner } from "@/components/ui/spinner";
-import { createClient } from "@languine/supabase/client";
+import { createClient } from "@jordanmgsoftware/languine-supabase/client";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";

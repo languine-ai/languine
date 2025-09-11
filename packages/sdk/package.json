@@ -1,5 +1,5 @@
 {
-    "name": "@languine/sdk",
+    "name": "@jordanmgsoftware/languine-sdk",
     "type": "module",
     "license": "MIT",
     "version": "1.0.1",
@@ -13,7 +13,8 @@
         "typecheck": "tsc --noEmit",
         "build": "tsup --clean",
         "test": "bun test",
-        "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary --access public"
+        "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary --access public",
+        "publish": "npm publish --access public"
     },
     "files": [
         "dist"

@@ -1,5 +1,5 @@
 import { api } from "@/lib/polar";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

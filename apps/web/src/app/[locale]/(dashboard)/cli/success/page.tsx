@@ -1,4 +1,4 @@
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 

@@ -1,5 +1,5 @@
 {
-  "name": "@languine/react-email",
+  "name": "@jordanmgsoftware/languine-react-email",
   "version": "1.0.1",
   "files": [
     "dist",
@@ -13,7 +13,9 @@
     "lint": "biome check .",
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
-    "build": "tsup --clean src/index.tsx"
+    "build": "tsup --clean src/index.tsx",
+    "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary --access public",
+    "publish": "npm publish --access public"
   },
   "devDependencies": {
     "tsup": "^8.3.5",

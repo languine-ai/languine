@@ -1,6 +1,6 @@
 import { routing } from "@/i18n/routing";
-import { updateSession } from "@languine/supabase/middleware";
-import { getSession } from "@languine/supabase/session";
+import { updateSession } from "@jordanmgsoftware/languine-supabase/middleware";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 

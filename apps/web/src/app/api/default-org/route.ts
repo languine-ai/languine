@@ -1,5 +1,5 @@
 import { getOrganizationByUserId } from "@/db/queries/organization";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

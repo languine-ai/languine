@@ -1,5 +1,5 @@
 {
-  "name": "languine",
+  "name": "@jordanmgsoftware/languine",
   "version": "3.1.4",
   "type": "module",
   "bin": "dist/index.js",
@@ -14,7 +14,8 @@
     "dev": "tsup --watch --clean",
     "start": "node dist/index.js",
     "test": "bun test",
-    "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary"
+    "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary --access public",
+    "publish": "npm publish --access public"
   },
   "files": [
     "dist",

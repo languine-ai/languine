@@ -1,5 +1,5 @@
 {
-  "name": "@languine/web",
+  "name": "@jordanmgsoftware/languine-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "@ai-sdk/openai": "1.1.4",
     "@date-fns/utc": "2.1.0",
     "@hookform/resolvers": "3.10.0",
-    "@languine/supabase": "workspace:*",
+    "@jordanmgsoftware/languine-supabase": "workspace:*",
     "@mdx-js/loader": "3.1.0",
     "@mdx-js/react": "3.1.0",
     "@next/mdx": "15.1.6",

@@ -1,5 +1,5 @@
 {
-  "name": "@languine/action",
+  "name": "@jordanmgsoftware/languine-action",
   "version": "0.0.1",
   "type": "module",
   "main": "src/index.ts",

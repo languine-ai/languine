@@ -1,7 +1,7 @@
 import { connectDb } from "@/db";
 import { users } from "@/db/schema";
 import { organizations } from "@/db/schema";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { TRPCError, initTRPC } from "@trpc/server";
 import { eq } from "drizzle-orm";
 import superjson from "superjson";

@@ -1,5 +1,5 @@
 import { CLI_TOKEN_NAME, saveCLISession } from "@/lib/auth/cli";
-import { getSession } from "@languine/supabase/session";
+import { getSession } from "@jordanmgsoftware/languine-supabase/session";
 import { NextResponse } from "next/server";
 
 export async function GET(
