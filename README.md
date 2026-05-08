@@ -116,7 +116,3 @@ bun test                         # everything
 bun test --filter @languine/web  # just the web app
 bun test --filter languine       # just the CLI
 ```
-
-## License
-
-AGPL-3.0 for non-commercial use. Commercial license: [engineer@languine.ai](mailto:engineer@languine.ai).
