@@ -53,7 +53,7 @@ const argsSchema = z.array(z.string()).transform((args) => {
   };
 });
 
-type Format = typeof parserTypeSchema._type;
+type Format = z.infer<typeof parserTypeSchema>;
 
 const SUPPORTED_FORMATS = [
   { value: "json", label: "JSON (.json)" },

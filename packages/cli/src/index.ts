@@ -3,9 +3,7 @@
 import chalk from "chalk";
 import dedent from "dedent";
 import { runCommands } from "./commands/run.js";
-import { loadEnv } from "./utils/env.js";
-
-const { LANGUINE_BASE_URL } = loadEnv();
+import { getBaseUrl } from "./utils/session.js";
 
 if (!process.argv[2]) {
   console.log(
@@ -19,10 +17,12 @@ if (!process.argv[2]) {
     `,
   );
 
+  const baseUrl = getBaseUrl();
+
   console.log(
     chalk.gray(dedent`
       Translate your application with Languine CLI powered by AI.
-      Website: ${chalk.bold(LANGUINE_BASE_URL)}
+      ${baseUrl ? `Connected to: ${chalk.bold(baseUrl)}` : "Run `languine login` to connect to your deployment."}
     `),
   );
 

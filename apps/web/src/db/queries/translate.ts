@@ -1,17 +1,14 @@
-import { connectDb, primaryDb } from "@/db";
-import { projects, translations } from "@/db/schema";
+import { db } from "..";
+import { projects, translations } from "../schema";
 import type {
   DeleteKeysSchema,
   DeleteTranslationsSchema,
   ProjectLocalesSchema,
-} from "@/trpc/routers/schema";
-import { UTCDate } from "@date-fns/utc";
+} from "../../trpc/routers/schema";
 import { and, asc, desc, eq, gt, inArray, or, sql } from "drizzle-orm";
 
 export const createTranslations = async ({
   projectId,
-  organizationId,
-  userId,
   sourceFormat,
   translations: translationItems,
   branch,
@@ -21,8 +18,6 @@ export const createTranslations = async ({
   commitLink,
 }: {
   projectId: string;
-  userId?: string | null;
-  organizationId: string;
   sourceFormat: string;
   branch?: string | null;
   commit?: string | null;
@@ -39,14 +34,12 @@ export const createTranslations = async ({
     sourceType?: "key" | "document";
   }[];
 }) => {
-  return primaryDb
+  return db
     .insert(translations)
     .values(
       translationItems.map((translation) => ({
         projectId,
         sourceFormat,
-        userId,
-        organizationId,
         branch,
         commit,
         sourceProvider,
@@ -63,11 +56,11 @@ export const createTranslations = async ({
         translations.targetLanguage,
       ],
       set: {
-        translatedText: translations.translatedText,
+        translatedText: sql`excluded.translated_text`,
         branch,
         commit,
         commitLink,
-        updatedAt: new UTCDate(),
+        updatedAt: new Date(),
       },
     })
     .returning();
@@ -75,8 +68,6 @@ export const createTranslations = async ({
 
 export const createDocument = async ({
   projectId,
-  organizationId,
-  userId,
   sourceFile,
   sourceLanguage,
   sourceText,
@@ -94,8 +85,6 @@ export const createDocument = async ({
   targetLanguage: string;
   sourceText: string;
   translatedText: string;
-  userId?: string | null;
-  organizationId: string;
   sourceFormat: string;
   sourceFile: string;
   branch?: string | null;
@@ -104,16 +93,13 @@ export const createDocument = async ({
   commitMessage?: string | null;
   commitLink?: string | null;
 }) => {
-  return primaryDb
+  return db
     .insert(translations)
     .values({
       projectId,
-      organizationId,
-      userId,
       sourceFile,
       sourceLanguage,
       targetLanguage,
-      // Document translations are stored as a single key (filename)
       translationKey: sourceFile,
       sourceType: "document",
       sourceFormat,
@@ -132,11 +118,11 @@ export const createDocument = async ({
         translations.targetLanguage,
       ],
       set: {
-        translatedText: translations.translatedText,
+        translatedText: sql`excluded.translated_text`,
         branch,
         commit,
         commitLink,
-        updatedAt: new UTCDate(),
+        updatedAt: new Date(),
       },
     })
     .returning();
@@ -147,18 +133,14 @@ export const getTranslationsBySlug = async ({
   slug,
   cursor,
   search,
-  organizationId,
   locales,
 }: {
   slug: string;
   search?: string | null;
   cursor?: string | null;
-  organizationId: string;
   locales?: string[] | null;
   limit?: number;
 }) => {
-  const db = await connectDb();
-
   return db
     .select()
     .from(translations)
@@ -166,7 +148,6 @@ export const getTranslationsBySlug = async ({
     .where(
       and(
         eq(projects.slug, slug),
-        eq(projects.organizationId, organizationId),
         locales ? inArray(translations.targetLanguage, locales) : undefined,
         cursor ? gt(translations.id, cursor) : undefined,
         search
@@ -183,8 +164,6 @@ export const getTranslationsBySlug = async ({
 };
 
 export const deleteKeys = async ({ projectId, keys }: DeleteKeysSchema) => {
-  const db = await connectDb();
-
   return db
     .delete(translations)
     .where(
@@ -196,21 +175,14 @@ export const deleteKeys = async ({ projectId, keys }: DeleteKeysSchema) => {
     .returning();
 };
 
-export const getProjectLocales = async ({
-  slug,
-  organizationId,
-}: ProjectLocalesSchema) => {
-  const db = await connectDb();
-
+export const getProjectLocales = async ({ slug }: ProjectLocalesSchema) => {
   return db
     .selectDistinct({
       targetLanguage: translations.targetLanguage,
     })
     .from(translations)
     .innerJoin(projects, eq(translations.projectId, projects.id))
-    .where(
-      and(eq(projects.slug, slug), eq(projects.organizationId, organizationId)),
-    )
+    .where(eq(projects.slug, slug))
     .orderBy(asc(translations.targetLanguage));
 };
 
@@ -221,8 +193,6 @@ export const getTranslationsByKey = async ({
   projectId: string;
   translationKey: string;
 }) => {
-  const db = await connectDb();
-
   return db
     .select()
     .from(translations)
@@ -240,7 +210,7 @@ export const getOverriddenTranslations = async ({
 }: {
   projectId: string;
 }) => {
-  return primaryDb
+  return db
     .select({
       translationKey: translations.translationKey,
       translatedText: translations.translatedText,
@@ -260,7 +230,7 @@ export const getOverriddenTranslations = async ({
 export const deleteTranslations = async ({
   projectId,
 }: DeleteTranslationsSchema) => {
-  return primaryDb
+  return db
     .delete(translations)
     .where(eq(translations.projectId, projectId));
 };

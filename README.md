@@ -1,77 +1,122 @@
-<p align="center">
-  <img src="https://github.com/midday-ai/languine/blob/main/apps/web/src/app/%5Blocale%5D/opengraph-image.png" />
-</p>
+# Languine
 
-<p align="center">
-  Translate your application with Languine CLI powered by AI.
-</p>
+**Self-hosted, Vercel-native AI localization.** Click Deploy. Connect Neon. Run `npx languine`. That's it.
 
 ---
 
+## One-click deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmidday-ai%2Flanguine&project-name=languine&repository-name=languine&root-directory=apps%2Fweb&env=LANGUINE_API_KEY,AI_MODEL&envDescription=LANGUINE_API_KEY%20is%20a%20random%20token%20you%20pick%20(e.g.%20%60openssl%20rand%20-hex%2032%60).%20AI_MODEL%20is%20optional%20(default%20openai%2Fgpt-4.1).&envLink=https%3A%2F%2Fgithub.com%2Fmidday-ai%2Flanguine%23environment-variables&stores=%5B%7B%22type%22%3A%22postgres%22%2C%22productSlug%22%3A%22neon%22%7D%5D)
+
+What the button does:
+
+1. Forks this repo to your GitHub account.
+2. Creates a Vercel project with `apps/web` as the root.
+3. Adds **Neon Postgres** via the Vercel Marketplace — `DATABASE_URL` is auto-injected.
+4. Prompts you for `LANGUINE_API_KEY` (any random string) and an optional `AI_MODEL` slug.
+5. Builds and deploys. The build automatically runs `drizzle-kit migrate` against your fresh Neon DB.
+
+After the first deploy, do these two things:
+
+1. **Enable Deployment Protection.** In your Vercel project: *Settings → Deployment Protection* → turn on **Vercel Authentication** (or **Password Protection**). This gates the dashboard and `/cli/token`. Without this, your API key is publicly visible.
+2. **Open the dashboard** (`https://<your-deployment>.vercel.app`). It shows a status checklist and ready-to-paste CLI commands.
+
+That's it. No additional integrations to configure — Vercel AI Gateway authenticates automatically via the project's OIDC token.
+
+## Use the CLI
+
+In any project that needs translations:
+
 ```bash
-$ npx languine@latest
+npx languine login --url https://languine.your-team.vercel.app
+npx languine init
+npx languine translate
 ```
 
-## What is Languine?
+`languine login` opens `/cli/token` in your browser. Because Deployment Protection is on, only authorized owners can see the page — copy the API key, paste it into the CLI prompt.
 
-Languine helps developers to focus on building features, not wrestling with
-localization challenges. With its robust tooling and AI capabilities, it
-transforms what was once a tedious, manual process into an automated,
-developer-friendly experience.
+For non-interactive use (CI, scripts):
 
-## Why use Languine?
+```bash
+export LANGUINE_BASE_URL=https://languine.your-team.vercel.app
+export LANGUINE_API_KEY=<the-key-you-set-on-vercel>
+npx languine translate
+```
 
-- **AI-Powered Translations**: Generate accurate and context-aware translations
-  across 100+ languages in seconds
-- **Automation-First Approach**: Automatically update, add, or remove
-  translations based on changes detected via Git diff
-- **Consistent Localization**: Maintain uniform tone and style across all
-  translated content
-- **Developer-Centric Design**: Built with TypeScript, it integrates natively
-  with version control systems and your preferred workflow
-- **Time-Saving Workflows**: Organize, preview, and manage translation files
-  directly from the command line
+## GitHub Action
 
-## What can it do?
+```yaml
+name: Languine
+on:
+  push:
+    branches: [main]
 
-### 🔍 Smart Detection
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: midday-ai/languine@main
+        with:
+          api-key: ${{ secrets.LANGUINE_API_KEY }}
+          base-url: ${{ vars.LANGUINE_BASE_URL }}
+          project-id: prj_xxxxxxx
+          create-pull-request: 'true'
+```
 
-- Automatically identifies new, modified, or removed translation keys in your
-  codebase using Git diff
-- Handles multiple file formats (.json, .ts, .md, .yaml, .po, .strings, .stringsdict, .xcstrings) with precise parsing and
-  file-specific updates
+## Environment variables
 
-### 🌍 AI-Powered Translation
+| Variable | Required | Source | Description |
+| --- | --- | --- | --- |
+| `LANGUINE_API_KEY` | Yes | Set at deploy | Single API key shared between the dashboard, CLI and Action. Generate with `openssl rand -hex 32`. |
+| `DATABASE_URL` | Yes | Auto-injected | Neon Postgres connection string from the Vercel Marketplace. |
+| `AI_MODEL` | No | Set at deploy | Vercel AI Gateway model slug. Defaults to `openai/gpt-4.1`. Examples: `anthropic/claude-sonnet-4`, `openai/gpt-4.1-mini`. |
+| `AI_GATEWAY_API_KEY` | No | Local dev only | Only needed when running locally outside Vercel. In production the Gateway uses the project's OIDC token. |
 
-- Leverages modern AI models to deliver contextually accurate translations
-- Supports more than 100 languages with natural and consistent results
-- Ensures that translations align with the tone and intent of your original text
+## Architecture
 
-### 🔑 Extract Translations
+- **Hosting:** Vercel (Next.js 16, App Router, Node.js runtime).
+- **Database:** Neon Postgres via the Vercel Marketplace (`@neondatabase/serverless` + Drizzle ORM).
+- **Background jobs:** Vercel Workflows (`workflow` SDK) — durable, resumable, observable.
+- **AI:** Vercel AI Gateway (`@ai-sdk/gateway` + AI SDK v6) — single configurable model.
+- **Auth:** Single `LANGUINE_API_KEY` for the CLI/Action; the dashboard is gated by Vercel Deployment Protection.
 
-- Extract translations keys from your codebase and save them to your source
-  language file
+```mermaid
+flowchart LR
+  Dev[Developer] -->|languine| CLI
+  GHA[GitHub Action] -->|x-api-key| Web
+  CLI -->|x-api-key| Web[apps/web on Vercel]
+  Web --> Workflows[Vercel Workflows]
+  Workflows --> Gateway[Vercel AI Gateway]
+  Gateway --> Models[OpenAI / Anthropic / ...]
+  Web --> Neon[(Neon Postgres)]
+  Workflows --> Neon
+  Owner[Owner browser] -->|Deployment Protection| Web
+```
 
-### 🪝 Hooks
+## Local development
 
-- Supports hooks to format the content with Biome or Prettier
+```bash
+git clone https://github.com/midday-ai/languine
+cd languine
+bun install
+cp apps/web/.env.example apps/web/.env  # fill in DATABASE_URL etc.
+bun dev
+```
 
-## Made with 🤍 from Midday
+Set `AI_GATEWAY_API_KEY` in `apps/web/.env` so the Gateway can authenticate when not running on Vercel.
 
-Languine was made from the implementation in [Midday](https://midday.ai), we
-have now extracted it into a standalone CLI tool.
+## Tests
 
-Midday is a all in one tool for invoicing, Time tracking, File reconciliation,
-Storage, Financial Overview & your own Assistant made for Freelancers
-
+```bash
+bun test                         # everything
+bun test --filter @languine/web  # just the web app
+bun test --filter languine       # just the CLI
+```
 
 ## License
 
-This project is licensed under the **[AGPL-3.0](https://opensource.org/licenses/AGPL-3.0)** for non-commercial use. 
-
-### Commercial Use
-
-For commercial use or deployments requiring a setup fee, please contact us
-for a commercial license at [engineer@languine.ai](mailto:engineer@languine.ai).
-
-By using this software, you agree to the terms of the license.
+AGPL-3.0 for non-commercial use. Commercial license: [engineer@languine.ai](mailto:engineer@languine.ai).

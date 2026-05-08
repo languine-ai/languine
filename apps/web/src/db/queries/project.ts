@@ -1,25 +1,21 @@
-import { connectDb } from "@/db";
-import { projectSettings, projects } from "@/db/schema";
-import type { ProjectSettings } from "@/trpc/routers/schema";
-import { and, eq } from "drizzle-orm";
-import slugify from "slugify";
+import { db } from "..";
+import { projects } from "../schema";
+import type { ProjectSettings } from "../../trpc/routers/schema";
+import { eq } from "drizzle-orm";
 
-export const createProject = async ({
-  name,
-  organizationId,
-}: {
-  name: string;
-  organizationId: string;
-}) => {
-  const db = await connectDb();
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
 
+export const createProject = async ({ name }: { name: string }) => {
   const [project] = await db
     .insert(projects)
-    .values({
-      name,
-      organizationId,
-      slug: slugify(name, { lower: true }),
-    })
+    .values({ name, slug: slugify(name) })
     .returning();
 
   return project;
@@ -28,133 +24,62 @@ export const createProject = async ({
 export const updateProject = async ({
   slug,
   name,
-  organizationId,
 }: {
   slug: string;
   name: string;
-  organizationId: string;
 }) => {
-  const db = await connectDb();
-
   const [project] = await db
     .update(projects)
-    .set({ name })
-    .where(
-      and(eq(projects.slug, slug), eq(projects.organizationId, organizationId)),
-    )
+    .set({ name, updatedAt: new Date() })
+    .where(eq(projects.slug, slug))
     .returning();
 
   return project;
 };
 
-export const deleteProject = async ({
-  slug,
-  organizationId,
-}: {
-  slug: string;
-  organizationId: string;
-}) => {
-  const db = await connectDb();
-
+export const deleteProject = async ({ slug }: { slug: string }) => {
   const [project] = await db
     .delete(projects)
-    .where(
-      and(eq(projects.slug, slug), eq(projects.organizationId, organizationId)),
-    )
+    .where(eq(projects.slug, slug))
     .returning();
 
   return project;
 };
 
-export const getProjectBySlug = async ({
-  slug,
-  organizationId,
-}: {
-  slug: string;
-  organizationId: string;
-}) => {
-  const db = await connectDb();
-
-  const [project] = await db
-    .select({
-      id: projects.id,
-      name: projects.name,
-      slug: projects.slug,
-      description: projects.description,
-      organizationId: projects.organizationId,
-      createdAt: projects.createdAt,
-      updatedAt: projects.updatedAt,
-      settings: projectSettings,
-    })
-    .from(projects)
-    .leftJoin(projectSettings, eq(projects.id, projectSettings.projectId))
-    .where(
-      and(eq(projects.slug, slug), eq(projects.organizationId, organizationId)),
-    );
+export const getProjectBySlug = async ({ slug }: { slug: string }) => {
+  const project = await db.query.projects.findFirst({
+    where: eq(projects.slug, slug),
+  });
 
   return project;
 };
 
-export const getProjectById = async ({
-  id,
-}: {
-  id: string;
-}) => {
-  const db = await connectDb();
-
-  const [project] = await db.select().from(projects).where(eq(projects.id, id));
+export const getProjectById = async ({ id }: { id: string }) => {
+  const project = await db.query.projects.findFirst({
+    where: eq(projects.id, id),
+  });
 
   return project;
+};
+
+export const listProjects = async () => {
+  return db.query.projects.findMany({
+    orderBy: (p, { desc }) => [desc(p.createdAt)],
+  });
 };
 
 export const updateProjectSettings = async ({
   slug,
-  organizationId,
   settings,
 }: {
   slug: string;
-  organizationId: string;
   settings: ProjectSettings;
 }) => {
-  const db = await connectDb();
-
   const [project] = await db
-    .select({
-      id: projects.id,
-    })
-    .from(projects)
-    .where(
-      and(eq(projects.slug, slug), eq(projects.organizationId, organizationId)),
-    );
-
-  if (!project) return null;
-
-  const projectId = project.id;
-  const whereClause = and(
-    eq(projectSettings.projectId, projectId),
-    eq(projectSettings.organizationId, organizationId),
-  );
-
-  const settingsToUpdate = {
-    ...settings,
-  };
-
-  const [updated] = await db
-    .update(projectSettings)
-    .set(settingsToUpdate)
-    .where(whereClause)
+    .update(projects)
+    .set({ ...settings, updatedAt: new Date() })
+    .where(eq(projects.slug, slug))
     .returning();
 
-  if (updated) return updated;
-
-  const [newSettings] = await db
-    .insert(projectSettings)
-    .values({
-      ...settingsToUpdate,
-      projectId,
-      organizationId,
-    })
-    .returning();
-
-  return newSettings;
+  return project;
 };

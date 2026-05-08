@@ -12,7 +12,6 @@
         "format": "biome format --write .",
         "typecheck": "tsc --noEmit",
         "build": "tsup --clean",
-        "test": "bun test",
         "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary --access public"
     },
     "files": [

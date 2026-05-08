@@ -1,56 +1,68 @@
 import { loadEnv } from "@/utils/env.js";
-import { getAPIKey } from "@/utils/session.js";
+import { getAPIKey, requireBaseUrl } from "@/utils/session.js";
 import { note } from "@clack/prompts";
 import type { AppRouter } from "@languine/web/src/trpc/routers/_app.js";
-import { createTRPCClient, httpBatchLink, loggerLink } from "@trpc/client";
+import {
+  type CreateTRPCClient,
+  createTRPCClient,
+  httpBatchLink,
+  loggerLink,
+} from "@trpc/client";
 import superjson from "superjson";
 
-const { LANGUINE_DEBUG, LANGUINE_BASE_URL } = loadEnv();
+const { LANGUINE_DEBUG } = loadEnv();
 
-export const client = createTRPCClient<AppRouter>({
-  links: [
-    loggerLink({
-      enabled: () => LANGUINE_DEBUG === "true",
-    }),
-    httpBatchLink({
-      url: `${LANGUINE_BASE_URL}/api/trpc`,
-      transformer: superjson,
-      headers: () => {
-        const apiKey = getAPIKey();
+type Client = CreateTRPCClient<AppRouter>;
 
-        return {
-          "x-api-key": apiKey || undefined,
-          "x-trpc-source": "cli",
-        };
-      },
-      fetch: (url, options) => {
-        return fetch(url, options).then(async (res) => {
+let cachedClient: Client | null = null;
+
+function buildClient(): Client {
+  const baseUrl = requireBaseUrl();
+  return createTRPCClient<AppRouter>({
+    links: [
+      loggerLink({ enabled: () => LANGUINE_DEBUG === "true" }),
+      httpBatchLink({
+        url: `${baseUrl}/api/trpc`,
+        transformer: superjson,
+        headers: () => {
+          const apiKey = getAPIKey();
+          return {
+            "x-api-key": apiKey || undefined,
+            "x-trpc-source": "cli",
+          };
+        },
+        fetch: async (url, options) => {
+          const res = await fetch(url, options);
           if (!res.ok) {
             const error = await res.json().catch(() => null);
-
             if (LANGUINE_DEBUG === "true") {
               console.log(JSON.stringify(error, null, 2));
             }
-
-            if (error[0]?.error?.json?.message === "UNAUTHORIZED") {
+            if (error?.[0]?.error?.json?.message === "UNAUTHORIZED") {
               note(
-                "You are not logged in. Please run `languine auth login` first.\nNeed help? https://languine.dev/docs/getting-started",
+                "You are not logged in. Run `languine login` first or set LANGUINE_API_KEY.",
                 "Unauthorized",
               );
               process.exit(1);
             }
-
-            if (error[0]?.error?.json?.message === "NOT_FOUND") {
+            if (error?.[0]?.error?.json?.message === "NOT_FOUND") {
               note(
-                "The resource you are looking for does not exist.\nNeed help? https://languine.ai/docs/getting-started/troubleshooting",
+                "The resource you are looking for does not exist.",
                 "Not Found",
               );
               process.exit(1);
             }
           }
           return res;
-        });
-      },
-    }),
-  ],
+        },
+      }),
+    ],
+  });
+}
+
+export const client: Client = new Proxy({} as Client, {
+  get(_target, prop) {
+    if (!cachedClient) cachedClient = buildClient();
+    return Reflect.get(cachedClient, prop);
+  },
 });

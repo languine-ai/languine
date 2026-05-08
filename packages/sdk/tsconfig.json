@@ -1,22 +1,22 @@
 {
-    "include": ["src/**/*.ts", "types/**/*.d.ts"],
-    "compilerOptions": {
-      "target": "esnext", 
-      "module": "NodeNext",
-      "allowJs": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "isolatedModules": true,
-      "esModuleInterop": true,
-      "outDir": "dist",
-      "resolveJsonModule": true,
-      "declaration": true,
-      "declarationMap": true,
-      "sourceMap": true,
-      "noEmit": false,
-      "customConditions": ["source"],
-      "allowImportingTsExtensions": false,
-      "emitDeclarationOnly": true,
-      "baseUrl": "."
-    }
+  "include": ["src/**/*.ts", "types/**/*.d.ts"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "noEmit": false,
+    "customConditions": ["source"],
+    "allowImportingTsExtensions": false,
+    "emitDeclarationOnly": true
   }
+}

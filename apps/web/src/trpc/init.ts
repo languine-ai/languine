@@ -1,64 +1,28 @@
-import { connectDb } from "@/db";
-import { users } from "@/db/schema";
-import { organizations } from "@/db/schema";
-import { getSession } from "@languine/supabase/session";
+import { isOwnerRequest, isValidApiKey } from "../lib/auth";
 import { TRPCError, initTRPC } from "@trpc/server";
-import { eq } from "drizzle-orm";
 import superjson from "superjson";
 
-async function validateApiKey(
-  apiKey: string,
-): Promise<{ authenticatedId: string; type: "user" | "organization" } | null> {
-  const db = await connectDb();
+export type TrpcContextCaller = "api-key" | "owner";
 
-  if (apiKey.startsWith("org_")) {
-    const org = await db.query.organizations.findFirst({
-      where: eq(organizations.apiKey, apiKey),
-    });
+export type TrpcContext = {
+  caller: TrpcContextCaller | null;
+  headers: Headers;
+};
 
-    if (org) {
-      return {
-        authenticatedId: org.id,
-        type: "organization",
-      };
-    }
-  } else {
-    const user = await db.query.users.findFirst({
-      where: eq(users.apiKey, apiKey),
-    });
-    if (user) {
-      return {
-        authenticatedId: user.id,
-        type: "user",
-      };
-    }
-  }
-
-  return null;
-}
-
-export const createTRPCContext = async (opts: { headers: Headers }) => {
+export const createTRPCContext = async (opts: {
+  headers: Headers;
+}): Promise<TrpcContext> => {
   const apiKey = opts.headers.get("x-api-key");
 
-  // Either a user or organization
-  if (apiKey) {
-    const result = await validateApiKey(apiKey);
-    if (result) {
-      return {
-        authenticatedId: result.authenticatedId,
-        type: result.type,
-      };
-    }
+  if (apiKey && isValidApiKey(apiKey)) {
+    return { caller: "api-key", headers: opts.headers };
   }
 
-  const {
-    data: { session },
-  } = await getSession();
+  if (isOwnerRequest(opts.headers)) {
+    return { caller: "owner", headers: opts.headers };
+  }
 
-  return {
-    authenticatedId: session?.user?.id,
-    type: "user",
-  };
+  return { caller: null, headers: opts.headers };
 };
 
 export const t = initTRPC.context<typeof createTRPCContext>().create({
@@ -66,20 +30,13 @@ export const t = initTRPC.context<typeof createTRPCContext>().create({
 });
 
 export const createCallerFactory = t.createCallerFactory;
-
 export const createTRPCRouter = t.router;
 
-export const protectedProcedure = t.procedure.use(async (opts) => {
-  const { authenticatedId, type } = opts.ctx;
+export const publicProcedure = t.procedure;
 
-  if (!authenticatedId) {
+export const protectedProcedure = t.procedure.use(async (opts) => {
+  if (!opts.ctx.caller) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
-
-  return opts.next({
-    ctx: {
-      authenticatedId,
-      type,
-    },
-  });
+  return opts.next({ ctx: { caller: opts.ctx.caller } });
 });

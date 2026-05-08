@@ -4,11 +4,11 @@ import { loginCommand } from "./login.js";
 import { logoutCommand } from "./logout.js";
 import { whoamiCommand } from "./whoami.js";
 
-export async function commands(subCommand?: string) {
+export async function commands(subCommand?: string, args: string[] = []) {
   if (subCommand) {
     switch (subCommand) {
       case "login":
-        await loginCommand();
+        await loginCommand(args);
         break;
       case "logout":
         await logoutCommand();
