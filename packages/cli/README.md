@@ -3,75 +3,72 @@
 </p>
 
 <p align="center">
-  Translate your application with Languine CLI powered by AI.
+  Self-hosted, AI-powered localization for your codebase. The CLI for a Languine deployment you run on your own Vercel account.
 </p>
 
 ---
 
 ```bash
-$ npx languine@latest
+npx languine@selfhosted login --url https://languine.your-team.vercel.app
+npx languine@selfhosted init
+npx languine@selfhosted translate
 ```
+
+> The `selfhosted` dist-tag pins this v4 CLI to the self-hosted backend.
+> `npx languine@latest` continues to resolve to the legacy 3.x CLI for the
+> hosted service and is intentionally left untouched.
 
 ## What is Languine?
 
-Languine helps developers to focus on building features, not wrestling with
-localization challenges. With its robust tooling and AI capabilities, it
-transforms what was once a tedious, manual process into an automated,
-developer-friendly experience.
+Languine is an AI-powered localization engine. The dashboard, the API, the
+queue and the AI gateway all live inside a single Next.js app you deploy
+to your own Vercel account in one click — no SaaS account, no per-key
+pricing, you only pay the model provider.
 
-## Why use Languine?
+This package is the CLI that talks to that deployment.
 
-- **AI-Powered Translations**: Generate accurate and context-aware translations
-  across 100+ languages in seconds
-- **Automation-First Approach**: Automatically update, add, or remove
-  translations based on changes detected via Git diff
-- **Consistent Localization**: Maintain uniform tone and style across all
-  translated content
-- **Developer-Centric Design**: Built with TypeScript, it integrates natively
-  with version control systems and your preferred workflow
-- **Time-Saving Workflows**: Organize, preview, and manage translation files
-  directly from the command line
+## What it does
 
-## What can it do?
+- **Diff-based translation.** `languine translate` only translates keys
+  that changed since the last commit (tracked via `languine.lock`).
+- **18+ formats.** JSON, YAML, MDX, `.strings`, `.stringsdict`,
+  `.xcstrings`, `.arb`, `.po`, XLIFF, Android XML, PHP, Properties, CSV,
+  Fluent, raw HTML, JS / TS modules and more.
+- **Project bootstrap.** `languine init` creates a project on your
+  deployment via tRPC and writes the returned `projectId` into
+  `languine.json` for you.
+- **CI ready.** Pair with the `languine-ai/languine@v4` GitHub Action to
+  open PRs with new translations on every push.
+- **Auth without OAuth.** A single `LANGUINE_API_KEY` — the same key the
+  CLI, dashboard and Action share. The dashboard is gated by Vercel
+  Deployment Protection.
 
-### 🔍 Smart Detection
+## Quickstart
 
-- Automatically identifies new, modified, or removed translation keys in your
-  codebase using Git diff
-- Handles multiple file formats (.json, .ts, .md, .yaml, .po, .strings, .stringsdict, .xcstrings) with precise parsing and
-  file-specific updates
+1. Click "Deploy with Vercel" in the [main repo
+   README](https://github.com/languine-ai/languine).
+2. Generate `LANGUINE_API_KEY` (`openssl rand -hex 32`) and paste it in
+   the deploy prompt. Neon Postgres is provisioned via the Vercel
+   Marketplace; migrations run automatically on first build.
+3. Enable Deployment Protection on the Vercel project so the dashboard
+   and `/cli/token` aren't public.
+4. From your app's repo:
 
-### 🌍 AI-Powered Translation
+   ```bash
+   npx languine@selfhosted login --url https://languine.your-team.vercel.app
+   npx languine@selfhosted init
+   npx languine@selfhosted translate
+   ```
 
-- Leverages modern AI models to deliver contextually accurate translations
-- Supports more than 100 languages with natural and consistent results
-- Ensures that translations align with the tone and intent of your original text
+For non-interactive use (CI, scripts):
 
-### 🔑 Extract Translations
-
-- Extract translations keys from your codebase and save them to your source
-  language file
-
-### 🪝 Hooks
-
-- Supports hooks to format the content with Biome or Prettier
-
-## Made with 🤍 from Midday
-
-Languine was made from the implementation in [Midday](https://midday.ai), we
-have now extracted it into a standalone CLI tool.
-
-Midday is a all in one tool for invoicing, Time tracking, File reconciliation,
-Storage, Financial Overview & your own Assistant made for Freelancers
-
+```bash
+export LANGUINE_BASE_URL=https://languine.your-team.vercel.app
+export LANGUINE_API_KEY=<the-key-you-set-on-vercel>
+npx languine@selfhosted translate
+```
 
 ## License
 
-This project is licensed under the **[AGPL-3.0](https://opensource.org/licenses/AGPL-3.0)** for non-commercial use. 
-
-### Commercial Use
-
-For commercial use or deployments requiring a setup fee, please contact us
-for a commercial license at [engineer@languine.ai](mailto:engineer@languine.ai).
-
-By using this software, you agree to the terms of the license.
+MIT — see [LICENSE](https://github.com/languine-ai/languine) in the
+repository for the full text.
