@@ -6,19 +6,25 @@ import { createParser } from "@/parsers/index.ts";
 import type { Config } from "@/types.js";
 import { client } from "@/utils/api.js";
 import { configFile, loadConfig } from "@/utils/config.ts";
-import { loadEnv } from "@/utils/env.ts";
 import { getGitInfo } from "@/utils/git.ts";
 import { LockFileManager } from "@/utils/lock.ts";
 import { transformLocalePath } from "@/utils/path.js";
-import { getAPIKey } from "@/utils/session.ts";
-import { note, outro, select, spinner } from "@clack/prompts";
-import { auth, runs } from "@trigger.dev/sdk/v3";
+import { getAPIKey, requireBaseUrl } from "@/utils/session.ts";
+import { parseSseEvents } from "@/utils/sse.ts";
+import { note, outro, spinner } from "@clack/prompts";
 import chalk from "chalk";
 import glob from "fast-glob";
-import open from "open";
 import { z } from "zod";
 
-const { LANGUINE_BASE_URL } = loadEnv();
+type ProgressEvent =
+  | { type: "started"; targetLocale: string; total: number }
+  | { type: "progress"; targetLocale: string; done: number; total: number }
+  | {
+      type: "completed";
+      targetLocale: string;
+      translations: Array<{ key: string; translatedText: string }>;
+    }
+  | { type: "error"; targetLocale: string; message: string };
 
 const argsSchema = z.array(z.string()).transform((args) => {
   // Helper function to find value for a flag
@@ -106,7 +112,7 @@ export async function translateCommand(args: string[] = []) {
 
     if (!projectId) {
       note(
-        "Missing project ID. Get one at https://languine.ai/login \nand provide it via --project-id, config file, or LANGUINE_PROJECT_ID",
+        "Missing project ID. Run `languine init` to create one on your deployment, or pass it via --project-id / LANGUINE_PROJECT_ID / the `projectId` field in languine.json.",
         "Error",
       );
 
@@ -273,10 +279,9 @@ export async function translateCommand(args: string[] = []) {
         }
       }
 
-      let result: TranslationResult;
+      let result: TranslationResult | undefined;
 
-      const { error, run, meta } = await client.jobs.startJob.mutate({
-        apiKey: apiKey,
+      const { runId } = await client.jobs.startJob.mutate({
         projectId,
         sourceFormat: type,
         sourceLanguage: sourceLocale,
@@ -289,84 +294,68 @@ export async function translateCommand(args: string[] = []) {
         commitLink: gitInfo?.commitLink,
       });
 
-      if (
-        error?.code === "DOCUMENT_LIMIT_REACHED" ||
-        error?.code === "KEY_LIMIT_REACHED"
-      ) {
-        s.stop();
-
-        switch (error?.code) {
-          case "DOCUMENT_LIMIT_REACHED":
-            note(
-              "Document limit reached. Upgrade your plan to increase your limit.",
-              "Limit reached",
-            );
-            break;
-          case "KEY_LIMIT_REACHED":
-            note(
-              "Translation keys limit reached. Upgrade your plan to increase your limit.",
-              "Limit reached",
-            );
-            break;
-        }
-
-        const shouldUpgrade = await select({
-          message: "Would you like to upgrade your plan now?",
-          options: [
-            { label: "Upgrade plan", value: "upgrade" },
-            { label: "Cancel", value: "cancel" },
-          ],
-        });
-
-        if (shouldUpgrade === "upgrade") {
-          if (meta?.plan === "free") {
-            await open(
-              `${LANGUINE_BASE_URL}/${meta?.organizationId}/default/settings?tab=billing&modal=plan&tier=${Number(meta?.tier) + 1}`,
-            );
-          } else {
-            await open(
-              `${LANGUINE_BASE_URL}/api/portal?id=${meta?.polarCustomerId}`,
-            );
-          }
-
-          note("Run `languine translate` again to continue.", "What's next?");
-        }
-
-        process.exit(1);
-      }
-
-      if (!run) {
+      if (!runId) {
         s.stop();
         note("Translation job not found", "Error");
         process.exit(1);
       }
 
-      // If in queue, show a pro tip
-      if (!isSilent && meta?.plan === "free") {
-        if (!checkOnly) {
-          console.log();
-          note(
-            "Upgrade to Pro for faster translations https://languine.ai/pricing",
-            "Pro tip",
+      const baseUrl = requireBaseUrl();
+      const totalsByLocale = new Map<string, { done: number; total: number }>();
+      const accumulated: TranslationResult = { translations: {} };
+
+      const headers: Record<string, string> = { Accept: "text/event-stream" };
+      if (apiKey) headers["x-api-key"] = apiKey;
+
+      const response = await fetch(`${baseUrl}/api/jobs/${runId}/stream`, {
+        headers,
+      });
+
+      if (!response.ok || !response.body) {
+        s.stop();
+        note(
+          `Failed to subscribe to translation run (${response.status})`,
+          "Error",
+        );
+        process.exit(1);
+      }
+
+      const decoded = response.body.pipeThrough(new TextDecoderStream());
+
+      for await (const event of parseSseEvents<ProgressEvent>(
+        decoded as unknown as AsyncIterable<string>,
+      )) {
+        if (event.type === "progress" || event.type === "started") {
+          totalsByLocale.set(event.targetLocale, {
+            done: event.type === "progress" ? event.done : 0,
+            total: event.total,
+          });
+          if (!isSilent) {
+            const overall = Array.from(totalsByLocale.values()).reduce(
+              (acc, cur) => {
+                acc.done += cur.done;
+                acc.total += cur.total;
+                return acc;
+              },
+              { done: 0, total: 0 },
+            );
+            const pct = overall.total
+              ? Math.round((overall.done / overall.total) * 100)
+              : 0;
+            s.message(`Translating: ${pct}%`);
+          }
+        } else if (event.type === "completed") {
+          accumulated.translations[event.targetLocale] = event.translations;
+        } else if (event.type === "error") {
+          console.error(
+            chalk.red(
+              `Error translating ${event.targetLocale}: ${event.message}`,
+            ),
           );
-          console.log();
         }
       }
 
-      await auth.withAuth({ accessToken: run.publicAccessToken }, async () => {
-        for await (const update of runs.subscribeToRun(run.id)) {
-          if (update.metadata?.progress && !isSilent) {
-            s.message(
-              `Translating: ${Math.round(Number(update.metadata.progress))}%`,
-            );
-          }
-
-          if (update.finishedAt) {
-            result = update.output;
-            break;
-          }
-        }
-      });
+      result = accumulated;
 
       if (!isSilent) {
         s.message("Processing translations...");
@@ -402,9 +391,8 @@ export async function translateCommand(args: string[] = []) {
           const sourceFileContent = await readFile(sourceFilePath, "utf-8");
           const parsedSourceContent = await parser.parse(sourceFileContent);
 
-          // Convert the translations and merge with existing content
           const translatedContent = Object.fromEntries(
-            result.translations[targetLocale].map((translation) => [
+            (result?.translations[targetLocale] ?? []).map((translation) => [
               translation.key,
               translation.translatedText ?? "",
             ]),

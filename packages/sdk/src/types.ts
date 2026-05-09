@@ -27,11 +27,9 @@ export interface TranslateParams {
   targetLocale: string;
   format?: Format;
   sourceText: string;
-  cache?: boolean;
 }
 
 export interface TranslateResponse {
   success: boolean;
   translatedText: string;
-  cached: boolean;
 }

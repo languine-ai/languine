@@ -1,22 +1,26 @@
+import { getAPIKey, getBaseUrl } from "@/utils/session.ts";
+import { note } from "@clack/prompts";
 import chalk from "chalk";
-import { client } from "../../utils/api.ts";
 
 export async function whoamiCommand() {
-  const user = await client.user.me.query();
+  const baseUrl = getBaseUrl();
+  const apiKey = getAPIKey();
 
-  const details = [
-    ["Name", user.name],
-    ["Email", user.email],
-  ];
-
-  console.log();
-  console.log(chalk.bold("User Details"));
-  console.log("- ".repeat(20));
-
-  for (const [label, value] of details) {
-    console.log(`${chalk.dim("•")} ${chalk.bold(label.padEnd(10))} ${value}`);
+  if (!baseUrl || !apiKey) {
+    note(
+      "Not logged in. Run `languine login` to connect to your deployment.",
+      "Status",
+    );
+    process.exit(1);
   }
 
+  const masked = `${apiKey.slice(0, 6)}...${apiKey.slice(-4)}`;
+
+  console.log();
+  console.log(chalk.bold("Languine session"));
+  console.log("- ".repeat(20));
+  console.log(`${chalk.dim("•")} ${chalk.bold("Base URL".padEnd(10))} ${baseUrl}`);
+  console.log(`${chalk.dim("•")} ${chalk.bold("API key".padEnd(10))} ${masked}`);
   console.log("- ".repeat(20));
   console.log();
 }

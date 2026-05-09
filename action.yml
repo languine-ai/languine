@@ -1,22 +1,21 @@
-name: 'Languine.ai'
-description: 'Automated localization infrastructure'
+name: 'Languine'
+description: 'Self-hosted automated localization powered by your own Languine deployment'
 author: 'languine'
 
 inputs:
   api-key:
-    description: 'Languine API key'
+    description: 'Languine API key (set in your Vercel project as LANGUINE_API_KEY)'
+    required: true
+  base-url:
+    description: 'URL of your Languine deployment (e.g. https://languine.your-team.vercel.app)'
     required: true
   project-id:
     description: 'Languine project ID'
     required: true
   cli-version:
-    description: 'Version of Languine CLI to use'
+    description: 'npm dist-tag or version of the Languine CLI to use. Defaults to `selfhosted` (the v4 CLI for self-hosted deployments). Pass `latest` to use the legacy 3.x CLI against the hosted backend.'
     required: false
-    default: 'latest'
-  dev-mode:
-    description: 'Enable development mode'
-    required: false
-    default: 'false'
+    default: 'selfhosted'
   create-pull-request:
     description: 'Create a pull request instead of committing directly'
     required: false
@@ -36,13 +35,13 @@ runs:
   image: 'packages/action/Dockerfile'
   env:
     LANGUINE_API_KEY: ${{ inputs.api-key }}
+    LANGUINE_BASE_URL: ${{ inputs.base-url }}
     LANGUINE_PROJECT_ID: ${{ inputs.project-id }}
     LANGUINE_CLI_VERSION: ${{ inputs.cli-version }}
     LANGUINE_WORKING_DIRECTORY: ${{ inputs.working-directory }}
     LANGUINE_CREATE_PULL_REQUEST: ${{ inputs.create-pull-request }}
     LANGUINE_COMMIT_MESSAGE: ${{ inputs.commit-message }}
     LANGUINE_PR_TITLE: ${{ inputs.pr-title }}
-    DEV_MODE: ${{ inputs.dev-mode }}
 
 branding:
   icon: 'git-merge'

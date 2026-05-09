@@ -1,7 +1,8 @@
 {
   "include": ["src/**/*.ts", "types/**/*.d.ts"],
   "compilerOptions": {
-    "target": "esnext", 
+    "types": ["bun"],
+    "target": "esnext",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "allowJs": true,
@@ -18,10 +19,8 @@
     "customConditions": ["source"],
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@jobs/*": ["../../apps/web/src/jobs/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

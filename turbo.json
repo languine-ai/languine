@@ -10,32 +10,13 @@
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "dependsOn": ["^build"],
       "env": [
-        "RESEND_API_KEY",
-        "UPSTASH_REDIS_REST_URL",
-        "UPSTASH_REDIS_REST_TOKEN",
-        "TRIGGER_SECRET_KEY",
-        "AI_GATEWAY_ENDPOINT_LARGE",
-        "AI_MODEL_LARGE", 
-        "AI_API_KEY_LARGE",
-        "AI_GATEWAY_ENDPOINT",
+        "DATABASE_URL",
+        "LANGUINE_API_KEY",
         "AI_MODEL",
-        "AI_API_KEY",
-        "BASE_URL",
-        "LANGUINE_PROJECT_ID",
-        "NEXT_PUBLIC_SUPABASE_URL",
-        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-        "DATABASE_PRIMARY_URL",
-        "DATABASE_US_URL",
-        "DATABASE_EU_URL",
-        "DATABASE_AU_URL"
+        "AI_GATEWAY_API_KEY",
+        "VERCEL_OIDC_TOKEN"
       ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "next-env.d.ts",
-        ".expo/**",
-        "dist"
-      ]
+      "outputs": [".next/**", "!.next/cache/**", "next-env.d.ts", "dist"]
     },
     "start": {
       "cache": false

@@ -4,14 +4,9 @@ import { logger } from "./logger.ts";
 
 export const execAsync = promisify(exec);
 
-interface SpawnOptions
-  extends Omit<Parameters<typeof Bun.spawn>[1], "throwOnError"> {
-  /**
-   * Whether to throw an error if the process exits with a non-zero code
-   * @default true
-   */
+type SpawnOptions = NonNullable<Parameters<typeof Bun.spawn>[1]> & {
   throwOnError?: boolean;
-}
+};
 
 /**
  * Runs a command using Bun's spawn API with better defaults and error handling

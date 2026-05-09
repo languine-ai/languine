@@ -1,30 +1,30 @@
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 
-interface LanguineSession {
-  id: string;
-  name: string;
-  email: string;
+export interface LanguineSession {
+  baseUrl: string;
   apiKey: string;
 }
 
-const SESSION_FILE = join(homedir(), ".languine");
+const SESSION_FILE =
+  process.env.LANGUINE_SESSION_FILE ||
+  join(homedir(), ".config", "languine", "session.json");
 
 export function saveSession(sessionData: LanguineSession): void {
-  writeFileSync(SESSION_FILE, JSON.stringify(sessionData), { mode: 0o600 });
+  mkdirSync(dirname(SESSION_FILE), { recursive: true });
+  writeFileSync(SESSION_FILE, JSON.stringify(sessionData, null, 2), {
+    mode: 0o600,
+  });
 }
 
 export function loadSession(): LanguineSession | null {
-  if (existsSync(SESSION_FILE)) {
-    try {
-      return JSON.parse(readFileSync(SESSION_FILE, "utf-8"));
-    } catch (error) {
-      return null;
-    }
+  if (!existsSync(SESSION_FILE)) return null;
+  try {
+    return JSON.parse(readFileSync(SESSION_FILE, "utf-8"));
+  } catch {
+    return null;
   }
-
-  return null;
 }
 
 export function clearSession(): void {
@@ -34,15 +34,21 @@ export function clearSession(): void {
 }
 
 export function getAPIKey(): string | null {
-  if (process.env.LANGUINE_API_KEY) {
-    return process.env.LANGUINE_API_KEY;
+  if (process.env.LANGUINE_API_KEY) return process.env.LANGUINE_API_KEY;
+  return loadSession()?.apiKey ?? null;
+}
+
+export function getBaseUrl(): string | null {
+  if (process.env.LANGUINE_BASE_URL) return process.env.LANGUINE_BASE_URL;
+  return loadSession()?.baseUrl ?? null;
+}
+
+export function requireBaseUrl(): string {
+  const url = getBaseUrl();
+  if (!url) {
+    throw new Error(
+      "No Languine base URL configured. Run `languine login` or set LANGUINE_BASE_URL.",
+    );
   }
-
-  const session = loadSession();
-
-  if (!session) {
-    return null;
-  }
-
-  return session.apiKey;
+  return url.replace(/\/+$/, "");
 }

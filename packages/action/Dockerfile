@@ -1,20 +1,18 @@
 FROM oven/bun:1
 
-# Install git
-RUN apt-get update && apt-get install -y git
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends git \
+  && rm -rf /var/lib/apt/lists/*
 
-# Create and set working directory
 WORKDIR /action
 
-# Copy package files, lockfile and config files for the action
-COPY bun.lock package.json tsconfig.json /action/
+# The build context for a GitHub Docker action is the directory containing
+# action.yml (the repo root), so we reference files inside packages/action/.
+# The action package has no workspace dependencies, so we install it
+# stand-alone from its own package.json (no monorepo lockfile needed).
+COPY packages/action/package.json packages/action/tsconfig.json ./
+COPY packages/action/src ./src
 
-# Copy action source code
-COPY src /action/src
+RUN bun install --production
 
-# Install action dependencies
-RUN bun install --frozen-lockfile
-
-# Run action
 ENTRYPOINT ["bun", "run", "/action/src/index.ts"]
-

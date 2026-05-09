@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// Supported formats from the codebase
 export const FORMAT_ENUM = [
   "string",
   "json",
@@ -16,7 +15,7 @@ export const FORMAT_ENUM = [
   "ftl",
   "js",
   "ts",
-  'php',
+  "php",
   "po",
   "xliff",
   "csv",
@@ -30,26 +29,14 @@ export const translateRequestSchema = z.object({
   targetLocale: z.string(),
   format: z.enum(FORMAT_ENUM).optional().default("string"),
   sourceText: z.string(),
-  cache: z.boolean().optional().default(true),
 });
 
 export type TranslateRequest = z.infer<typeof translateRequestSchema>;
 
 export const getValidationErrorMessage = (error: z.ZodError): string => {
-  const errors = error.errors.map((err) => {
-    const field = err.path.join(".");
-    switch (err.code) {
-      case "invalid_type":
-        return `${field} must be a ${err.expected}`;
-      case "invalid_enum_value":
-        return `${field} must be one of: ${err.options?.join(", ")}`;
-      case "invalid_string":
-        return `${field} is not valid`;
-      case "too_small":
-        return `${field} is required`;
-      default:
-        return `${field} is invalid`;
-    }
+  const issues = error.issues.map((issue) => {
+    const field = issue.path.join(".");
+    return `${field || "request"}: ${issue.message}`;
   });
-  return errors[0] || "Invalid request format";
+  return issues[0] || "Invalid request format";
 };

@@ -4,7 +4,7 @@ export * from "./types.js";
 
 export interface LanguineOptions {
   apiKey: string;
-  baseUrl?: string;
+  baseUrl: string;
 }
 
 export class Languine {
@@ -12,12 +12,17 @@ export class Languine {
   private readonly baseUrl: string;
 
   constructor(options: LanguineOptions) {
-    const { apiKey, baseUrl = "https://languine.ai" } = options;
-    if (!apiKey.startsWith("org_")) {
-      throw new Error("Invalid API key format. API key must start with 'org_'");
+    const { apiKey, baseUrl } = options;
+    if (!apiKey) {
+      throw new Error("apiKey is required");
+    }
+    if (!baseUrl) {
+      throw new Error(
+        "baseUrl is required. Pass the URL of your self-hosted Languine deployment.",
+      );
     }
     this.apiKey = apiKey;
-    this.baseUrl = baseUrl;
+    this.baseUrl = baseUrl.replace(/\/+$/, "");
   }
 
   private async request<T>(
@@ -53,7 +58,6 @@ export class Languine {
         targetLocale: params.targetLocale,
         format: params.format || "string",
         sourceText: params.sourceText,
-        cache: params.cache ?? true,
       }),
     });
   }

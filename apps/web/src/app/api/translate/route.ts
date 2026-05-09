@@ -1,85 +1,70 @@
+import { createTranslations } from "@/db/queries/translate";
+import { db } from "@/db";
+import { projects } from "@/db/schema";
+import { requireApiKey } from "@/lib/auth";
+import { translateKeys } from "@/workflows/utils/translate";
 import { waitUntil } from "@vercel/functions";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-import {
-  generateKey,
-  getCacheKey,
-  getFromCache,
-  setInCache,
-} from "./utils/cache";
-import { verifyApiKeyAndLimits } from "./utils/db";
 import { handleError } from "./utils/errors";
-import { performTranslation, persistTranslation } from "./utils/translation";
 import { translateRequestSchema } from "./utils/validation";
+
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
-    const apiKey = request.headers.get("x-api-key");
-    if (!apiKey) {
+    requireApiKey(request.headers);
+
+    const body = await request.json();
+    const { projectId, sourceLocale, targetLocale, format, sourceText } =
+      translateRequestSchema.parse(body);
+
+    const project = await db.query.projects.findFirst({
+      where: eq(projects.id, projectId),
+      columns: { id: true },
+    });
+
+    if (!project) {
       return NextResponse.json(
-        {
-          success: false,
-          error: "API key is required. Provide it via x-api-key header",
-        },
-        { status: 401 },
+        { success: false, error: "Project not found" },
+        { status: 404 },
       );
     }
 
-    const body = await request.json();
-    const { projectId, sourceLocale, targetLocale, format, sourceText, cache } =
-      translateRequestSchema.parse(body);
+    const key = sourceText;
 
-    const org = await verifyApiKeyAndLimits(apiKey, projectId, format);
-    const key = generateKey(sourceText);
-    const cacheKey = getCacheKey(projectId, sourceLocale, targetLocale, key);
+    const [translatedText] = await translateKeys(
+      [{ key, sourceText }],
+      {
+        sourceLocale,
+        targetLocale,
+        sourceFormat: format,
+      },
+    );
 
-    // Check cache
-    if (cache) {
-      const cachedResult = await getFromCache(cacheKey);
-      if (cachedResult) {
-        return NextResponse.json({
-          success: true,
-          translatedText: cachedResult,
-          cached: true,
-        });
-      }
-    }
-
-    // Perform translation
-    const translatedText = await performTranslation(key, sourceText, {
-      sourceLocale,
-      targetLocale,
-      format,
-    });
-
-    // Handle persistence in background
     const isDocument = format === "md" || format === "mdx";
 
     waitUntil(
-      (async () => {
-        await persistTranslation(
+      createTranslations({
+        projectId,
+        sourceFormat: format,
+        translations: [
           {
-            projectId,
-            organizationId: org.id,
-            format,
-            key,
-            sourceLocale,
-            targetLocale,
+            translationKey: key,
+            sourceLanguage: sourceLocale,
+            targetLanguage: targetLocale,
             sourceText,
-            translatedText,
+            translatedText: translatedText ?? "",
+            sourceFile: "api",
+            sourceType: isDocument ? "document" : "key",
           },
-          isDocument,
-        );
-
-        if (cache) {
-          await setInCache(cacheKey, translatedText);
-        }
-      })(),
+        ],
+      }),
     );
 
     return NextResponse.json({
       success: true,
-      translatedText,
-      cached: false,
+      translatedText: translatedText ?? "",
     });
   } catch (error) {
     return handleError(error);

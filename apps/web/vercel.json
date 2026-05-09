@@ -1,3 +1,7 @@
 {
-    "regions": ["fra1", "syd1", "sfo1"]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "cd ../.. && bun install --frozen-lockfile",
+  "buildCommand": "cd ../.. && bun run build --filter=@languine/web",
+  "regions": ["iad1"]
 }

@@ -1,60 +1,87 @@
-import { randomUUID } from "node:crypto";
-import { loadEnv } from "@/utils/env.ts";
 import { saveSession } from "@/utils/session.ts";
-import { intro, outro, spinner } from "@clack/prompts";
+import { intro, note, outro, password, text } from "@clack/prompts";
 import chalk from "chalk";
 import open from "open";
 
-const { LANGUINE_BASE_URL } = loadEnv();
+export function parseLoginArgs(args: string[]) {
+  return {
+    url: getFlag(args, "--url"),
+    apiKey: getFlag(args, "--api-key"),
+  };
+}
 
-export async function loginCommand() {
-  intro("Login to Languine");
+function getFlag(args: string[], flag: string): string | undefined {
+  for (let i = 0; i < args.length - 1; i++) {
+    if (args[i] === flag && !args[i + 1]?.startsWith("--")) {
+      return args[i + 1];
+    }
+  }
+  return undefined;
+}
 
-  const loginId = randomUUID();
-  const loginUrl = `${LANGUINE_BASE_URL}/api/auth/cli/${loginId}`;
+export function normalizeBaseUrl(input: string): string {
+  let url = input.trim();
+  if (!/^https?:\/\//i.test(url)) {
+    url = `https://${url}`;
+  }
+  return url.replace(/\/+$/, "");
+}
 
-  const s = spinner();
+async function pingApiKey(baseUrl: string, apiKey: string): Promise<boolean> {
+  try {
+    const res = await fetch(
+      `${baseUrl}/api/trpc/project.list?batch=1&input=${encodeURIComponent(
+        JSON.stringify({ "0": { json: null, meta: { values: ["undefined"] } } }),
+      )}`,
+      { headers: { "x-api-key": apiKey } },
+    );
+    return res.status !== 401;
+  } catch {
+    return false;
+  }
+}
+
+export async function loginCommand(args: string[] = []) {
+  const flags = parseLoginArgs(args);
+
+  intro("Login to your Languine deployment");
+
+  let baseUrl = flags.url
+    ? normalizeBaseUrl(flags.url)
+    : ((await text({
+        message: "Your Languine deployment URL",
+        placeholder: "https://languine.your-team.vercel.app",
+        validate: (value) => (!value ? "URL is required" : undefined),
+      })) as string);
+
+  baseUrl = normalizeBaseUrl(baseUrl);
+
+  const tokenPage = `${baseUrl}/cli/token`;
+  note(
+    `Open ${chalk.bold(tokenPage)} in your browser, copy the API key, and paste it below.\nYou must be authorized via Vercel Deployment Protection to view this page.`,
+    "Get your API key",
+  );
 
   try {
-    await open(loginUrl);
-  } catch (error) {
-    s.stop("Could not open browser automatically");
+    await open(tokenPage);
+  } catch {
+    // ignore: user can copy URL manually
   }
 
-  console.log();
-  console.log(
-    chalk.gray(
-      "If the browser didn't open automatically, please visit this URL:",
-    ),
-  );
-  console.log(chalk.bold(loginUrl));
-  console.log();
+  const apiKey = flags.apiKey
+    ? flags.apiKey
+    : ((await password({
+        message: "Paste your API key",
+        validate: (value) => (!value ? "API key is required" : undefined),
+      })) as string);
 
-  s.start("Waiting for authentication...");
-
-  for (let i = 0; i < 20; i++) {
-    try {
-      const response = await fetch(
-        `${LANGUINE_BASE_URL}/api/auth/cli/${loginId}/verify`,
-      );
-      const data = await response.json();
-
-      if (data.success) {
-        s.stop("Successfully authenticated!");
-        outro("You are now logged in");
-
-        saveSession(data.user);
-        return;
-      }
-    } catch (error) {
-      // Ignore errors and continue polling
-    }
-
-    // Wait 3 seconds before next attempt
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+  const ok = await pingApiKey(baseUrl, apiKey);
+  if (!ok) {
+    outro(chalk.red("API key was rejected. Double-check the key and base URL."));
+    process.exit(1);
   }
 
-  s.stop("Authentication timed out");
-  outro("Please try logging in again");
-  return;
+  saveSession({ baseUrl, apiKey });
+
+  outro(`Logged in to ${chalk.bold(baseUrl)}`);
 }

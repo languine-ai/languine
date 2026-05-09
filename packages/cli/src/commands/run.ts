@@ -133,7 +133,9 @@ function showHelp(command?: keyof typeof COMMANDS) {
     console.log(
       chalk.gray("Translate your application with Languine CLI powered by AI."),
     );
-    console.log(chalk.gray(`Website: ${process.env.BASE_URL}`));
+    console.log(
+      chalk.gray("Connect to your deployment with `languine login`."),
+    );
     console.log();
     console.log(`${chalk.bold("USAGE")}`);
     console.log("  languine <command> [options]");
@@ -250,7 +252,16 @@ export async function runCommands() {
   if (mainCommand) {
     switch (mainCommand) {
       case "auth":
-        await authCommands(subCommand);
+        await authCommands(subCommand, args);
+        break;
+      case "login":
+        await authCommands("login", [subCommand, ...args].filter(Boolean));
+        break;
+      case "logout":
+        await authCommands("logout");
+        break;
+      case "whoami":
+        await authCommands("whoami");
         break;
       case "init":
         await initCommands([subCommand, ...args].filter(Boolean));
