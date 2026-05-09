@@ -34,7 +34,7 @@ export default async function HomePage() {
     }
   }
 
-  const loginCmd = `npx languine login --url ${baseUrl}`;
+  const loginCmd = `npx languine@selfhosted login --url ${baseUrl}`;
 
   return (
     <main className="min-h-screen px-6 py-12 max-w-3xl mx-auto">
@@ -80,17 +80,21 @@ export default async function HomePage() {
           </li>
           <li>
             <div className="text-muted-foreground mb-2">
-              2. From your project root, initialize the config.
+              2. From your project root, initialize the config (this also
+              creates a project on your deployment).
             </div>
-            <CodeBlock value="npx languine init" />
+            <CodeBlock value="npx languine@selfhosted init" />
           </li>
           <li>
             <div className="text-muted-foreground mb-2">3. Translate.</div>
-            <CodeBlock value="npx languine translate" />
+            <CodeBlock value="npx languine@selfhosted translate" />
           </li>
         </ol>
         <div className="text-xs text-muted-foreground mt-4">
-          Need the API key?{" "}
+          The <code>@selfhosted</code> dist-tag pins the v4 CLI that talks to
+          your deployment. <code>npx languine@latest</code> still resolves to
+          the legacy 3.x CLI (hosted backend) and is left untouched. Need the
+          API key?{" "}
           <Link className="underline" href="/cli/token">
             Open /cli/token
           </Link>

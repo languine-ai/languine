@@ -112,7 +112,7 @@ export async function translateCommand(args: string[] = []) {
 
     if (!projectId) {
       note(
-        "Missing project ID. Get one at https://languine.ai/login \nand provide it via --project-id, config file, or LANGUINE_PROJECT_ID",
+        "Missing project ID. Run `languine init` to create one on your deployment, or pass it via --project-id / LANGUINE_PROJECT_ID / the `projectId` field in languine.json.",
         "Error",
       );
 

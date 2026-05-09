@@ -37,6 +37,8 @@ npx languine@selfhosted translate
 
 `languine login` opens `/cli/token` in your browser. Because Deployment Protection is on, only authorized owners can see the page — copy the API key, paste it into the CLI prompt.
 
+`languine init` creates a project on your deployment via tRPC (`project.create`) and writes the returned `projectId` into `languine.json`. You don't need to provision anything from the dashboard.
+
 For non-interactive use (CI, scripts):
 
 ```bash
@@ -61,7 +63,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: midday-ai/languine@main
+      - uses: midday-ai/languine@v4
         with:
           api-key: ${{ secrets.LANGUINE_API_KEY }}
           base-url: ${{ vars.LANGUINE_BASE_URL }}

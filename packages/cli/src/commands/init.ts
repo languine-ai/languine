@@ -1,11 +1,49 @@
+import { basename } from "node:path";
 import { intro, isCancel, note, outro, select, text } from "@clack/prompts";
 import chalk from "chalk";
 import { z } from "zod";
 import type { parserTypeSchema } from "../parsers/index.js";
 import { expo } from "../presets/expo.js";
 import type { Config } from "../types.js";
+import { client } from "../utils/api.js";
 import { loadSession } from "../utils/session.js";
 import { commands as authCommands } from "./auth/index.js";
+
+async function ensureProjectId(explicitId?: string): Promise<string> {
+  if (explicitId) return explicitId;
+
+  const defaultName = basename(process.cwd()) || "languine";
+  const nameInput = await text({
+    message: "Project name",
+    placeholder: defaultName,
+    defaultValue: defaultName,
+  });
+
+  if (isCancel(nameInput)) {
+    outro("Configuration cancelled");
+    process.exit(0);
+  }
+
+  const name = (nameInput as string)?.trim() || defaultName;
+
+  try {
+    const project = await client.project.create.mutate({ name });
+    note(
+      `Created project ${chalk.bold(project.name)} (${chalk.cyan(project.id)})`,
+      "Project",
+    );
+    return project.id;
+  } catch (error) {
+    outro(
+      chalk.red(
+        `Failed to create project on your deployment: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      ),
+    );
+    process.exit(1);
+  }
+}
 
 interface Preset {
   value: string;
@@ -185,8 +223,9 @@ export async function commands(args: string[] = []) {
     }
 
     if (presetResult) {
+      const resolvedProjectId = await ensureProjectId(projectId);
       const config: Config = {
-        projectId: projectId || "",
+        projectId: resolvedProjectId,
         locale: {
           source: sourceLanguage,
           targets: targetLanguages.split(",").map((lang) => lang.trim()),
@@ -264,9 +303,9 @@ export async function commands(args: string[] = []) {
     include: [pattern],
   };
 
-  // Create config file
+  const resolvedProjectId = await ensureProjectId(projectId);
   const config: Config = {
-    projectId: projectId || "",
+    projectId: resolvedProjectId,
     locale: {
       source: sourceLanguage,
       targets: targetLanguages.split(",").map((lang) => lang.trim()),

@@ -13,9 +13,9 @@ inputs:
     description: 'Languine project ID'
     required: true
   cli-version:
-    description: 'Version of the Languine CLI to use'
+    description: 'npm dist-tag or version of the Languine CLI to use. Defaults to `selfhosted` (the v4 CLI for self-hosted deployments). Pass `latest` to use the legacy 3.x CLI against the hosted backend.'
     required: false
-    default: 'latest'
+    default: 'selfhosted'
   create-pull-request:
     description: 'Create a pull request instead of committing directly'
     required: false

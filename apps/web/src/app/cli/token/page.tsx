@@ -37,20 +37,24 @@ export default function CliTokenPage() {
 
             <div className="space-y-3">
               <h2 className="text-sm font-medium">Interactive (recommended)</h2>
-              <CodeBlock value={`npx languine login --url ${baseUrl}`} />
+              <CodeBlock
+                value={`npx languine@selfhosted login --url ${baseUrl}`}
+              />
             </div>
 
             <div className="space-y-3">
-              <h2 className="text-sm font-medium">Non-interactive (CI / scripts)</h2>
+              <h2 className="text-sm font-medium">
+                Non-interactive (CI / scripts)
+              </h2>
               <CodeBlock
-                value={`export LANGUINE_BASE_URL=${baseUrl}\nexport LANGUINE_API_KEY=${apiKey}`}
+                value={`export LANGUINE_BASE_URL=${baseUrl}\nexport LANGUINE_API_KEY=${apiKey}\nnpx languine@selfhosted translate`}
               />
             </div>
 
             <div className="space-y-3">
               <h2 className="text-sm font-medium">GitHub Actions</h2>
               <CodeBlock
-                value={`- uses: midday-ai/languine@main
+                value={`- uses: midday-ai/languine@v4
   with:
     api-key: \${{ secrets.LANGUINE_API_KEY }}
     base-url: ${baseUrl}
