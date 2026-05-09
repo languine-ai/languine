@@ -35,6 +35,26 @@ export default async function HomePage() {
   }
 
   const loginCmd = `npx languine@selfhosted login --url ${baseUrl}`;
+  const exampleProjectId = projects[0]?.id ?? "prj_xxxxxxx";
+  const workflowYaml = `name: Languine
+on:
+  push:
+    branches: [main]
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: languine-ai/languine@v4
+        with:
+          api-key: \${{ secrets.LANGUINE_API_KEY }}
+          base-url: \${{ vars.LANGUINE_BASE_URL }}
+          project-id: ${exampleProjectId}
+          create-pull-request: 'true'`;
 
   return (
     <main className="min-h-screen px-6 py-12 max-w-3xl mx-auto">
@@ -98,8 +118,64 @@ export default async function HomePage() {
           <Link className="underline" href="/cli/token">
             Open /cli/token
           </Link>
-          . CI? Set <code>LANGUINE_BASE_URL</code> and{" "}
-          <code>LANGUINE_API_KEY</code> as repository secrets.
+          .
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-medium mb-3">Automate in CI</h2>
+        <p className="text-sm text-muted-foreground mb-4">
+          Run translations on every push with the official GitHub Action.
+          {projects.length === 0 ? (
+            <>
+              {" "}
+              The snippet below uses a placeholder project ID — replace it
+              with one of your projects after running{" "}
+              <code>languine init</code>.
+            </>
+          ) : (
+            <>
+              {" "}
+              The snippet below is pre-filled with{" "}
+              <code className="font-mono">{exampleProjectId}</code>{" "}
+              ({projects[0]?.name}).
+            </>
+          )}
+        </p>
+        <ol className="space-y-5 text-sm">
+          <li>
+            <div className="text-muted-foreground mb-2">
+              1. In your application's GitHub repo, add two values under{" "}
+              <em>Settings → Secrets and variables → Actions</em>:
+            </div>
+            <ul className="list-disc pl-5 text-xs text-muted-foreground space-y-1.5">
+              <li>
+                <code className="font-mono">LANGUINE_API_KEY</code> (Secret) —
+                same key as{" "}
+                <Link className="underline" href="/cli/token">
+                  /cli/token
+                </Link>
+                .
+              </li>
+              <li>
+                <code className="font-mono">LANGUINE_BASE_URL</code> (Variable) —{" "}
+                <code className="font-mono">{baseUrl}</code>.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div className="text-muted-foreground mb-2">
+              2. Drop this into{" "}
+              <code className="font-mono">.github/workflows/languine.yml</code>:
+            </div>
+            <CodeBlock value={workflowYaml} />
+          </li>
+        </ol>
+        <div className="text-xs text-muted-foreground mt-4">
+          The action defaults to the <code>selfhosted</code> CLI dist-tag, so
+          it talks to <em>this</em> deployment, not the legacy hosted backend.
+          With <code>create-pull-request: 'true'</code> it opens a PR per run;
+          flip to <code>'false'</code> to commit directly.
         </div>
       </section>
 
