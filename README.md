@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/languine-ai/languine/main/apps/web/src/app/opengraph-image.png" alt="Languine" />
+</p>
+
 # Languine
 
 **Self-hosted, Vercel-native AI localization.** Click Deploy. Connect Neon. Run `npx languine`. That's it.

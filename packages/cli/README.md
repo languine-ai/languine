@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/languine-ai/languine/blob/main/apps/web/src/app/%5Blocale%5D/opengraph-image.png" />
+  <img src="https://raw.githubusercontent.com/languine-ai/languine/main/apps/web/src/app/opengraph-image.png" alt="Languine" />
 </p>
 
 <p align="center">
