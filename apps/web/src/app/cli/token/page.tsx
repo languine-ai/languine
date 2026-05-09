@@ -54,7 +54,7 @@ export default function CliTokenPage() {
             <div className="space-y-3">
               <h2 className="text-sm font-medium">GitHub Actions</h2>
               <CodeBlock
-                value={`- uses: midday-ai/languine@v4
+                value={`- uses: languine-ai/languine@v4
   with:
     api-key: \${{ secrets.LANGUINE_API_KEY }}
     base-url: ${baseUrl}

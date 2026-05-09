@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "midday-ai/languine" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "languine-ai/languine" }],
   "commit": false,
   "fixed": [],
   "linked": [],
