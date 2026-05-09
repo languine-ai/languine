@@ -4,7 +4,7 @@
 
 # Languine
 
-**Self-hosted, Vercel-native AI localization.** Click Deploy. Connect Neon. Run `npx languine`. That's it.
+**Self-hosted, Vercel-native AI localization.** Click Deploy. Run `npx languine`. That's it.
 
 ---
 
@@ -16,9 +16,9 @@ What the button does:
 
 1. Forks this repo to your GitHub account.
 2. Creates a Vercel project with `apps/web` as the root.
-3. Adds **Neon Postgres** via the Vercel Marketplace — `DATABASE_URL` is auto-injected.
+3. Provisions serverless Postgres via the Vercel Marketplace — `DATABASE_URL` is auto-injected.
 4. Prompts you for `LANGUINE_API_KEY` (any random string) and an optional `AI_MODEL` slug.
-5. Builds and deploys. The build automatically runs `drizzle-kit migrate` against your fresh Neon DB.
+5. Builds and deploys. The build automatically runs `drizzle-kit migrate` against your fresh database.
 
 After the first deploy, do these two things:
 
@@ -80,14 +80,14 @@ jobs:
 | Variable | Required | Source | Description |
 | --- | --- | --- | --- |
 | `LANGUINE_API_KEY` | Yes | Set at deploy | Single API key shared between the dashboard, CLI and Action. Generate with `openssl rand -hex 32`. |
-| `DATABASE_URL` | Yes | Auto-injected | Neon Postgres connection string from the Vercel Marketplace. |
+| `DATABASE_URL` | Yes | Auto-injected | Postgres connection string from the Vercel Marketplace integration you picked at deploy. |
 | `AI_MODEL` | No | Set at deploy | Vercel AI Gateway model slug. Defaults to `openai/gpt-4.1`. Examples: `anthropic/claude-sonnet-4`, `openai/gpt-4.1-mini`. |
 | `AI_GATEWAY_API_KEY` | No | Local dev only | Only needed when running locally outside Vercel. In production the Gateway uses the project's OIDC token. |
 
 ## Architecture
 
 - **Hosting:** Vercel (Next.js 16, App Router, Node.js runtime).
-- **Database:** Neon Postgres via the Vercel Marketplace (`@neondatabase/serverless` + Drizzle ORM).
+- **Database:** Serverless Postgres from the Vercel Marketplace + Drizzle ORM.
 - **Background jobs:** Vercel Workflows (`workflow` SDK) — durable, resumable, observable.
 - **AI:** Vercel AI Gateway (`@ai-sdk/gateway` + AI SDK v6) — single configurable model.
 - **Auth:** Single `LANGUINE_API_KEY` for the CLI/Action; the dashboard is gated by Vercel Deployment Protection.
@@ -100,8 +100,8 @@ flowchart LR
   Web --> Workflows[Vercel Workflows]
   Workflows --> Gateway[Vercel AI Gateway]
   Gateway --> Models[OpenAI / Anthropic / ...]
-  Web --> Neon[(Neon Postgres)]
-  Workflows --> Neon
+  Web --> DB[(Postgres)]
+  Workflows --> DB
   Owner[Owner browser] -->|Deployment Protection| Web
 ```
 
