@@ -70,5 +70,4 @@ npx languine@selfhosted translate
 
 ## License
 
-MIT — see [LICENSE](https://github.com/languine-ai/languine) in the
-repository for the full text.
+[MIT](https://github.com/languine-ai/languine/blob/main/LICENSE) © Midday Labs AB

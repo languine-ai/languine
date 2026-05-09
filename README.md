@@ -124,3 +124,7 @@ bun test                         # everything
 bun test --filter @languine/web  # just the web app
 bun test --filter languine       # just the CLI
 ```
+
+## License
+
+[MIT](./LICENSE) © Midday Labs AB

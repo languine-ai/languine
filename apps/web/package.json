@@ -2,6 +2,7 @@
   "name": "@languine/web",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "exports": {
     "./src/trpc/routers/_app.js": {
       "source": "./src/trpc/routers/_app.ts",

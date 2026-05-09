@@ -4,6 +4,7 @@
   "type": "module",
   "main": "src/index.ts",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "clean": "rm -rf .turbo node_modules dist",
     "lint": "biome check .",
