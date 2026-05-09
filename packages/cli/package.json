@@ -1,6 +1,6 @@
 {
   "name": "languine",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Self-hosted CLI for Languine — AI-powered localization for your codebase. Talks to a Languine deployment you run on your own Vercel account.",
   "type": "module",
   "bin": "dist/index.js",

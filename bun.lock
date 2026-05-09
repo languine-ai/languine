@@ -150,7 +150,7 @@
     },
     "packages/cli": {
       "name": "languine",
-      "version": "4.0.0",
+      "version": "4.0.1",
       "bin": "dist/index.js",
       "dependencies": {
         "@clack/prompts": "^1.3.0",
