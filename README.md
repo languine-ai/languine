@@ -10,7 +10,7 @@
 
 ## One-click deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flanguine-ai%2Flanguine&project-name=languine&repository-name=languine&root-directory=apps%2Fweb&env=LANGUINE_API_KEY,AI_MODEL&envDescription=LANGUINE_API_KEY%20is%20a%20random%20token%20you%20pick%20(e.g.%20%60openssl%20rand%20-hex%2032%60).%20AI_MODEL%20is%20optional%20(default%20openai%2Fgpt-4.1).&envLink=https%3A%2F%2Fgithub.com%2Flanguine-ai%2Flanguine%23environment-variables&stores=%5B%7B%22type%22%3A%22postgres%22%2C%22productSlug%22%3A%22neon%22%7D%5D)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flanguine-ai%2Flanguine&project-name=languine&repository-name=languine&root-directory=apps%2Fweb&env=LANGUINE_API_KEY,AI_MODEL&envDescription=LANGUINE_API_KEY%20is%20a%20random%20token%20you%20pick%20(e.g.%20%60openssl%20rand%20-hex%2032%60).%20AI_MODEL%20is%20optional%20(default%20openai%2Fgpt-4.1).&envLink=https%3A%2F%2Fgithub.com%2Flanguine-ai%2Flanguine%23environment-variables&stores=%5B%7B%22type%22%3A%22postgres%22%2C%22productSlug%22%3A%22neon%22%7D%5D&demo-title=Languine&demo-description=Self-hosted%20AI%20localization%20on%20your%20own%20Vercel%20account&demo-image=https%3A%2F%2Fraw.githubusercontent.com%2Flanguine-ai%2Flanguine%2Fmain%2Fapps%2Fweb%2Fsrc%2Fapp%2Fopengraph-image.png&demo-url=https%3A%2F%2Flanguine.ai)
 
 What the button does:
 
