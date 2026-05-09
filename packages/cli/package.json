@@ -14,7 +14,8 @@
     "dev": "tsup --watch --clean",
     "start": "node dist/index.js",
     "test": "bun test",
-    "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary"
+    "publish:canary": "npm version --prerelease --preid=canary && npm publish --prerelease --preid=canary --tag=canary",
+    "publish:selfhosted": "npm publish --tag=selfhosted"
   },
   "files": ["dist", "README.md"],
   "dependencies": {

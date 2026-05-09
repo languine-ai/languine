@@ -25,12 +25,14 @@ That's it. No additional integrations to configure — Vercel AI Gateway authent
 
 ## Use the CLI
 
+> The self-hosted CLI ships under the `selfhosted` npm dist-tag so it doesn't disturb users still pointed at the legacy hosted backend. Install it with `npx languine@selfhosted ...` (or pin `"languine": "^4"` in your `package.json`). `npx languine@latest` continues to resolve to the legacy 3.x CLI for the old hosted service.
+
 In any project that needs translations:
 
 ```bash
-npx languine login --url https://languine.your-team.vercel.app
-npx languine init
-npx languine translate
+npx languine@selfhosted login --url https://languine.your-team.vercel.app
+npx languine@selfhosted init
+npx languine@selfhosted translate
 ```
 
 `languine login` opens `/cli/token` in your browser. Because Deployment Protection is on, only authorized owners can see the page — copy the API key, paste it into the CLI prompt.
@@ -40,7 +42,7 @@ For non-interactive use (CI, scripts):
 ```bash
 export LANGUINE_BASE_URL=https://languine.your-team.vercel.app
 export LANGUINE_API_KEY=<the-key-you-set-on-vercel>
-npx languine translate
+npx languine@selfhosted translate
 ```
 
 ## GitHub Action
